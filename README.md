@@ -2,7 +2,7 @@
 
 Trabajo final de base de datos donde se implementara un cliente que enviara consultas SQL a la base de datos local, el dominio del proyecto es una agencia de binenes raices
 
-## ----------Dependencias para ejecucion---------------
+## Dependencias para ejecucion
 
 Instalar dependencias para la ejecucion del programa
 todas se encuentran especificadas en el archivo
@@ -12,7 +12,7 @@ requirements.txt
 
     pip install -r requirements.txt
 
-## --------Acceso a base de datos mediante .env----------
+## Acceso a base de datos mediante .env
 
 Crear un archivo .env en la ruta principal del proyecto
 en esta se encotraran las credenciales par ingresar a la
