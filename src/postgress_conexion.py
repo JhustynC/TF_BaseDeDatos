@@ -29,3 +29,7 @@ consulta_sql = """
     JOIN productos ON detalles_pedido.producto_id = productos.id
     WHERE clientes.nombre = %s;
 """
+
+
+#cursor.close()
+#conection.close()
