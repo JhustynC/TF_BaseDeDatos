@@ -1,23 +1,16 @@
 import psycopg2
-import os
-import dotenv
+import os 
+from dotenv import load_dotenv
 
-dotenv.load_dotenv()
-
-
-os.getenv['DATABASE_USER']
-os.getenv['DATABASE_PASSWORD']
-os.getenv['DATABASE_HOST']
-os.getenv['DATABASE_NAME']
-
+load_dotenv()
 
 conection = None
 try:
     conection  = psycopg2.connect(
-        host='localhost',
-        user='',
-        password='',
-        database='',
+        host = os.getenv('DATABASE_HOST'),
+        user = os.getenv('DATABASE_USER'),
+        password = os.getenv('DATABASE_PASSWORD'),
+        database = os.getenv('DATABASE_NAME'),
     )
 except Exception as e:
     print(e)
