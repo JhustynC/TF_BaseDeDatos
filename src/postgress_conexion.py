@@ -12,12 +12,16 @@ try:
         password = os.getenv('DATABASE_PASSWORD'),
         database = os.getenv('DATABASE_NAME'),
     )
+    
+    # Crear un objeto cursor
+    cursor = conection.cursor()
+    
+    
 except Exception as e:
     print(e)
     
 
-# Crear un objeto cursor
-cursor = conection.cursor()
+
 
 
 # Ejecutar una consulta SQL más compleja con JOIN
