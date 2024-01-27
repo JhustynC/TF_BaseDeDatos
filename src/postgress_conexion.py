@@ -15,7 +15,7 @@ try:
         database = os.getenv('NAME')
     )
 
-    
+
     # Crear un objeto cursor
     cursor = conection.cursor()
     cursor.execute("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'AND table_type = 'BASE TABLE';")

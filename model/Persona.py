@@ -1,4 +1,13 @@
 
-class Persona:
+class PersonaDB:
+    consulta = ""
 
-    def agente()
+    def agente():
+        pass
+        
+    def cliente():
+        pass
+
+    def vendedor():
+        pass
+
