@@ -243,7 +243,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         inmuebleDB.conectar.conectar_()    
         #inmuebleDB.ingresar
 
-    def consultar_ciudades(self, i):
+    def consultar_ciudades(self):
         conectar = Conectar()
         conectar.conectar_()
         consulta = ''' 
