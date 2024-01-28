@@ -4,7 +4,11 @@ Trabajo final de base de datos donde se implementara un cliente que enviara cons
 
 ## Entorno Virtual (Crear)
 
-> python -m venv venv
+Crear el entorno virtual para tener las dependencias separadas del interprete del systema
+
+> Comando para crear un Virtual Enviroment
+
+    python -m venv venv
 
 ## Dependencias para ejecucion
 
@@ -34,7 +38,9 @@ Base de Datos
 
 > El uso de estas variables se muestra en src/postgress_conexion
 
-## Compilar .ui (from .ui to.py)
+## Compilar .ui
+
+pasar de .ui a .py
 
 > Navegar hasta el directorio donde esta el .ui y ejecutar:
 
