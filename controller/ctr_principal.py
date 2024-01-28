@@ -71,10 +71,6 @@ class UI(QtWidgets.QMainWindow):
         self.animacion.start()
 
  
-app = QtWidgets.QApplication([])
-window = UI()
-window.show()
-app.exec()
 
 
 
