@@ -213,8 +213,9 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.txt_telefono_usuarios.clear()
         self.txt_nombre_usuario.clear()
         self.btn_buscar_usuario.click()
-        
-    def activar_campos(self):
+    
+    #TODO: activa los campos según se da click en el check box de ventana usuarios
+    def activar_campos_usuario(self):
         booleano = True
         #print("se ha clicleado,", self.ckb_editar_usuario.isChecked())
         if self.ckb_editar_usuario.isChecked():
@@ -235,11 +236,14 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             self.btn_editar_usuario.setEnabled(booleano)
         
     #!Funcionalidades Inmueble
-    #TODO: ingresar inmueble    
+    #TODO: ingresar inmueble, 
+    #clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, fecha_registro, m2_habitables, m2_terreno, ce_vendedor0    
     def ingresar_inmueble(self):
         inmuebleDB = InmuebleDB()
         inmuebleDB.conectar.conectar_()    
-        #inmuebleDB.ingresar
+        inmuebleDB.ingresar(self.txt_inmueble_ccatastral.text(), 
+                            int(self.txt_inmueble_numPisos.text()), 
+                            self.)()
 
     def ajustar_cbx_parroquias(self, i):
         conectar = Conectar()
