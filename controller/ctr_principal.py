@@ -129,7 +129,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         #!Para Pagina Inmueble
         #TODO: Agregar funcionalidades
-        self.txt_inmueble_ciudad.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
+        self.cbx_inmueble_ciudad.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
         
         #!Para Pagina Transaccion
         #TODO: Agregar funcionalidades
