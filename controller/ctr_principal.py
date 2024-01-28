@@ -268,12 +268,6 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             
     def ajustar_cbx_parroquias(self, i):
         #*Cambio con el PUSH
-        #!
-        #!
-        #!
-        #!
-        #gsgsdgsdgsdgsdgsd
-        #?HOlaaaaaaaaaaaaa
         ...
         
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
