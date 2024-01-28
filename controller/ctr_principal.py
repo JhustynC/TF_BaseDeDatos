@@ -214,6 +214,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.txt_telefono_usuarios.clear()
         self.txt_nombre_usuario.clear()
         self.btn_buscar_usuario.click()
+        
     #*Para activar o desacticar los campos de usuario
     def activar_campos(self):
         booleano = True
