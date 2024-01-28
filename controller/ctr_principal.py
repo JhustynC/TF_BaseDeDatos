@@ -134,6 +134,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
 
         #!Para Pagina Inmueble
         #TODO: Agregar funcionalidades
+        self.consultar_ciudades()
         self.cbx_inmueble_ciudad.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
         
         #!Para Pagina Transaccion
@@ -213,9 +214,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.txt_telefono_usuarios.clear()
         self.txt_nombre_usuario.clear()
         self.btn_buscar_usuario.click()
-    
-    #TODO: activa los campos según se da click en el check box de ventana usuarios
-    def activar_campos_usuario(self):
+        
+    def activar_campos(self):
         booleano = True
         #print("se ha clicleado,", self.ckb_editar_usuario.isChecked())
         if self.ckb_editar_usuario.isChecked():
@@ -241,20 +241,26 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     def ingresar_inmueble(self):
         inmuebleDB = InmuebleDB()
         inmuebleDB.conectar.conectar_()    
-        inmuebleDB.ingresar(self.txt_inmueble_ccatastral.text(), 
-                            int(self.txt_inmueble_numPisos.text()), 
-                            self.)()
+        #inmuebleDB.ingresar(self.txt_inmueble_ccatastral.text(), 
+        #                    int(self.txt_inmueble_numPisos.text()), 
+        #                    self.)()
 
-    def ajustar_cbx_parroquias(self, i):
+    def consultar_ciudades(self, i):
         conectar = Conectar()
         conectar.conectar_()
         consulta = ''' 
-        Select nombre 
-        from ciudad
+        SELECT nombre 
+        FROM ciudad
         ''' 
         conectar.ingresar_sentencia(consulta)
-        #print(conectar.resultado)
-
+        print(conectar.resultado)
+        for c in conectar.resultado:
+            self.cbx_inmueble_ciudad.addItem(c[0])
+            
+    def ajustar_cbx_parroquias(self, i):
+        ...
+        
+        
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
 
         # Obtenemos le boton del menu que fue presionado
