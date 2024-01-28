@@ -45,7 +45,7 @@ CREATE TABLE comprador (
     nombre TEXT NOT NULL, 
     apellido TEXT NOT NULL, 
     telefono VARCHAR(10), 
-    correo TEXT NOT NULL
+    correo TEXT NOT NULL,
     fecha_ingreso DATE NOT NULL
 );
    
@@ -54,7 +54,7 @@ CREATE TABLE vendedor (
     nombre TEXT NOT NULL, 
     apellido TEXT NOT NULL, 
     telefono VARCHAR(10), 
-    correo TEXT NOT NULL
+    correo TEXT NOT NULL,
     fecha_ingreso DATE NOT NULL
 );
    
