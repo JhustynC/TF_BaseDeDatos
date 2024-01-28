@@ -69,6 +69,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             case 'btn_transaccion':
                 self.paginas__principales.setCurrentWidget(self.pg_Transaccion)
     
+    
     def ocultar_menu_lateral(self):
         width = self.fr_botones_menu.width()
         if width == 0:

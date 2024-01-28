@@ -15,7 +15,9 @@ try:
         database = os.getenv('NAME')
     )
 
-
+    s = 'NAME'
+    print(f'\n> Conexión a PostgreSQL ({os.getenv(s)}) realizada con exito')
+    
     # Crear un objeto cursor
     cursor = conection.cursor()
     cursor.execute("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'AND table_type = 'BASE TABLE';")
@@ -25,6 +27,7 @@ try:
 
     
 except Exception as e:
+    print('\n> Conexión a PostgreSQL fallida')
     print(e)
 
 
