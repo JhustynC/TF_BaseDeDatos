@@ -29,7 +29,13 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         # Boton seleccionado de la primera pagina
         self.presionar_boton_menu('btn_usuario')
+    
+        
+        #PAra que el menueste escondido
         self.fr_botones_menu.setFixedWidth(0)
+        
+        #Para salir del sistema
+        self.btn_salir.clicked.connect(self.close)
 
         
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
