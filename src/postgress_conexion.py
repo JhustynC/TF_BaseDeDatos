@@ -1,29 +1,32 @@
 import psycopg2
-import os 
+import os
 from dotenv import load_dotenv
 
 load_dotenv()
-
+# -*- coding: utf-8 -*-
 conection = None
+
 try:
     conection  = psycopg2.connect(
         host = os.getenv('DATABASE_HOST'),
         user = os.getenv('DATABASE_USER'),
+        port = os.getenv('DATABASE_PORT'),
         password = os.getenv('DATABASE_PASSWORD'),
-        database = os.getenv('DATABASE_NAME'),
+        database = os.getenv('NAME')
     )
-    
+
+
     # Crear un objeto cursor
     cursor = conection.cursor()
     cursor.execute("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'AND table_type = 'BASE TABLE';")
     filas = cursor.fetchall()
     for fila in filas:
         print(fila)
-    #cursor.execute("INSERT INTO ")
-    print()
+
     
 except Exception as e:
     print(e)
+
 
 finally:
     if conection != None:
