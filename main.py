@@ -9,4 +9,3 @@ app.exec()
     
 #ESto es para un preba desde el main branch
 
-#! ahora desde jhustyn
