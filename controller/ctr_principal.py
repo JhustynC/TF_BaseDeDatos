@@ -214,7 +214,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.txt_telefono_usuarios.clear()
         self.txt_nombre_usuario.clear()
         self.btn_buscar_usuario.click()
-        
+    #*Para activar o desacticar los campos de usuario
     def activar_campos(self):
         booleano = True
         #print("se ha clicleado,", self.ckb_editar_usuario.isChecked())
@@ -245,7 +245,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #                    int(self.txt_inmueble_numPisos.text()), 
         #                    self.)()
 
-    def consultar_ciudades(self, i):
+    def consultar_ciudades(self):
         conectar = Conectar()
         conectar.conectar_()
         consulta = ''' 
