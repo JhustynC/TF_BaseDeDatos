@@ -235,6 +235,10 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             self.txt_nombre_usuario.setEnabled(booleano)
             self.cbx_categoria_usuario.setEnabled(booleano)
             self.btn_editar_usuario.setEnabled(booleano)
+            ##ss
+            #aasd
+            #asda
+            #SDA
         
     #!Funcionalidades Inmueble
     #TODO: ingresar inmueble, 
