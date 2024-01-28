@@ -6,6 +6,5 @@ window = UI()
 window.show()
 app.exec()
 
-    
-#!Esto es para un preba desde el jhustyn branch
+
 
