@@ -10,9 +10,8 @@ class Conectar:
     connection = None
     cursor = None
     resultado = None
-
-    print(os.getenv('DATABASE_PASSWORD'))
-    def __init__(self):
+    
+    def conectar_(self):
         try:
             # Establecer la conexión a la base de datos
             self.connection  = psycopg2.connect(
@@ -35,20 +34,17 @@ class Conectar:
             try: # en caso de que no regrese nada
                 self.resultado = self.cursor.fetchall()
                 print(self.resultado)
-            except:
-                self.resultado = []
+            except psycopg2.Error as e:
+                print("Error al obtener resultados:", e)
             print("Filas afectadas:", count)
-        except Exception as e:
-            print("Error al ingresar:", e)
+        except psycopg2.Error as e:
+            print("Error al ejecutar la consulta:", e)
 
-    def resultdo_consulta(self, sentencia):
-        try:
-            self.cursor = self.connection.cursor()
-            self.cursor.execute(sentencia) # se ejecuta
-            self.connection.commit() #
-            #count = self.cursor.rowcount
-            #print(count, "Registro insertado correctamente")
-        except Exception as e:
-            print("Error al en filtrar:", e)
+        finally:
+            if self.cursor:
+                self.cursor.close()
 
+            if self.connection:
+                self.connection.close()
+            
         

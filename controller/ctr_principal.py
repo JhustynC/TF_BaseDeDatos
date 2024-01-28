@@ -89,16 +89,23 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     #TODO:  def ingresar(self, indice, cedula, nombre, apellido, telefono, correo):
     def ingresar_usuario(self):
         personaDB = PersonaDB()
+        personaDB.conectar.conectar_()
         personaDB.ingresar(self.cbx_categoria_usuario.currentIndex(), 
                            self.txt_cedula_usuario.text(), 
                            self.txt_nombre_usuario.text(), 
                            self.txt_apellido_usuario.text(), 
                            self.txt_cedula_usuarios.text(), 
-                           self.txt_correo_usuario.text())
+                           self.txt_correo_usuario.text())()
         
         print("Consulta: ", personaDB.consulta)
+
         personaDB.enviar_consultar()
-        pass
+        personaDB.cerrar_conexion()
+
+    def buscar_usuario(self):
+        personaDB = PersonaDB()
+        personaDB.conectar.conectar_()
+        personaDB.listar()
         
   
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu

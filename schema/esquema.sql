@@ -46,6 +46,7 @@ CREATE TABLE comprador (
     apellido TEXT NOT NULL, 
     telefono VARCHAR(10), 
     correo TEXT NOT NULL
+    fecha_ingreso DATE NOT NULL
 );
    
 CREATE TABLE vendedor (
@@ -54,6 +55,7 @@ CREATE TABLE vendedor (
     apellido TEXT NOT NULL, 
     telefono VARCHAR(10), 
     correo TEXT NOT NULL
+    fecha_ingreso DATE NOT NULL
 );
    
 CREATE TABLE tipo_inmueble (

@@ -7,16 +7,17 @@ class PersonaDB:
         self.consulta = self.consulta + "INSERT INTO " # función sql
         """indice: 0 para vendedor, 1 para agente, 2 para comprador"""
 
-        self.atributos = f"(cedula, nombre,apellido,telefono,correo, fecha_ingreso) VALUES('{cedula}','{nombre}','{apellido}','{telefono}','{correo}'"
+        
+        self.atributos = f"(cedula, nombre,apellido,telefono,correo, fecha_ingreso) VALUES('{cedula}','{nombre}','{apellido}','{telefono}','{correo}', CURRENT_DATE)"
 
         def vendedor():
-            self.consulta = self.consulta + "vendedor " + self.atributos + ")"
+            self.consulta = self.consulta + "vendedor " + self.atributos
         
         def agente():
-            self.consulta = self.consulta + "agente " + self.atributos +  ", CURRENT_DATE)"
+            self.consulta = self.consulta + "agente " + self.atributos
         
         def comprador():
-            self.consulta = self.consulta + "comprador " + self.atributos + ")"
+            self.consulta = self.consulta + "comprador " + self.atributos
 
         
         persona = [vendedor,agente,comprador]    
@@ -60,8 +61,10 @@ class PersonaDB:
         persona = [vendedor,agente,comprador]    
         return persona[indice]
 
-    def listar(self, indice):
+    def listar(self, indice, cedula, nombre):
+        #FROM agente WHERE cedula LIKE '%16%' AND nombre LIKE '%%';
         self.consulta = self.consulta + "SELECT * FROM "
+        self.condicionos = f"cedula LIKE '%16%' AND nombre LIKE '%%'"
         def vendedor():
             self.consulta = self.consulta + "vendedor "
         
@@ -78,6 +81,12 @@ class PersonaDB:
     def enviar_consultar(self):
         self.conectar.ingresar_sentencia(self.consulta)
         self.consulta =""
+
+    def cerrar_conexion(self):
+        if self.conectar.connection != None:
+            self.conectar.cursor.close()
+            self.conectar.connection.close()
+
 
 #conectar2 = Conectar()
 
