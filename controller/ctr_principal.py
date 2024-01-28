@@ -203,8 +203,33 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         print(personaDB.conectar.resultado)
         self.llenar_tabla(self.tbl_usuario, personaDB.conectar.resultado)
         
+    #TODO: actualiza la tabla de usuarios y deja en blanco los text
+    def limpiar_campos(self):
+        self.txt_cedula_usuario.clear()
+        self.txt_apellido_usuario.clear()
+        self.txt_correo_usuario.clear()
+        self.txt_telefono_usuarios.clear()
+        self.txt_nombre_usuario.clear()
+        self.btn_buscar_usuario.click()
+
         
-  
+    #!Funcionalidades Inmueble
+    #TODO: ingresar inmueble    
+    def ingresar_inmueble(self):
+        inmuebleDB = InmuebleDB()
+        inmuebleDB.conectar.conectar_()    
+        #inmuebleDB.ingresar
+
+    def ajustar_cbx_parroquias(self, i):
+        conectar = Conectar()
+        conectar.conectar_()
+        consulta = ''' 
+        Select nombre 
+        from ciudad
+        ''' 
+        conectar.ingresar_sentencia(consulta)
+        #print(conectar.resultado)
+
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
 
         # Obtenemos le boton del menu que fue presionado
