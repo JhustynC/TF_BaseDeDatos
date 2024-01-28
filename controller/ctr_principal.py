@@ -1,3 +1,4 @@
+from model.Conectar import Conectar
 from view.menu_principal import Ui_MenuPrincipal
 from model.Persona import PersonaDB
 from model.Inmueble import InmuebleDB
@@ -11,6 +12,61 @@ from PyQt6.QtWidgets import QHeaderView, QTableWidgetItem, QTableWidgetSelection
 class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     
     primera_colum = ""
+    fila_tabla = None
+    ciudad_parroquias = {
+    'CUENCA': [
+        'Cuenca', 'Bellavista', 'Cañaribamba', 'El Batán', 'El Sagrario', 'El Vecino',
+        'Gil Ramírez Dávalos', 'Huayna Cápac', 'Machángara', 'Monay', 'San Blas', 'San Sebastián',
+        'Sucre', 'Totoracocha', 'Yanuncay', 'Hermano Miguel', 'Baños', 'Chaucha', 'Checa (Jidcay)',
+        'Chiquintad', 'Cumbe', 'El Valle', 'Llacao', 'Molleturo', 'Nulti', 'Octavio Cordero Palacios (Santa Rosa)',
+        'Paccha', 'Quingeo', 'Ricaurte', 'San Joaquín', 'Santa Ana', 'Sayausí', 'Sidcay', 'Sinincay',
+        'Tarqui', 'Turi', 'Portete (Irquis)'
+    ],
+    'GUALACEO': [
+        'Gualaceo', 'Daniel Córdova Toral (Oriente)', 'Jadán', 'Luís Cordero Vega',
+        'Mariano Moreno', 'Remigio Crespo Toral (Gúlag)', 'San Juan', 'Zhidmad', 'Simón Bolívar (Gañanzol)'
+    ],
+    'PAUTE': [
+        'Paute Bulán (José Víctor Izquierdo)', 'Chicán (Guillermo Ortega)', 'Dugdug',
+        'El Cabo', 'Guarainag', 'San Cristóbal (Carlos Ordóñez Lazo)', 'Tomebamba'
+    ],
+    'GIRÓN': [
+        'Girón', 'Asunción', 'San Gerardo'
+    ],
+    'Sta. ISABEL': [
+        'Santa Isabel', 'Adbón Calderón (La unión)', 'Zhaglli (Shaglli)'
+    ],
+    'SÍGSIG': [
+        'Sígsig', 'Cuchil (Cutchil)', 'Jima (Gima)', '-güel', 'Ludo', 'San Bartolomé', 'San José de Raranga'
+    ],
+    'Sn. FERNANDO': [
+        'San Fernando Chumblín'
+    ],
+    'NABÓN': [
+        'Nabón', 'Cochapata', 'El Progreso', 'Las Nieves (Chaya)'
+    ],
+    'PUCARÁ': [
+        'Pucará San Rafael de Sharug'
+    ],
+    'OÑA': [
+        'San Felipe de Oña Susudel'
+    ],
+    'CHORDELEG': [
+        'Chordeleg', 'La unión', 'Luis Gallarza Orellana (Delegsol)', 'Principal', 'San Martín de Puzhío'
+    ],
+    'EL PAN': [
+        'El pan', 'San Vicente'
+    ],
+    'SEVILLA DE ORO': [
+        'Sevilla de Oro Amaluza', 'Palmas'
+    ],
+    'GUACHAPALA': [
+        'Guachapala'
+    ],
+    'CAMILO PONCE ENRÍQUEZ': [
+        'Camilo Ponce Enríquez El Carmen de Pujilí'
+    ]
+}
     
     def __init__(self, parent=None):
         super(UI, self).__init__(parent)
@@ -76,6 +132,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         #!Para Pagina Inmueble
         #TODO: Agregar funcionalidades
+        self.cbx_inmueble_ciudad.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
         
         #!Para Pagina Transaccion
         #TODO: Agregar funcionalidades
@@ -146,23 +203,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         print(personaDB.conectar.resultado)
         self.llenar_tabla(self.tbl_usuario, personaDB.conectar.resultado)
         
-    #TODO: actualiza la tabla de usuarios y deja en blanco los text
-    def limpiar_campos(self):
-        self.txt_cedula_usuario.clear()
-        self.txt_apellido_usuario.clear()
-        self.txt_correo_usuario.clear()
-        self.txt_telefono_usuarios.clear()
-        self.txt_nombre_usuario.clear()
-        self.btn_buscar_usuario.click()
-
         
-    #!Funcionalidades Inmueble
-    #TODO: ingresar inmueble    
-    def ingresar_inmueble(self):
-        inmuebleDB = InmuebleDB()
-        inmuebleDB.conectar.conectar_()
-
-
+  
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
 
         # Obtenemos le boton del menu que fue presionado
