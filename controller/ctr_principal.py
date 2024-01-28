@@ -136,6 +136,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #TODO: Agregar funcionalidades
         self.consultar_ciudades()
         self.cbx_inmueble_ciudad.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
+        #self.cbx_inmueble_ciudad.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
         
         #!Para Pagina Transaccion
         #TODO: Agregar funcionalidades
@@ -267,8 +268,21 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             self.cbx_inmueble_ciudad.addItem(c[0])
             
     def ajustar_cbx_parroquias(self, i):
-        #*Cambio con el PUSH
-        ...
+        ciudad = self.cbx_inmueble_ciudad.currentText()
+        print('Ciudad:', ciudad)
+        conectar = Conectar()
+        conectar.conectar_()
+        consulta = f''' 
+        SELECT p.nombre 
+        FROM parroquia AS p
+        JOIN ciudad AS c ON p.id_ciudad = c.id
+        WHERE c.nombre = '{ciudad}' 
+        '''
+        conectar.ingresar_sentencia(consulta)
+        self.cbx_parroquia_inmueble.clear()
+        for c in conectar.resultado:
+            self.cbx_parroquia_inmueble.addItem(c[0])
+        
         
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
 
