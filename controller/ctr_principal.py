@@ -162,6 +162,25 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         personaDB.enviar_consultar()
         personaDB.cerrar_conexion()
 
+    def btn_editar_usuario(self):
+        personaDB = PersonaDB()
+        personaDB.conectar.conectar_()
+        personaDB.editar(self.cbx_categoria_usuario.currentIndex(), 
+                           self.txt_cedula_usuario.text(), 
+                           self.txt_nombre_usuario.text(), 
+                           self.txt_apellido_usuario.text(), 
+                           self.txt_telefono_usuarios.text(), 
+                           self.txt_correo_usuario.text())()
+        personaDB.enviar_consultar()
+        personaDB.cerrar_conexion()
+        pass
+    def btn_eliminar_usuario(self):
+        personaDB = PersonaDB()
+        personaDB.conectar.conectar_()
+        personaDB.eliminar(self.cbx_categoria_usuario, self.txt_cedula_usuario)
+        personaDB.enviar_consultar()
+        personaDB.cerrar_conexion()
+
     def buscar_usuario(self):
         personaDB = PersonaDB()
         personaDB.conectar.conectar_()
