@@ -39,16 +39,6 @@ class PersonaDB:
               
         persona = [vendedor,agente,comprador]    
         return persona[indice]
-    
-        # Llamada a las funciones internas
-        if indice == 0:
-            vendedor()
-        elif indice == 1:
-            agente()
-        elif indice == 2:
-            comprador()
-
-        self.consulta += self.atributos
 
     def editar(self, indice, cedula, nombre, apellido, telefono, correo):
         self.consulta = self.consulta + "UPDATE " # SQL actual
@@ -99,12 +89,12 @@ persona = PersonaDB()
 
 #persona.listar(1)()
 #persona = PersonaDB()
-persona.eliminar(1, "0000001")()
-print(persona.consulta)
+#persona.eliminar(1, "0000001")()
+#print(persona.consulta)
 
-persona.enviar_consultar()
-print("valores:", persona.conectar.resultado)
-for fila in persona.conectar.resultado:
-    print(fila)
+#persona.enviar_consultar()
+#print("valores:", persona.conectar.resultado)
+#for fila in persona.conectar.resultado:
+#    print(fila)
 
 
