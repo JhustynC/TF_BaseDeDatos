@@ -135,8 +135,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #!Para Pagina Inmueble
         #TODO: Agregar funcionalidades
         self.consultar_ciudades()
-        self.cbx_inmueble_ciudad.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
-        #self.cbx_inmueble_ciudad.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
+        self.cbx_inmueble_ciudad.currentIndexChanged.connect(partial(self.ajustar_cbx_parroquias,self.cbx_inmueble_ciudad,self.cbx_parroquia_inmueble ))
+        
         
         #!Para Pagina Transaccion
         #TODO: Agregar funcionalidades
@@ -149,6 +149,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         #!Para Pagina Compra
         #TODO: Agregar funcionalidades
+        self.cbx_ciudad_compra.currentIndexChanged.connect(partial(self.ajustar_cbx_parroquias,self.cbx_ciudad_compra,self.cbx_parroquia_compra ))
+        #self.cbx_parroquia_compra.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
         
         #!Para Pagina Reportes
         #TODO: Agregar funcionalidades
@@ -236,10 +238,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             self.txt_nombre_usuario.setEnabled(booleano)
             self.cbx_categoria_usuario.setEnabled(booleano)
             self.btn_editar_usuario.setEnabled(booleano)
-            ##ss
-            #aasd
-            #asda
-            #SDA
+
         
     #!Funcionalidades Inmueble
     #TODO: ingresar inmueble, 
@@ -266,9 +265,11 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         print(conectar.resultado)
         for c in conectar.resultado:
             self.cbx_inmueble_ciudad.addItem(c[0])
+            self.cbx_ciudad_compra.addItem(c[0])
+        
             
-    def ajustar_cbx_parroquias(self, i):
-        ciudad = self.cbx_inmueble_ciudad.currentText()
+    def ajustar_cbx_parroquias(self, cbx_c, cbx_p):
+        ciudad = cbx_c.currentText()
         print('Ciudad:', ciudad)
         conectar = Conectar()
         conectar.conectar_()
@@ -279,11 +280,17 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         WHERE c.nombre = '{ciudad}' 
         '''
         conectar.ingresar_sentencia(consulta)
-        self.cbx_parroquia_inmueble.clear()
+        cbx_p.clear()
         for c in conectar.resultado:
-            self.cbx_parroquia_inmueble.addItem(c[0])
+            cbx_p.addItem(c[0])
+   
         
-        
+    #?-------------Funcionalidades Extra----------------------------- 
+    
+    def llenar_combo(self, cbx, data):
+        for d in data:
+            cbx.addItem(str(d))
+       
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
 
         # Obtenemos le boton del menu que fue presionado
