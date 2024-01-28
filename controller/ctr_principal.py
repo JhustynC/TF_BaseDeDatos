@@ -214,8 +214,28 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.txt_telefono_usuarios.clear()
         self.txt_nombre_usuario.clear()
         self.btn_buscar_usuario.click()
-
-        
+    
+    #*Para activar o desacticar los campos de usuario
+    def activar_campos(self):
+        booleano = True
+        #print("se ha clicleado,", self.ckb_editar_usuario.isChecked())
+        if self.ckb_editar_usuario.isChecked():
+            self.txt_cedula_usuario.setEnabled(not booleano)
+            self.txt_apellido_usuario.setEnabled(booleano)
+            self.txt_correo_usuario.setEnabled(booleano)
+            self.txt_telefono_usuarios.setEnabled(booleano)
+            self.txt_nombre_usuario.setEnabled(booleano)
+            self.cbx_categoria_usuario.setEnabled(not booleano)
+            self.btn_editar_usuario.setEnabled(booleano)
+        else:
+            self.txt_cedula_usuario.setEnabled(booleano)
+            self.txt_apellido_usuario.setEnabled(booleano)
+            self.txt_correo_usuario.setEnabled(booleano)
+            self.txt_telefono_usuarios.setEnabled(booleano)
+            self.txt_nombre_usuario.setEnabled(booleano)
+            self.cbx_categoria_usuario.setEnabled(booleano)
+            self.btn_editar_usuario.setEnabled(booleano)
+  
     #!Funcionalidades Inmueble
     #TODO: ingresar inmueble    
     def ingresar_inmueble(self):
