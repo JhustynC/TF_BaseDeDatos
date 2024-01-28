@@ -129,7 +129,9 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.btn_buscar_usuario.clicked.connect(self.buscar_usuario)
         self.btn_eliminar_usuario.clicked.connect(self.eliminar_usuario)
         self.btn_editar_usuario.clicked.connect(self.editar_usuario)
-        
+        self.ckb_editar_usuario.clicked.connect(self.activar_campos)
+        self.btn_limpiar_usuario.clicked.connect(self.limpiar_campos)
+
         #!Para Pagina Inmueble
         #TODO: Agregar funcionalidades
         self.consultar_ciudades()
@@ -204,8 +206,24 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         print(personaDB.conectar.resultado)
         self.llenar_tabla(self.tbl_usuario, personaDB.conectar.resultado)
         
-    #! Funcionalidades Inmueble
-    def consultar_ciudades(self):
+    #TODO: actualiza la tabla de usuarios y deja en blanco los text
+    def limpiar_campos(self):
+        self.txt_cedula_usuario.clear()
+        self.txt_apellido_usuario.clear()
+        self.txt_correo_usuario.clear()
+        self.txt_telefono_usuarios.clear()
+        self.txt_nombre_usuario.clear()
+        self.btn_buscar_usuario.click()
+
+        
+    #!Funcionalidades Inmueble
+    #TODO: ingresar inmueble    
+    def ingresar_inmueble(self):
+        inmuebleDB = InmuebleDB()
+        inmuebleDB.conectar.conectar_()    
+        #inmuebleDB.ingresar
+
+    def ajustar_cbx_parroquias(self, i):
         conectar = Conectar()
         conectar.conectar_()
         consulta = ''' 
