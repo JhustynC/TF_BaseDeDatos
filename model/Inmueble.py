@@ -3,19 +3,20 @@ from model.Conectar import Conectar
 class InmuebleDB:
     consulta = ""
     conectar = Conectar()
-    def ingresar(self, clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno):
-        self.consulta = self.consulta + "INSERT INTO inmueble(clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno, fecha_registro) "
+    def ingresar(self, clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno, id_parroquia):
+        self.consulta = self.consulta + "INSERT INTO inmueble(clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno, fecha_registro, id_parroquia) "
 
-        self.consulta = self.consulta + f"VALUES('{clave_castral}', '{numero_pisos}', '{agno_construccion}', '{estado}', '{precio_deseado_vendedor}', '{m2_habitables}', '{m2_terreno}', DATE_CURRENT)"
+        self.consulta = self.consulta + f"VALUES('{clave_castral}', '{numero_pisos}', '{agno_construccion}', '{estado}', '{precio_deseado_vendedor}', '{m2_habitables}', '{m2_terreno}', DATE_CURRENT,'{id_parroquia}')"
 
     def eliminar(self, id):
-        self.consulta = self.consulta + f"DELETE FROM elemento WHERE nombre = '{id}'" 
+        self.consulta = self.consulta + f"DELETE FROM inmueble WHERE nombre = '{id}'" 
 
-    def editar(self, id, nombre):
-        self.consulta = self.consulta + f"UPDATE elemento SET nombre ='{nombre}' WHERE id = '{id}'" # SQL actual
+    def editar(self, c_catastral, precio, ciudad, parroquia, numero_pisos, agnos_construccion):
+        self.consulta = self.consulta + f"UPDATE inmueble SET  ='{precio}' WHERE clave_catrastal = '{c_catastral}'"
 
-    def listar(self):
+    def listar(self, precio_maximo, precio_minimo, ciudad, parroquia, numero_pisos, agnos_construccion, elemento, material):
         self.cosulta = self.consulta + f"SELECT * FROM elemento"
+        #self.
         pass
 
     """CREATE TABLE inmueble (
