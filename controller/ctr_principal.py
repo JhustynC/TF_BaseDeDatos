@@ -241,9 +241,13 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     def ingresar_inmueble(self):
         inmuebleDB = InmuebleDB()
         inmuebleDB.conectar.conectar_()    
-        #inmuebleDB.ingresar(self.txt_inmueble_ccatastral.text(), 
-        #                    int(self.txt_inmueble_numPisos.text()), 
-        #                    self.)()
+        inmuebleDB.ingresar(self.txt_inmueble_ccatastral.text(), 
+                            int(self.txt_inmueble_numPisos.text()), 
+                            self.txt_inmueble_anioCostru.text(),
+                            "FALSE",
+                            self.txt_precioMin_compra.text(),
+                            self.txt_inmueble_m2Habitables.text(),
+                            self.txt_inmueble_m2Terreno.text())()
 
     def consultar_ciudades(self):
         conectar = Conectar()
