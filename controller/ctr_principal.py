@@ -223,7 +223,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         inmuebleDB.conectar.conectar_()    
         #inmuebleDB.ingresar
 
-    def ajustar_cbx_parroquias(self, i):
+    def consultar_ciudades(self, i):
         conectar = Conectar()
         conectar.conectar_()
         consulta = ''' 
