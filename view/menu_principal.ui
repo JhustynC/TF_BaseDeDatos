@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1160</width>
-    <height>577</height>
+    <width>1114</width>
+    <height>717</height>
    </rect>
   </property>
   <property name="mouseTracking">
@@ -1149,7 +1149,7 @@ color:rgb(35, 35, 35);
 }</string>
                    </property>
                    <property name="currentIndex">
-                    <number>4</number>
+                    <number>5</number>
                    </property>
                    <widget class="QWidget" name="pg_Pendientes">
                     <property name="styleSheet">
@@ -1161,21 +1161,7 @@ font: bold 25px;
 </string>
                     </property>
                     <layout class="QGridLayout" name="gridLayout_10">
-                     <item row="0" column="0">
-                      <widget class="Line" name="line_2">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
                      <item row="1" column="0">
-                      <widget class="Line" name="line">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="0">
                       <layout class="QHBoxLayout" name="horizontalLayout_11">
                        <item>
                         <widget class="QPushButton" name="btn_pendientes_listar">
@@ -1209,7 +1195,7 @@ color: rgb(255, 255, 255);</string>
                        </item>
                       </layout>
                      </item>
-                     <item row="2" column="0">
+                     <item row="0" column="0">
                       <layout class="QHBoxLayout" name="horizontalLayout_3">
                        <item>
                         <widget class="QTableWidget" name="tbl_pendientes"/>
@@ -2269,9 +2255,11 @@ color:rgb(35, 35, 35);
                      <item>
                       <layout class="QVBoxLayout" name="verticalLayout_20">
                        <item>
-                        <widget class="QGroupBox" name="formGroupBox_3">
-                         <property name="styleSheet">
-                          <string notr="true">QLabel
+                        <layout class="QGridLayout" name="gridLayout_5">
+                         <item row="0" column="0">
+                          <widget class="QGroupBox" name="formGroupBox_3">
+                           <property name="styleSheet">
+                            <string notr="true">QLabel
 {
     color: rgb(60, 60, 60);
 	font: bold 24px;
@@ -2299,270 +2287,312 @@ color:rgb(35, 35, 35);
 }
 
 </string>
-                         </property>
-                         <property name="title">
-                          <string/>
-                         </property>
-                         <layout class="QGridLayout" name="gridLayout_3">
-                          <item row="3" column="1">
-                           <widget class="QLineEdit" name="txt_cedula_usuario">
-                            <property name="font">
-                             <font>
-                              <family>Arial Rounded MT Bold</family>
-                              <pointsize>14</pointsize>
-                             </font>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="5" column="0">
-                           <widget class="QLabel" name="label_20">
-                            <property name="text">
-                             <string>Correo:</string>
-                            </property>
-                            <property name="alignment">
-                             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                            </property>
-                            <property name="openExternalLinks">
-                             <bool>false</bool>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="6" column="0">
-                           <widget class="QLabel" name="label_21">
-                            <property name="text">
-                             <string>Categoria:</string>
-                            </property>
-                            <property name="alignment">
-                             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                            </property>
-                            <property name="openExternalLinks">
-                             <bool>false</bool>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="6" column="1">
-                           <widget class="QComboBox" name="cbx_categoria_usuario">
-                            <property name="minimumSize">
-                             <size>
-                              <width>0</width>
-                              <height>30</height>
-                             </size>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="10" column="1">
-                           <widget class="QTableWidget" name="tbl_usuario">
-                            <property name="styleSheet">
-                             <string notr="true">background-color: rgb(255, 255, 255);</string>
-                            </property>
-                            <column>
-                             <property name="text">
-                              <string>Cedula</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>Nombres</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>Apellidos</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>Telefono</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>Correo</string>
-                             </property>
-                            </column>
-                            <column>
-                             <property name="text">
-                              <string>Ingreso</string>
-                             </property>
-                            </column>
-                           </widget>
-                          </item>
-                          <item row="5" column="1">
-                           <widget class="QLineEdit" name="txt_correo_usuario">
-                            <property name="font">
-                             <font>
-                              <family>Arial Rounded MT Bold</family>
-                              <pointsize>14</pointsize>
-                             </font>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="8" column="1">
-                           <layout class="QHBoxLayout" name="horizontalLayout_21">
-                            <item>
-                             <widget class="QPushButton" name="btn_crear_usuario">
+                           </property>
+                           <property name="title">
+                            <string/>
+                           </property>
+                           <layout class="QGridLayout" name="gridLayout_3">
+                            <item row="0" column="0">
+                             <widget class="QLabel" name="label_18">
+                              <property name="text">
+                               <string>Nombres:</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                              </property>
+                              <property name="openExternalLinks">
+                               <bool>false</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="0" column="1">
+                             <widget class="QLineEdit" name="txt_nombre_usuario">
+                              <property name="font">
+                               <font>
+                                <family>Arial Rounded MT Bold</family>
+                                <pointsize>14</pointsize>
+                               </font>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="1" column="0">
+                             <widget class="QLabel" name="label_16">
+                              <property name="text">
+                               <string>Apellidos:</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                              </property>
+                              <property name="openExternalLinks">
+                               <bool>false</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="1" column="1">
+                             <widget class="QLineEdit" name="txt_apellido_usuario">
+                              <property name="font">
+                               <font>
+                                <family>Arial Rounded MT Bold</family>
+                                <pointsize>14</pointsize>
+                               </font>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="2" column="0">
+                             <widget class="QLabel" name="label_19">
+                              <property name="text">
+                               <string>Cedula:</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                              </property>
+                              <property name="openExternalLinks">
+                               <bool>false</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="2" column="1">
+                             <widget class="QLineEdit" name="txt_cedula_usuario">
+                              <property name="font">
+                               <font>
+                                <family>Arial Rounded MT Bold</family>
+                                <pointsize>14</pointsize>
+                               </font>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="3" column="0">
+                             <widget class="QLabel" name="label_13">
+                              <property name="text">
+                               <string>Telefono:</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                              </property>
+                              <property name="openExternalLinks">
+                               <bool>false</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="3" column="1">
+                             <widget class="QLineEdit" name="txt_telefono_usuarios">
+                              <property name="font">
+                               <font>
+                                <family>Arial Rounded MT Bold</family>
+                                <pointsize>14</pointsize>
+                               </font>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="4" column="0">
+                             <widget class="QLabel" name="label_20">
+                              <property name="text">
+                               <string>Correo:</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                              </property>
+                              <property name="openExternalLinks">
+                               <bool>false</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="4" column="1">
+                             <widget class="QLineEdit" name="txt_correo_usuario">
+                              <property name="font">
+                               <font>
+                                <family>Arial Rounded MT Bold</family>
+                                <pointsize>14</pointsize>
+                               </font>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="5" column="0">
+                             <widget class="QLabel" name="label_21">
+                              <property name="text">
+                               <string>Categoria:</string>
+                              </property>
+                              <property name="alignment">
+                               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                              </property>
+                              <property name="openExternalLinks">
+                               <bool>false</bool>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="5" column="1">
+                             <widget class="QComboBox" name="cbx_categoria_usuario">
                               <property name="minimumSize">
                                <size>
                                 <width>0</width>
-                                <height>40</height>
+                                <height>30</height>
                                </size>
-                              </property>
-                              <property name="text">
-                               <string>Crear</string>
                               </property>
                              </widget>
                             </item>
-                            <item>
-                             <widget class="QPushButton" name="btn_buscar_usuario">
-                              <property name="minimumSize">
-                               <size>
-                                <width>30</width>
-                                <height>40</height>
-                               </size>
-                              </property>
-                              <property name="styleSheet">
-                               <string notr="true">background-color: rgb(255, 170, 0);</string>
-                              </property>
-                              <property name="text">
-                               <string>Buscar</string>
+                            <item row="6" column="1">
+                             <widget class="Line" name="line_10">
+                              <property name="orientation">
+                               <enum>Qt::Horizontal</enum>
                               </property>
                              </widget>
                             </item>
-                            <item>
-                             <widget class="QPushButton" name="btn_editar_usuario">
-                              <property name="minimumSize">
-                               <size>
-                                <width>40</width>
-                                <height>40</height>
-                               </size>
-                              </property>
-                              <property name="styleSheet">
-                               <string notr="true">background-color: rgb(255, 85, 0);</string>
-                              </property>
-                              <property name="text">
-                               <string>Editar</string>
+                            <item row="7" column="1">
+                             <layout class="QHBoxLayout" name="horizontalLayout_2">
+                              <item>
+                               <widget class="QPushButton" name="btn_limpiar_usuario">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>40</height>
+                                 </size>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">background-color: rgb(0, 0, 0);</string>
+                                </property>
+                                <property name="text">
+                                 <string>Limpiar</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QCheckBox" name="ckb_editar_usuario">
+                                <property name="font">
+                                 <font>
+                                  <family>Arial Rounded MT Bold</family>
+                                  <pointsize>11</pointsize>
+                                 </font>
+                                </property>
+                                <property name="text">
+                                 <string>EDITAR</string>
+                                </property>
+                                <property name="tristate">
+                                 <bool>false</bool>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </item>
+                            <item row="8" column="1">
+                             <widget class="Line" name="line_5">
+                              <property name="orientation">
+                               <enum>Qt::Horizontal</enum>
                               </property>
                              </widget>
                             </item>
-                            <item>
-                             <widget class="QPushButton" name="btn_eliminar_usuario">
-                              <property name="minimumSize">
-                               <size>
-                                <width>30</width>
-                                <height>40</height>
-                               </size>
+                            <item row="9" column="1">
+                             <layout class="QHBoxLayout" name="horizontalLayout_21">
+                              <item>
+                               <widget class="QPushButton" name="btn_crear_usuario">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>0</width>
+                                  <height>40</height>
+                                 </size>
+                                </property>
+                                <property name="text">
+                                 <string>Crear</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QPushButton" name="btn_buscar_usuario">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>30</width>
+                                  <height>40</height>
+                                 </size>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">background-color: rgb(255, 170, 0);</string>
+                                </property>
+                                <property name="text">
+                                 <string>Buscar</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QPushButton" name="btn_editar_usuario">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>40</width>
+                                  <height>40</height>
+                                 </size>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">background-color: rgb(255, 85, 0);</string>
+                                </property>
+                                <property name="text">
+                                 <string>Editar</string>
+                                </property>
+                               </widget>
+                              </item>
+                              <item>
+                               <widget class="QPushButton" name="btn_eliminar_usuario">
+                                <property name="minimumSize">
+                                 <size>
+                                  <width>30</width>
+                                  <height>40</height>
+                                 </size>
+                                </property>
+                                <property name="styleSheet">
+                                 <string notr="true">background-color: rgb(170, 0, 0);</string>
+                                </property>
+                                <property name="text">
+                                 <string>Eliminar</string>
+                                </property>
+                               </widget>
+                              </item>
+                             </layout>
+                            </item>
+                            <item row="10" column="1">
+                             <widget class="Line" name="line_6">
+                              <property name="orientation">
+                               <enum>Qt::Horizontal</enum>
                               </property>
+                             </widget>
+                            </item>
+                            <item row="11" column="1">
+                             <widget class="QTableWidget" name="tbl_usuario">
                               <property name="styleSheet">
-                               <string notr="true">background-color: rgb(170, 0, 0);</string>
+                               <string notr="true">background-color: rgb(255, 255, 255);</string>
                               </property>
-                              <property name="text">
-                               <string>Eliminar</string>
-                              </property>
+                              <column>
+                               <property name="text">
+                                <string>Cedula</string>
+                               </property>
+                              </column>
+                              <column>
+                               <property name="text">
+                                <string>Nombres</string>
+                               </property>
+                              </column>
+                              <column>
+                               <property name="text">
+                                <string>Apellidos</string>
+                               </property>
+                              </column>
+                              <column>
+                               <property name="text">
+                                <string>Telefono</string>
+                               </property>
+                              </column>
+                              <column>
+                               <property name="text">
+                                <string>Correo</string>
+                               </property>
+                              </column>
+                              <column>
+                               <property name="text">
+                                <string>Ingreso</string>
+                               </property>
+                              </column>
                              </widget>
                             </item>
                            </layout>
-                          </item>
-                          <item row="2" column="0">
-                           <widget class="QLabel" name="label_16">
-                            <property name="text">
-                             <string>Apellidos:</string>
-                            </property>
-                            <property name="alignment">
-                             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                            </property>
-                            <property name="openExternalLinks">
-                             <bool>false</bool>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="2" column="1">
-                           <widget class="QLineEdit" name="txt_apellido_usuario">
-                            <property name="font">
-                             <font>
-                              <family>Arial Rounded MT Bold</family>
-                              <pointsize>14</pointsize>
-                             </font>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="0" column="1">
-                           <widget class="QLineEdit" name="txt_nombre_usuario">
-                            <property name="font">
-                             <font>
-                              <family>Arial Rounded MT Bold</family>
-                              <pointsize>14</pointsize>
-                             </font>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="0" column="0">
-                           <widget class="QLabel" name="label_18">
-                            <property name="text">
-                             <string>Nombres:</string>
-                            </property>
-                            <property name="alignment">
-                             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                            </property>
-                            <property name="openExternalLinks">
-                             <bool>false</bool>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="3" column="0">
-                           <widget class="QLabel" name="label_19">
-                            <property name="text">
-                             <string>Cedula:</string>
-                            </property>
-                            <property name="alignment">
-                             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                            </property>
-                            <property name="openExternalLinks">
-                             <bool>false</bool>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="4" column="1">
-                           <widget class="QLineEdit" name="txt_telefono_usuarios">
-                            <property name="font">
-                             <font>
-                              <family>Arial Rounded MT Bold</family>
-                              <pointsize>14</pointsize>
-                             </font>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="4" column="0">
-                           <widget class="QLabel" name="label_13">
-                            <property name="text">
-                             <string>Telefono:</string>
-                            </property>
-                            <property name="alignment">
-                             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                            </property>
-                            <property name="openExternalLinks">
-                             <bool>false</bool>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="7" column="1">
-                           <widget class="Line" name="line_5">
-                            <property name="orientation">
-                             <enum>Qt::Horizontal</enum>
-                            </property>
-                           </widget>
-                          </item>
-                          <item row="9" column="1">
-                           <widget class="Line" name="line_6">
-                            <property name="orientation">
-                             <enum>Qt::Horizontal</enum>
-                            </property>
-                           </widget>
-                          </item>
-                         </layout>
-                        </widget>
-                       </item>
-                       <item>
-                        <layout class="QGridLayout" name="gridLayout_5"/>
+                          </widget>
+                         </item>
+                        </layout>
                        </item>
                       </layout>
                      </item>
@@ -2603,7 +2633,145 @@ color:rgb(35, 35, 35);
 </string>
                        </property>
                        <layout class="QGridLayout" name="gridLayout_2">
-                        <item row="11" column="2">
+                        <item row="0" column="0">
+                         <widget class="QLabel" name="label_15">
+                          <property name="text">
+                           <string>Clave Catral:</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="1">
+                         <widget class="QLineEdit" name="txt_inmueble_ccatastral">
+                          <property name="font">
+                           <font>
+                            <family>Arial Rounded MT Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="QLabel" name="label_14">
+                          <property name="text">
+                           <string>Numero Pisos:</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="1">
+                         <widget class="QLineEdit" name="txt_inmueble_numPisos">
+                          <property name="font">
+                           <font>
+                            <family>Arial Rounded MT Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="0">
+                         <widget class="QLabel" name="label_17">
+                          <property name="text">
+                           <string>Precio:</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="1">
+                         <widget class="QLineEdit" name="txt_inmueble_precio">
+                          <property name="font">
+                           <font>
+                            <family>Arial Rounded MT Bold</family>
+                            <pointsize>14</pointsize>
+                           </font>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="0">
+                         <widget class="QLabel" name="label_2">
+                          <property name="text">
+                           <string>m2 Habitables:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="1">
+                         <widget class="QLineEdit" name="txt_inmueble_m2Habitables">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>30</height>
+                           </size>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="4" column="0">
+                         <widget class="QLabel" name="label_23">
+                          <property name="text">
+                           <string>m2 Terreno:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="4" column="1">
+                         <widget class="QLineEdit" name="txt_inmueble_m2Terreno">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>30</height>
+                           </size>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="5" column="0">
+                         <widget class="QLabel" name="label_24">
+                          <property name="text">
+                           <string>Ciudad:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="5" column="1">
+                         <widget class="QComboBox" name="cbx_inmueble_ciudad"/>
+                        </item>
+                        <item row="6" column="0">
+                         <widget class="QLabel" name="label_25">
+                          <property name="text">
+                           <string>Parroquia:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="6" column="1">
+                         <widget class="QComboBox" name="cbx_parroquia_inmueble"/>
+                        </item>
+                        <item row="7" column="0">
+                         <widget class="QLabel" name="label_27">
+                          <property name="text">
+                           <string>Año Construccion:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="7" column="1">
+                         <widget class="QLineEdit" name="txt_inmueble_anioCostru">
+                          <property name="minimumSize">
+                           <size>
+                            <width>0</width>
+                            <height>30</height>
+                           </size>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="8" column="0">
+                         <widget class="QLabel" name="label_28">
+                          <property name="text">
+                           <string>Elementos:</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="8" column="1">
                          <widget class="QFrame" name="horizontalFrame">
                           <property name="styleSheet">
                            <string notr="true">QPushButton{
@@ -2665,145 +2833,34 @@ color:rgb(35, 35, 35);
                           </layout>
                          </widget>
                         </item>
-                        <item row="9" column="2">
-                         <widget class="QComboBox" name="parroquia"/>
-                        </item>
-                        <item row="8" column="1">
-                         <widget class="QLabel" name="label_24">
-                          <property name="text">
-                           <string>Ciudad:</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="8" column="2">
-                         <widget class="QComboBox" name="txt_inmueble_ciudad"/>
-                        </item>
                         <item row="9" column="1">
-                         <widget class="QLabel" name="label_25">
-                          <property name="text">
-                           <string>Parroquia:</string>
-                          </property>
-                         </widget>
+                         <layout class="QHBoxLayout" name="horizontalLayout_5">
+                          <item>
+                           <widget class="QPushButton" name="btn_limpiar_inmueble">
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(0, 0, 0);</string>
+                            </property>
+                            <property name="text">
+                             <string>Limpiar</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QCheckBox" name="ckb_editar_inmueble">
+                            <property name="font">
+                             <font>
+                              <family>Arial Rounded MT Bold</family>
+                              <pointsize>10</pointsize>
+                             </font>
+                            </property>
+                            <property name="text">
+                             <string>Editar</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
                         </item>
                         <item row="10" column="1">
-                         <widget class="QLabel" name="label_27">
-                          <property name="text">
-                           <string>Año Construccion:</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="1" column="1">
-                         <widget class="QLabel" name="label_15">
-                          <property name="text">
-                           <string>Clave Catral:</string>
-                          </property>
-                          <property name="alignment">
-                           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="5" column="1">
-                         <widget class="QLabel" name="label_17">
-                          <property name="text">
-                           <string>Precio:</string>
-                          </property>
-                          <property name="alignment">
-                           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="6" column="2">
-                         <widget class="QLineEdit" name="txt_inmueble_m2Habitables">
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>30</height>
-                           </size>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="7" column="1">
-                         <widget class="QLabel" name="label_23">
-                          <property name="text">
-                           <string>m2 Terreno:</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="1">
-                         <widget class="QLabel" name="label_14">
-                          <property name="text">
-                           <string>Numero Pisos:</string>
-                          </property>
-                          <property name="alignment">
-                           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="7" column="2">
-                         <widget class="QLineEdit" name="txt_inmueble_m2Terreno">
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>30</height>
-                           </size>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="1" column="2">
-                         <widget class="QLineEdit" name="txt_inmueble_ccatastral">
-                          <property name="font">
-                           <font>
-                            <family>Arial Rounded MT Bold</family>
-                            <pointsize>14</pointsize>
-                           </font>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="3" column="2">
-                         <widget class="QLineEdit" name="txt_inmueble_numPisos">
-                          <property name="font">
-                           <font>
-                            <family>Arial Rounded MT Bold</family>
-                            <pointsize>14</pointsize>
-                           </font>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="5" column="2">
-                         <widget class="QLineEdit" name="txt_inmueble_precio">
-                          <property name="font">
-                           <font>
-                            <family>Arial Rounded MT Bold</family>
-                            <pointsize>14</pointsize>
-                           </font>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="6" column="1">
-                         <widget class="QLabel" name="label_2">
-                          <property name="text">
-                           <string>m2 Habitables:</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="10" column="2">
-                         <widget class="QLineEdit" name="txt_inmueble_anioCostru">
-                          <property name="minimumSize">
-                           <size>
-                            <width>0</width>
-                            <height>30</height>
-                           </size>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="11" column="1">
-                         <widget class="QLabel" name="label_28">
-                          <property name="text">
-                           <string>Elementos:</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item row="13" column="2">
                          <layout class="QHBoxLayout" name="horizontalLayout_19">
                           <item>
                            <widget class="QPushButton" name="btn_inmueble_ingresar">
@@ -2851,7 +2908,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item>
-                           <widget class="QPushButton" name="btn_eliminar_eliminar">
+                           <widget class="QPushButton" name="btn_eliminar_inmueble">
                             <property name="minimumSize">
                              <size>
                               <width>30</width>
@@ -3287,8 +3344,8 @@ color:rgb(35, 35, 35);
   <tabstop>txt_inmueble_precio</tabstop>
   <tabstop>txt_inmueble_m2Habitables</tabstop>
   <tabstop>txt_inmueble_m2Terreno</tabstop>
-  <tabstop>txt_inmueble_ciudad</tabstop>
-  <tabstop>parroquia</tabstop>
+  <tabstop>cbx_inmueble_ciudad</tabstop>
+  <tabstop>cbx_parroquia_inmueble</tabstop>
   <tabstop>txt_inmueble_anioCostru</tabstop>
   <tabstop>list_inmueble_elementos</tabstop>
   <tabstop>list_inmueble_materiales</tabstop>
@@ -3297,7 +3354,7 @@ color:rgb(35, 35, 35);
   <tabstop>btn_inmueble_ingresar</tabstop>
   <tabstop>btn_inmueble_editar</tabstop>
   <tabstop>btn_inmueble_buscar</tabstop>
-  <tabstop>btn_eliminar_eliminar</tabstop>
+  <tabstop>btn_eliminar_inmueble</tabstop>
   <tabstop>tbl_inmueble</tabstop>
   <tabstop>cbx_transaccion_vendedor</tabstop>
   <tabstop>cbx_transaccion_agente</tabstop>
