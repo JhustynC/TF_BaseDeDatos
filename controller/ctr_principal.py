@@ -95,7 +95,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
                            self.txt_cedula_usuario.text(), 
                            self.txt_nombre_usuario.text(), 
                            self.txt_apellido_usuario.text(), 
-                           self.txt_cedula_usuarios.text(), 
+                           self.txt_telefono_usuarios.text(), 
                            self.txt_correo_usuario.text())()
         
         print("Consulta: ", personaDB.consulta)
