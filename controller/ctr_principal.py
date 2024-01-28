@@ -1,13 +1,15 @@
+from view.menu_principal import Ui_MenuPrincipal
 from functools import partial
 from PyQt6 import QtWidgets, QtCore
 from PyQt6 import uic
 from PyQt6.QtCore import QPropertyAnimation
+
  
-class UI(QtWidgets.QMainWindow):
+class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     def __init__(self, parent=None):
         super(UI, self).__init__(parent)
-        uic.loadUi('../TF_BaseDeDatos/view/menu_principal.ui' , self)
-        
+        #uic.loadUi('../TF_BaseDeDatos/view/menu_principal.ui' , self)
+        self.setupUi(self)
         
         # Boton para mostrar u ocultar el menu
         self.btn_menu.clicked.connect(self.ocultar_menu_lateral)

@@ -33,3 +33,9 @@ Base de Datos
     DATABASE_NAME = DataBaseName
 
 > El uso de estas variables se muestra en src/postgress_conexion
+
+## Psar de .ui a .py
+
+> Navegar hasta el directorio donde esta el .ui y ejecutar:
+
+    pyuic6 -x menu_principal.ui -o menu_principal.py

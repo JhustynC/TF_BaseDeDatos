@@ -966,7 +966,7 @@ QLabel
                 </property>
                 <property name="icon">
                  <iconset>
-                  <normaloff>../../TrabajoFinal_LP/Imagenes/menu-hamburguesa.png</normaloff>../../TrabajoFinal_LP/Imagenes/menu-hamburguesa.png</iconset>
+                  <normaloff>../images/menu-hamburguesa.png</normaloff>../images/menu-hamburguesa.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
@@ -1050,7 +1050,7 @@ QLabel
                 </property>
                 <property name="icon">
                  <iconset>
-                  <normaloff>../../../Downloads/salir-alt.png</normaloff>../../../Downloads/salir-alt.png</iconset>
+                  <normaloff>../images/salir-alt.png</normaloff>../images/salir-alt.png</iconset>
                 </property>
                 <property name="iconSize">
                  <size>
