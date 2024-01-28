@@ -8,6 +8,9 @@ from PyQt6.QtWidgets import QHeaderView, QTableWidgetItem, QTableWidgetSelection
 
  
 class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
+    
+    primera_colum = ""
+    
     def __init__(self, parent=None):
         super(UI, self).__init__(parent)
         #?uic.loadUi('../TF_BaseDeDatos/view/menu_principal.ui' , self)
@@ -64,7 +67,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.cbx_categoria_usuario.addItem('agente')
         self.cbx_categoria_usuario.addItem('comprador')
         
-        #TODO: Agregar funcionalidades para ventana
+        #*: Agregar funcionalidades para ventana
         self.btn_crear_usuario.clicked.connect(self.ingresar_usuario)
         self.btn_buscar_usuario.clicked.connect(self.buscar_usuario)
         
@@ -178,14 +181,40 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
 
         # Seleccionar la fila completa
         tabla.setRangeSelected(
-            QTableWidgetSelectionRange(row, 0, row, self.tabla.columnCount() - 1),
+            QTableWidgetSelectionRange(row, 0, row, tabla.columnCount() - 1),
             True  # True para seleccionar toda la fila
         )
 
         # Seleccionar el elemento de la primera columna
-        selected_row = self.tabla.currentRow()
-        item_primera_columna = self.tabla.item(selected_row, 0)
+        selected_row = tabla.currentRow()
+        item_primera_columna = tabla.item(selected_row, 0)
         ID = item_primera_columna.text()
+        self.primera_colum = ID
+        self.llenar_campos_pagina(tabla)
+        
+        
+    def llenar_campos_pagina(self, tabla):
+        match tabla:
+            case self.tbl_usuario:
+                print('Tabla Usuarios')
+            case self.tbl_inmueble:
+                ...
+            case self.tbl_pendientes:
+                ...
+            case self.tbl_historial:
+                ...
+            case self.tbl_desempenio:
+                ...
+            case self.tbl_ventas:
+                ...
+            case self.tbl_porcentaje:
+                ...
+                
+        
+        
+        
+        
+        
 
 
 
