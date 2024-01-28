@@ -11,7 +11,7 @@ class InmuebleDB:
     def eliminar(self, id):
         self.consulta = self.consulta + f"DELETE FROM inmueble WHERE nombre = '{id}'" 
 
-    def editar(self, c_catastral, precio, ciudad, parroquia, numero_pisos, agnos_construccion):
+    def editar(self, c_catastral, precio, parroquia, numero_pisos, agnos_construccion):
         self.consulta = self.consulta + f"UPDATE inmueble SET  ='{precio}' WHERE clave_catrastal = '{c_catastral}'"
 
     def listar(self, precio_maximo, precio_minimo, ciudad, parroquia, numero_pisos, agnos_construccion, elemento, material):
