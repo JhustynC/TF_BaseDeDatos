@@ -1,4 +1,4 @@
-from Conectar import Conectar
+from model.Conectar import Conectar
 
 class PersonaDB:
     consulta = ""
@@ -81,7 +81,8 @@ class PersonaDB:
 
 #conectar2 = Conectar()
 
-persona = PersonaDB()
+
+#persona = PersonaDB()
 #persona.listar(0)()
 #persona.ingresar(1,"0000001","jhustyn", "", "000", "j.@")()
 

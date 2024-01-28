@@ -1,4 +1,5 @@
 from view.menu_principal import Ui_MenuPrincipal
+from model.Persona import PersonaDB
 from functools import partial
 from PyQt6 import QtWidgets, QtCore
 from PyQt6 import uic
@@ -56,9 +57,11 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.tbl_desempenio.itemClicked.connect(partial(self.seleccionar_fila_completa_tabla, self.tbl_desempenio))
         self.tbl_ventas.itemClicked.connect(partial(self.seleccionar_fila_completa_tabla, self.tbl_ventas))
         self.tbl_historial.itemClicked.connect(partial(self.seleccionar_fila_completa_tabla, self.tbl_historial))
+
         
         #!Para Pagina Usuario
         #TODO: Agregar funcionalidades para ventana
+        self.btn_crear_usuario.clicked.connect(self.ingresar_usuario)
         
         #!Para Pagina Inmueble
         #TODO: Agregar funcionalidades
@@ -78,7 +81,20 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #!Para Pagina Reportes
         #TODO: Agregar funcionalidades
         
+    #! Funcionalidades usuario
+    #TODO:  def ingresar(self, indice, cedula, nombre, apellido, telefono, correo):
+    def ingresar_usuario(self):
+        personaDB = PersonaDB()
+        personaDB.ingresar(self.cbx_categoria_usuario.currentIndex(), 
+                           self.txt_cedula_usuario.text(), 
+                           self.txt_nombre_usuario.text(), 
+                           self.txt_apellido_usuario.text(), 
+                           self.txt_cedula_usuarios.text(), 
+                           self.txt_correo_usuario.text())
         
+        print("Consulta: ", personaDB.consulta)
+        personaDB.enviar_consultar()
+        pass
         
   
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
