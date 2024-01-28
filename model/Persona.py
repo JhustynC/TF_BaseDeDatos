@@ -64,15 +64,15 @@ class PersonaDB:
     def listar(self, indice, cedula, nombre):
         #FROM agente WHERE cedula LIKE '%16%' AND nombre LIKE '%%';
         self.consulta = self.consulta + "SELECT * FROM "
-        self.condicionos = f"cedula LIKE '%16%' AND nombre LIKE '%%'"
+        self.condiciones = f"WHERE cedula LIKE '%{cedula}%' AND nombre LIKE '%{nombre}%'"
         def vendedor():
-            self.consulta = self.consulta + "vendedor "
+            self.consulta = self.consulta + "vendedor " + self.condiciones
         
         def agente():
-            self.consulta = self.consulta + "agente "
+            self.consulta = self.consulta + "agente "  + self.condiciones
         
         def comprador():
-            self.consulta = self.consulta + "comprador "
+            self.consulta = self.consulta + "comprador "  + self.condiciones
   
         persona = [vendedor,agente,comprador]    
         return persona[indice]

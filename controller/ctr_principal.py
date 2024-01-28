@@ -66,6 +66,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         #TODO: Agregar funcionalidades para ventana
         self.btn_crear_usuario.clicked.connect(self.ingresar_usuario)
+        self.btn_buscar_usuario.clicked.connect(self.buscar_usuario)
         
         #!Para Pagina Inmueble
         #TODO: Agregar funcionalidades
@@ -105,7 +106,15 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     def buscar_usuario(self):
         personaDB = PersonaDB()
         personaDB.conectar.conectar_()
-        personaDB.listar()
+        personaDB.listar(self.cbx_categoria_usuario.currentIndex(), 
+                         self.txt_cedula_usuario.text(), 
+                         self.txt_nombre_usuario.text())()
+        
+        print("Consulta: ", personaDB.consulta)
+        personaDB.enviar_consultar()
+        print(personaDB.conectar.resultado)
+        self.llenar_tabla(self.tbl_usuario, personaDB.conectar.resultado)
+        
         
   
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
