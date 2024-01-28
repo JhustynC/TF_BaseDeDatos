@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1227</width>
-    <height>879</height>
+    <width>1134</width>
+    <height>577</height>
    </rect>
   </property>
   <property name="mouseTracking">
@@ -1191,7 +1191,7 @@ QPushButton:hover#quit_button
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QPushButton" name="btn_reserva">
+                  <widget class="QPushButton" name="btn_usuario">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -1225,7 +1225,7 @@ QPushButton:hover#quit_button
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="btn_laboratorio">
+                  <widget class="QPushButton" name="btn_Inmueble">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -1247,7 +1247,7 @@ QPushButton:hover#quit_button
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="btn_usuario">
+                  <widget class="QPushButton" name="btn_transaccion">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -1269,7 +1269,7 @@ QPushButton:hover#quit_button
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="btn_calendario">
+                  <widget class="QPushButton" name="btn_pendientes">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -1291,7 +1291,7 @@ QPushButton:hover#quit_button
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_5">
+                  <widget class="QPushButton" name="btn_historial">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -1310,26 +1310,7 @@ QPushButton:hover#quit_button
                   </widget>
                  </item>
                  <item>
-                  <widget class="QPushButton" name="pushButton_6">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>60</height>
-                    </size>
-                   </property>
-                   <property name="font">
-                    <font>
-                     <family>Arial Rounded MT Bold</family>
-                     <pointsize>16</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Reportes</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton_9">
+                  <widget class="QPushButton" name="btn_compra">
                    <property name="minimumSize">
                     <size>
                      <width>0</width>
@@ -1344,6 +1325,25 @@ QPushButton:hover#quit_button
                    </property>
                    <property name="text">
                     <string>Compra</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btn_reportes">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>60</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial Rounded MT Bold</family>
+                     <pointsize>16</pointsize>
+                    </font>
+                   </property>
+                   <property name="text">
+                    <string>Reportes</string>
                    </property>
                   </widget>
                  </item>
@@ -1431,7 +1431,7 @@ color:rgb(35, 35, 35);
 }</string>
                    </property>
                    <property name="currentIndex">
-                    <number>3</number>
+                    <number>4</number>
                    </property>
                    <widget class="QWidget" name="pg_Pendientes">
                     <property name="styleSheet">
@@ -2282,7 +2282,7 @@ color:rgb(35, 35, 35);
                           <item row="4" column="0">
                            <widget class="QLabel" name="label_49">
                             <property name="text">
-                             <string>Precio Min</string>
+                             <string>Precio Min:</string>
                             </property>
                            </widget>
                           </item>
@@ -2292,7 +2292,7 @@ color:rgb(35, 35, 35);
                           <item row="5" column="0">
                            <widget class="QLabel" name="label_51">
                             <property name="text">
-                             <string>Precio Max</string>
+                             <string>Precio Max:</string>
                             </property>
                            </widget>
                           </item>
@@ -2301,8 +2301,16 @@ color:rgb(35, 35, 35);
                           </item>
                           <item row="6" column="0">
                            <widget class="QLabel" name="label_52">
+                            <property name="font">
+                             <font>
+                              <pointsize>-1</pointsize>
+                              <weight>75</weight>
+                              <italic>false</italic>
+                              <bold>true</bold>
+                             </font>
+                            </property>
                             <property name="text">
-                             <string>Elemento/Material:</string>
+                             <string>Elem/Mate:</string>
                             </property>
                            </widget>
                           </item>
