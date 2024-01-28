@@ -196,7 +196,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     def llenar_campos_pagina(self, tabla):
         match tabla:
             case self.tbl_usuario:
-                print('Tabla Usuarios')
+                #TODO: Llenar campos de pagina usuarios para editar
+                print('Desde pagina Usuarios')
             case self.tbl_inmueble:
                 ...
             case self.tbl_pendientes:
