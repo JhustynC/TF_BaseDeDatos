@@ -24,6 +24,9 @@ class UI(QtWidgets.QMainWindow):
         self.btn_reportes.clicked.connect(partial(self.presionar_boton_menu, self.btn_reportes.objectName()))
         self.btn_usuario.clicked.connect(partial(self.presionar_boton_menu, self.btn_usuario.objectName()))
         self.btn_compra.clicked.connect(partial(self.presionar_boton_menu, self.btn_compra.objectName()))
+        
+        # Boton seleccionado de la primera pagina
+        self.presionar_boton_menu('btn_usuario')
 
         
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
