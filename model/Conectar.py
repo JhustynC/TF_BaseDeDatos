@@ -10,7 +10,7 @@ class Conectar:
     connection = None
     cursor = None
     resultado = None
-    
+
     def conectar_(self):
         try:
             # Establecer la conexión a la base de datos
@@ -33,7 +33,7 @@ class Conectar:
             
             try: # en caso de que no regrese nada
                 self.resultado = self.cursor.fetchall()
-                print(self.resultado)
+                #print(self.resultado)
             except psycopg2.Error as e:
                 print("Error al obtener resultados:", e)
             print("Filas afectadas:", count)

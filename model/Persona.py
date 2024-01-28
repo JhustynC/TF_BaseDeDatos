@@ -44,7 +44,7 @@ class PersonaDB:
     def editar(self, indice, cedula, nombre, apellido, telefono, correo):
         self.consulta = self.consulta + "UPDATE " # SQL actual
 
-        self.atributos = f"SET nombre = '{nombre}', SET apellido = '{apellido}', SET telefono = '{telefono}', SET correo = '{correo}'  WHERE cedula = '{cedula}'"
+        self.atributos = f"SET nombre = '{nombre}',apellido = '{apellido}',telefono = '{telefono}',correo = '{correo}'  WHERE cedula = '{cedula}'"
 
         def vendedor():
             self.consulta = self.consulta + "vendedor "
