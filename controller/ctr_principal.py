@@ -60,6 +60,10 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
 
         
         #!Para Pagina Usuario
+        self.cbx_categoria_usuario.addItem('vendedor')
+        self.cbx_categoria_usuario.addItem('agente')
+        self.cbx_categoria_usuario.addItem('comprador')
+        
         #TODO: Agregar funcionalidades para ventana
         self.btn_crear_usuario.clicked.connect(self.ingresar_usuario)
         
