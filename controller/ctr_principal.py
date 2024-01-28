@@ -1,5 +1,5 @@
 from functools import partial
-from PyQt6 import QtWidgets, QtCore, QtGui
+from PyQt6 import QtWidgets, QtCore
 from PyQt6 import uic
 from PyQt6.QtCore import QPropertyAnimation
  
@@ -27,6 +27,7 @@ class UI(QtWidgets.QMainWindow):
         
         # Boton seleccionado de la primera pagina
         self.presionar_boton_menu('btn_usuario')
+        self.fr_botones_menu.setFixedWidth(0)
 
         
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
