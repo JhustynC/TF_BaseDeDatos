@@ -3,10 +3,10 @@ from model.Conectar import Conectar
 class InmuebleDB:
     consulta = ""
     conectar = Conectar()
-    def ingresar(self, clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno, ce_vendedor):
-        self.consulta = self.consulta + "INSERT INTO inmueble(clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno, ce_vendedor, fecha_registro) "
+    def ingresar(self, clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno):
+        self.consulta = self.consulta + "INSERT INTO inmueble(clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno, fecha_registro) "
 
-        self.consulta = self.consulta + f"VALUES('{clave_castral}', '{numero_pisos}', '{agno_construccion}', '{estado}', '{precio_deseado_vendedor}', '{m2_habitables}', '{m2_terreno}', '{ce_vendedor}', DATE_CURRENT)"
+        self.consulta = self.consulta + f"VALUES('{clave_castral}', '{numero_pisos}', '{agno_construccion}', '{estado}', '{precio_deseado_vendedor}', '{m2_habitables}', '{m2_terreno}', DATE_CURRENT)"
 
     def eliminar(self, id):
         self.consulta = self.consulta + f"DELETE FROM elemento WHERE nombre = '{id}'" 
