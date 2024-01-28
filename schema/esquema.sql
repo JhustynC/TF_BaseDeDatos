@@ -12,16 +12,11 @@ DROP TABLE IF EXISTS provincia CASCADE;
 DROP TABLE IF EXISTS ciudad CASCADE;
 DROP TABLE IF EXISTS parroquia CASCADE;
 
-CREATE TABLE provincia(
-    id VARCHAR(2) PRIMARY KEY,
-    nombre TEXT NOT NULL
-);
 
 CREATE TABLE ciudad(
     id VARCHAR(2) PRIMARY KEY,
     nombre TEXT NOT NULL,
     id_provincia VARCHAR(2) NOT NULL,
-    FOREIGN KEY (id_provincia) REFERENCES provincia(id)
 );
 
 CREATE TABLE parroquia(

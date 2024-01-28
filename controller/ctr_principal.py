@@ -132,6 +132,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         #!Para Pagina Inmueble
         #TODO: Agregar funcionalidades
+        self.consultar_ciudades()
         self.cbx_inmueble_ciudad.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
         
         #!Para Pagina Transaccion
@@ -203,6 +204,25 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         print(personaDB.conectar.resultado)
         self.llenar_tabla(self.tbl_usuario, personaDB.conectar.resultado)
         
+    #! Funcionalidades Inmueble
+    
+    def consultar_ciudades(self):
+        conectar = Conectar()
+        conectar.conectar_()
+        consulta = ''' 
+        SELECT nombre 
+        FROM ciudad
+        ''' 
+        conectar.ingresar_sentencia(consulta)
+        print(conectar.resultado)
+        for c in conectar.resultado:
+            self.cbx_inmueble_ciudad.addItem(c[0])
+            
+    def ajustar_cbx_parroquias(self, i):
+        ...
+    
+    
+    
         
   
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
