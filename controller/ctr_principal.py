@@ -267,16 +267,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             self.cbx_inmueble_ciudad.addItem(c[0])
             
     def ajustar_cbx_parroquias(self, i):
-        #!Vamos a ver si funcionaaa
-        #!Vamos a ver si funcionaaa
-        #!Vamos a ver si funcionaaa
-        #!Vamos a ver si funcionaaa
-        #!Vamos a ver si funcionaaa
-        #!Vamos a ver si funcionaaa
-        #!Vamos a ver si funcionaaa
-        #!Vamos a ver si funcionaaa
-        #!Vamos a ver si funcionaaa
-        #!Vamos a ver si funcionaaa
+        
         ...
         
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
