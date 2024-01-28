@@ -1,6 +1,6 @@
-from Conectar import Conectar 
+from model.Conectar import Conectar 
 
-class Inmueble:
+class InmuebleDB:
     consulta = ""
     conectar = Conectar()
     def ingresar(self, clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, fecha_registro, m2_habitables, m2_terreno, ce_vendedor):

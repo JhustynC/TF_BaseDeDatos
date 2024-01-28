@@ -1,6 +1,7 @@
 from model.Conectar import Conectar
 from view.menu_principal import Ui_MenuPrincipal
 from model.Persona import PersonaDB
+from model.Inmueble import InmuebleDB
 from functools import partial
 from PyQt6 import QtWidgets, QtCore
 from PyQt6 import uic
@@ -126,6 +127,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #*: Agregar funcionalidades para ventana
         self.btn_crear_usuario.clicked.connect(self.ingresar_usuario)
         self.btn_buscar_usuario.clicked.connect(self.buscar_usuario)
+        self.btn_eliminar_usuario.clicked.connect(self.eliminar_usuario)
+        self.btn_editar_usuario.clicked.connect(self.editar_usuario)
         
         #!Para Pagina Inmueble
         #TODO: Agregar funcionalidades
@@ -147,7 +150,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #TODO: Agregar funcionalidades
         
     #! Funcionalidades usuario
-    #TODO:  def ingresar(self, indice, cedula, nombre, apellido, telefono, correo):
+    #TODO: Ingresar un usuario 
     def ingresar_usuario(self):
         personaDB = PersonaDB()
         personaDB.conectar.conectar_()
@@ -162,7 +165,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         personaDB.enviar_consultar()
         personaDB.cerrar_conexion()
 
-    def btn_editar_usuario(self):
+    #TODO: Editar usuario 
+    def editar_usuario(self):
         personaDB = PersonaDB()
         personaDB.conectar.conectar_()
         personaDB.editar(self.cbx_categoria_usuario.currentIndex(), 
@@ -171,16 +175,22 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
                            self.txt_apellido_usuario.text(), 
                            self.txt_telefono_usuarios.text(), 
                            self.txt_correo_usuario.text())()
+        print("Consulta: ", personaDB.consulta)
         personaDB.enviar_consultar()
         personaDB.cerrar_conexion()
-        pass
-    def btn_eliminar_usuario(self):
+        self.limpiar_campos()
+        
+    #TODO: Eliminar usuarios
+    def eliminar_usuario(self):
         personaDB = PersonaDB()
         personaDB.conectar.conectar_()
-        personaDB.eliminar(self.cbx_categoria_usuario, self.txt_cedula_usuario)
+        personaDB.eliminar(self.cbx_categoria_usuario.currentIndex(), self.txt_cedula_usuario.text())()
+        print(personaDB.consulta)
         personaDB.enviar_consultar()
         personaDB.cerrar_conexion()
+        self.limpiar_campos()
 
+    #TODO: Editar usuarios
     def buscar_usuario(self):
         personaDB = PersonaDB()
         personaDB.conectar.conectar_()
@@ -192,18 +202,6 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         personaDB.enviar_consultar()
         print(personaDB.conectar.resultado)
         self.llenar_tabla(self.tbl_usuario, personaDB.conectar.resultado)
-        
-    
-    #! Funcionalidades Inmueble
-    def ajustar_cbx_parroquias(self, i):
-        conectar = Conectar()
-        conectar.conectar_()
-        consulta = ''' 
-        Select nombre 
-        from ciudad
-        ''' 
-        conectar.ingresar_sentencia(consulta)
-        #print(conectar.resultado)
         
         
   
@@ -277,7 +275,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         selected_row = tabla.currentRow()
         item_primera_columna = tabla.item(selected_row, 0)
         ID = item_primera_columna.text()
-        self.primera_colum = ID
+        self.primera_colum = selected_row
         self.llenar_campos_pagina(tabla)
         
         
@@ -285,10 +283,29 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         match tabla:
             case self.tbl_usuario:
                 #TODO: Llenar campos de pagina usuarios para editar
-                print('Desde pagina Usuarios')
+                print(self.primera_colum)
+                self.txt_cedula_usuario.setText(self.tbl_usuario.item(self.primera_colum, 0).text())
+                self.txt_nombre_usuario.setText(self.tbl_usuario.item(self.primera_colum, 1).text())
+                self.txt_apellido_usuario.setText(self.tbl_usuario.item(self.primera_colum, 2).text())
+                self.txt_telefono_usuarios.setText(self.tbl_usuario.item(self.primera_colum, 3).text())
+                self.txt_correo_usuario.setText(self.tbl_usuario.item(self.primera_colum, 4).text())
+
+
             case self.tbl_inmueble:
+                #TODO: Llenar campos de pagina inmueble para editar y eliminar
+                print(self.primera_colum)
+                self.txt_inmueble_ccatastral.setText(self.tbl_inmueble.item(self.primera_colum, 0).text())
+                self.txt_inmueble_numPisos.setText(self.tbl_inmueble.item(self.primera_colum, 1).text())
+                self.txt_inmueble_precio.setText(self.tbl_inmueble.item(self.primera_colum, 2).text())
+                self.txt_inmueble_m2Habitables.setText(self.tbl_inmueble.item(self.primera_colum, 3).text())
+                self.txt_inmueble_m2Terreno.setText(self.tbl_inmueble.item(self.primera_colum, 4).text())
+                self.txt_inmueble_ciudad.setCurrentText(self.tbl_inmueble.item(self.primera_colum, 5).text())
+                self.parroquia.setCurrentText(self.tbl_inmueble.item(self.primera_colum, 6).text())
+                #self.txt_inmueble_m2Terreno.setText(self.tbl_inmueble.item(self.primera_colum, 4).text())
                 ...
             case self.tbl_pendientes:
+                print(self.primera_colum)
+
                 ...
             case self.tbl_historial:
                 ...
