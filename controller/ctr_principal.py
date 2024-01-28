@@ -269,7 +269,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #!Vamos a ver si funcionaaa
         #!Vamos a ver si funcionaaa
         #!Vamos a ver si funcionaaa
-        
+        ...
         
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
 
