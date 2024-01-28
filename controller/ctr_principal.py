@@ -205,7 +205,6 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.llenar_tabla(self.tbl_usuario, personaDB.conectar.resultado)
         
     #! Funcionalidades Inmueble
-    
     def consultar_ciudades(self):
         conectar = Conectar()
         conectar.conectar_()
@@ -220,11 +219,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             
     def ajustar_cbx_parroquias(self, i):
         ...
-    
-    
-    
         
-  
+        
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
 
         # Obtenemos le boton del menu que fue presionado
