@@ -30,11 +30,11 @@ Base de Datos
 
     DATABASE_HOST = localhost
 
-    DATABASE_NAME = DataBaseName
+    NAME = DataBaseName
 
 > El uso de estas variables se muestra en src/postgress_conexion
 
-## Psar de .ui a .py
+## Compilar .ui (from .ui to.py)
 
 > Navegar hasta el directorio donde esta el .ui y ejecutar:
 
