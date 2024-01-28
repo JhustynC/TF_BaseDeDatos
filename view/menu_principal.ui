@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1114</width>
+    <width>1160</width>
     <height>577</height>
    </rect>
   </property>
@@ -65,9 +65,9 @@
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>108</red>
-            <green>108</green>
-            <blue>106</blue>
+            <red>20</red>
+            <green>52</green>
+            <blue>100</blue>
            </color>
           </brush>
          </colorrole>
@@ -137,18 +137,18 @@
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
+            <red>20</red>
+            <green>52</green>
+            <blue>100</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>108</red>
-            <green>108</green>
-            <blue>106</blue>
+            <red>20</red>
+            <green>52</green>
+            <blue>100</blue>
            </color>
           </brush>
          </colorrole>
@@ -202,9 +202,9 @@
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>108</red>
-            <green>108</green>
-            <blue>106</blue>
+            <red>20</red>
+            <green>52</green>
+            <blue>100</blue>
            </color>
           </brush>
          </colorrole>
@@ -274,18 +274,18 @@
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>0</red>
-            <green>0</green>
-            <blue>0</blue>
+            <red>20</red>
+            <green>52</green>
+            <blue>100</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>108</red>
-            <green>108</green>
-            <blue>106</blue>
+            <red>20</red>
+            <green>52</green>
+            <blue>100</blue>
            </color>
           </brush>
          </colorrole>
@@ -339,9 +339,9 @@
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>108</red>
-            <green>108</green>
-            <blue>106</blue>
+            <red>20</red>
+            <green>52</green>
+            <blue>100</blue>
            </color>
           </brush>
          </colorrole>
@@ -411,18 +411,18 @@
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>108</red>
-            <green>108</green>
-            <blue>106</blue>
+            <red>20</red>
+            <green>52</green>
+            <blue>100</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>108</red>
-            <green>108</green>
-            <blue>106</blue>
+            <red>20</red>
+            <green>52</green>
+            <blue>100</blue>
            </color>
           </brush>
          </colorrole>
@@ -472,7 +472,7 @@
        <number>1</number>
       </property>
       <widget class="QWidget" name="pg_login">
-       <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="">
+       <layout class="QHBoxLayout" name="horizontalLayout_13">
         <property name="spacing">
          <number>0</number>
         </property>
@@ -1149,7 +1149,7 @@ color:rgb(35, 35, 35);
 }</string>
                    </property>
                    <property name="currentIndex">
-                    <number>3</number>
+                    <number>4</number>
                    </property>
                    <widget class="QWidget" name="pg_Pendientes">
                     <property name="styleSheet">
@@ -1561,7 +1561,7 @@ color:rgb(35, 35, 35);
                      <item>
                       <widget class="QTabWidget" name="tabs_reportes">
                        <property name="currentIndex">
-                        <number>1</number>
+                        <number>2</number>
                        </property>
                        <widget class="QWidget" name="tab_desempenio">
                         <property name="styleSheet">
@@ -3258,6 +3258,100 @@ color:rgb(35, 35, 35);
    </layout>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>txt_nombre_usuario</tabstop>
+  <tabstop>txt_apellido_usuario</tabstop>
+  <tabstop>txt_cedula_usuario</tabstop>
+  <tabstop>txt_cedula_usuarios</tabstop>
+  <tabstop>txt_correo_usuario</tabstop>
+  <tabstop>cbx_categoria_usuario</tabstop>
+  <tabstop>btn_crear_usuario</tabstop>
+  <tabstop>btn_buscar_usuario</tabstop>
+  <tabstop>btn_editar_usuario</tabstop>
+  <tabstop>btn_eliminar_usuario</tabstop>
+  <tabstop>tbl_usuario</tabstop>
+  <tabstop>btn_usuario</tabstop>
+  <tabstop>btn_Inmueble</tabstop>
+  <tabstop>btn_transaccion</tabstop>
+  <tabstop>btn_pendientes</tabstop>
+  <tabstop>btn_historial</tabstop>
+  <tabstop>btn_compra</tabstop>
+  <tabstop>btn_reportes</tabstop>
+  <tabstop>txt_inmueble_ccatastral</tabstop>
+  <tabstop>txt_inmueble_numPisos</tabstop>
+  <tabstop>txt_inmueble_precio</tabstop>
+  <tabstop>txt_inmueble_m2Habitables</tabstop>
+  <tabstop>txt_inmueble_m2Terreno</tabstop>
+  <tabstop>txt_inmueble_ciudad</tabstop>
+  <tabstop>parroquia</tabstop>
+  <tabstop>txt_inmueble_anioCostru</tabstop>
+  <tabstop>list_inmueble_elementos</tabstop>
+  <tabstop>list_inmueble_materiales</tabstop>
+  <tabstop>btn_inmueble_addElemento</tabstop>
+  <tabstop>btn_inmueble_addMaterial</tabstop>
+  <tabstop>btn_inmueble_ingresar</tabstop>
+  <tabstop>btn_inmueble_editar</tabstop>
+  <tabstop>btn_inmueble_buscar</tabstop>
+  <tabstop>btn_eliminar_eliminar</tabstop>
+  <tabstop>tbl_inmueble</tabstop>
+  <tabstop>cbx_transaccion_vendedor</tabstop>
+  <tabstop>cbx_transaccion_agente</tabstop>
+  <tabstop>cbx_transaccion_inmueble</tabstop>
+  <tabstop>txt_transaccion_comision</tabstop>
+  <tabstop>txt_transaccion_presioVenta</tabstop>
+  <tabstop>txt_transaccion_comentario</tabstop>
+  <tabstop>btn_transaccion_limpiar</tabstop>
+  <tabstop>btn_transaccion_crear</tabstop>
+  <tabstop>tbl_pendientes</tabstop>
+  <tabstop>gb_pendientes</tabstop>
+  <tabstop>txt_ccatastral_pendientes</tabstop>
+  <tabstop>cld_fecha_pendientes</tabstop>
+  <tabstop>btn_filtrar_pendientes</tabstop>
+  <tabstop>btn_pendientes_listar</tabstop>
+  <tabstop>tbl_historial</tabstop>
+  <tabstop>gb_pendientes_2</tabstop>
+  <tabstop>txt_ccatastral_historial</tabstop>
+  <tabstop>cld_fecha_historial</tabstop>
+  <tabstop>btn_filtrar_historial</tabstop>
+  <tabstop>tbl_desempenio</tabstop>
+  <tabstop>cld_feFini_desempenio_reportes</tabstop>
+  <tabstop>btn_menu</tabstop>
+  <tabstop>lineEdit_17</tabstop>
+  <tabstop>btn_desempenio_listar_reporte</tabstop>
+  <tabstop>btn_salir</tabstop>
+  <tabstop>cld_feIni_porcetaje_reportes</tabstop>
+  <tabstop>btn_porcetaje_listar_reportes</tabstop>
+  <tabstop>tbl_porcentaje</tabstop>
+  <tabstop>cld_feFin_porcetaje_reportes</tabstop>
+  <tabstop>tabs_reportes</tabstop>
+  <tabstop>sp_anio_reportes</tabstop>
+  <tabstop>tbl_ventas</tabstop>
+  <tabstop>cld_feIni_desempenio_reportes</tabstop>
+  <tabstop>btn_listar_ventas_reportes</tabstop>
+  <tabstop>cbx_comprador_compra</tabstop>
+  <tabstop>cbx_inmueble_compra</tabstop>
+  <tabstop>txt_precioVenta_compra</tabstop>
+  <tabstop>cbx_estado_compra</tabstop>
+  <tabstop>txt_comentario_compra</tabstop>
+  <tabstop>rb_muybien</tabstop>
+  <tabstop>rb_bien</tabstop>
+  <tabstop>rb_regular</tabstop>
+  <tabstop>rb_mal</tabstop>
+  <tabstop>rb_muyMal</tabstop>
+  <tabstop>btn_finalizarTran_compra</tabstop>
+  <tabstop>gp_filtro_compra</tabstop>
+  <tabstop>txt_numPisos_compra</tabstop>
+  <tabstop>txt_anioC_compra</tabstop>
+  <tabstop>txt_metroTerre_compra</tabstop>
+  <tabstop>cbx_parroquia_compra</tabstop>
+  <tabstop>txt_precioMin_compra</tabstop>
+  <tabstop>txt_precioMax_compra</tabstop>
+  <tabstop>list_elemento_compra</tabstop>
+  <tabstop>list_material_compra</tabstop>
+  <tabstop>pushButton_17</tabstop>
+  <tabstop>pushButton_16</tabstop>
+  <tabstop>btn_filtrar_compra</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

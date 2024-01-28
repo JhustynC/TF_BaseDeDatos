@@ -98,7 +98,6 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
                            self.txt_correo_usuario.text())()
         
         print("Consulta: ", personaDB.consulta)
-
         personaDB.enviar_consultar()
         personaDB.cerrar_conexion()
 
