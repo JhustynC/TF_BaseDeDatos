@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1134</width>
+    <width>1114</width>
     <height>577</height>
    </rect>
   </property>
@@ -469,7 +469,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="pg_login">
        <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="">
@@ -1149,7 +1149,7 @@ color:rgb(35, 35, 35);
 }</string>
                    </property>
                    <property name="currentIndex">
-                    <number>4</number>
+                    <number>3</number>
                    </property>
                    <widget class="QWidget" name="pg_Pendientes">
                     <property name="styleSheet">
@@ -1178,7 +1178,7 @@ font: bold 25px;
                      <item row="3" column="0">
                       <layout class="QHBoxLayout" name="horizontalLayout_11">
                        <item>
-                        <widget class="QPushButton" name="pushButton_11">
+                        <widget class="QPushButton" name="btn_pendientes_listar">
                          <property name="font">
                           <font>
                            <family>Arial Rounded MT Bold</family>
@@ -1212,10 +1212,10 @@ color: rgb(255, 255, 255);</string>
                      <item row="2" column="0">
                       <layout class="QHBoxLayout" name="horizontalLayout_3">
                        <item>
-                        <widget class="QTableWidget" name="tableWidget_2"/>
+                        <widget class="QTableWidget" name="tbl_pendientes"/>
                        </item>
                        <item>
-                        <widget class="QGroupBox" name="groupBox">
+                        <widget class="QGroupBox" name="gb_pendientes">
                          <property name="enabled">
                           <bool>true</bool>
                          </property>
@@ -1276,7 +1276,7 @@ color:rgb(35, 35, 35);
                              </widget>
                             </item>
                             <item>
-                             <widget class="QLineEdit" name="lineEdit_11"/>
+                             <widget class="QLineEdit" name="txt_ccatastral_pendientes"/>
                             </item>
                             <item>
                              <spacer name="verticalSpacer_16">
@@ -1299,7 +1299,7 @@ color:rgb(35, 35, 35);
                              </widget>
                             </item>
                             <item>
-                             <widget class="QCalendarWidget" name="calendarWidget">
+                             <widget class="QCalendarWidget" name="cld_fecha_pendientes">
                               <property name="gridVisible">
                                <bool>true</bool>
                               </property>
@@ -1334,7 +1334,7 @@ color:rgb(35, 35, 35);
                                </spacer>
                               </item>
                               <item>
-                               <widget class="QPushButton" name="pushButton_10">
+                               <widget class="QPushButton" name="btn_filtrar_pendientes">
                                 <property name="font">
                                  <font>
                                   <pointsize>-1</pointsize>
@@ -1380,10 +1380,10 @@ color:rgb(35, 35, 35);
                      <item>
                       <layout class="QHBoxLayout" name="horizontalLayout_14">
                        <item>
-                        <widget class="QTableWidget" name="tableWidget_3"/>
+                        <widget class="QTableWidget" name="tbl_historial"/>
                        </item>
                        <item>
-                        <widget class="QGroupBox" name="groupBox_2">
+                        <widget class="QGroupBox" name="gb_pendientes_2">
                          <property name="enabled">
                           <bool>true</bool>
                          </property>
@@ -1444,7 +1444,7 @@ color:rgb(35, 35, 35);
                              </widget>
                             </item>
                             <item>
-                             <widget class="QLineEdit" name="lineEdit_15"/>
+                             <widget class="QLineEdit" name="txt_ccatastral_historial"/>
                             </item>
                             <item>
                              <spacer name="verticalSpacer_19">
@@ -1467,7 +1467,7 @@ color:rgb(35, 35, 35);
                              </widget>
                             </item>
                             <item>
-                             <widget class="QCalendarWidget" name="calendarWidget_2">
+                             <widget class="QCalendarWidget" name="cld_fecha_historial">
                               <property name="gridVisible">
                                <bool>true</bool>
                               </property>
@@ -1485,16 +1485,6 @@ color:rgb(35, 35, 35);
                                </size>
                               </property>
                              </spacer>
-                            </item>
-                            <item>
-                             <widget class="QLabel" name="label_37">
-                              <property name="text">
-                               <string>Comentario:</string>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QLineEdit" name="lineEdit_16"/>
                             </item>
                             <item>
                              <spacer name="verticalSpacer_21">
@@ -1525,7 +1515,7 @@ color:rgb(35, 35, 35);
                                </spacer>
                               </item>
                               <item>
-                               <widget class="QPushButton" name="pushButton_12">
+                               <widget class="QPushButton" name="btn_filtrar_historial">
                                 <property name="font">
                                  <font>
                                   <pointsize>-1</pointsize>
@@ -1571,7 +1561,7 @@ color:rgb(35, 35, 35);
                      <item>
                       <widget class="QTabWidget" name="tabs_reportes">
                        <property name="currentIndex">
-                        <number>0</number>
+                        <number>1</number>
                        </property>
                        <widget class="QWidget" name="tab_desempenio">
                         <property name="styleSheet">
@@ -1622,21 +1612,21 @@ color:rgb(35, 35, 35);
                           </widget>
                          </item>
                          <item row="1" column="0">
-                          <widget class="QCalendarWidget" name="calendarWidget_3">
+                          <widget class="QCalendarWidget" name="cld_feIni_desempenio_reportes">
                            <property name="gridVisible">
                             <bool>true</bool>
                            </property>
                           </widget>
                          </item>
                          <item row="1" column="1">
-                          <widget class="QCalendarWidget" name="calendarWidget_4">
+                          <widget class="QCalendarWidget" name="cld_feFini_desempenio_reportes">
                            <property name="gridVisible">
                             <bool>true</bool>
                            </property>
                           </widget>
                          </item>
                          <item row="2" column="0">
-                          <widget class="QPushButton" name="pushButton_13">
+                          <widget class="QPushButton" name="btn_desempenio_listar_reporte">
                            <property name="minimumSize">
                             <size>
                              <width>50</width>
@@ -1655,7 +1645,7 @@ color:rgb(35, 35, 35);
                           </widget>
                          </item>
                          <item row="3" column="0" colspan="2">
-                          <widget class="QTableWidget" name="tableWidget_4">
+                          <widget class="QTableWidget" name="tbl_desempenio">
                            <column>
                             <property name="text">
                              <string>CEDULA</string>
@@ -1744,21 +1734,21 @@ color:rgb(35, 35, 35);
                           </widget>
                          </item>
                          <item row="1" column="0">
-                          <widget class="QCalendarWidget" name="calendarWidget_5">
+                          <widget class="QCalendarWidget" name="cld_feIni_porcetaje_reportes">
                            <property name="gridVisible">
                             <bool>true</bool>
                            </property>
                           </widget>
                          </item>
                          <item row="1" column="1">
-                          <widget class="QCalendarWidget" name="calendarWidget_6">
+                          <widget class="QCalendarWidget" name="cld_feFin_porcetaje_reportes">
                            <property name="gridVisible">
                             <bool>true</bool>
                            </property>
                           </widget>
                          </item>
                          <item row="2" column="0">
-                          <widget class="QPushButton" name="pushButton_14">
+                          <widget class="QPushButton" name="btn_porcetaje_listar_reportes">
                            <property name="minimumSize">
                             <size>
                              <width>50</width>
@@ -1777,7 +1767,7 @@ color:rgb(35, 35, 35);
                           </widget>
                          </item>
                          <item row="3" column="0" colspan="2">
-                          <widget class="QTableWidget" name="tableWidget_5">
+                          <widget class="QTableWidget" name="tbl_porcentaje">
                            <column>
                             <property name="text">
                              <string>PARROQUIA</string>
@@ -1827,7 +1817,7 @@ color:rgb(35, 35, 35);
                         </attribute>
                         <layout class="QGridLayout" name="gridLayout_9">
                          <item row="1" column="0" colspan="4">
-                          <widget class="QTableWidget" name="tableWidget_6">
+                          <widget class="QTableWidget" name="tbl_ventas">
                            <column>
                             <property name="text">
                              <string>MES</string>
@@ -1841,7 +1831,7 @@ color:rgb(35, 35, 35);
                           </widget>
                          </item>
                          <item row="0" column="1">
-                          <widget class="QSpinBox" name="spinBox">
+                          <widget class="QSpinBox" name="sp_anio_reportes">
                            <property name="font">
                             <font>
                              <family>Arial Rounded MT Bold</family>
@@ -1878,7 +1868,7 @@ color:rgb(35, 35, 35);
                           </widget>
                          </item>
                          <item row="0" column="3">
-                          <widget class="QPushButton" name="pushButton_15">
+                          <widget class="QPushButton" name="btn_listar_ventas_reportes">
                            <property name="minimumSize">
                             <size>
                              <width>100</width>
@@ -1947,7 +1937,7 @@ color:rgb(35, 35, 35);
                     </property>
                     <layout class="QGridLayout" name="gridLayout_12">
                      <item row="1" column="2" rowspan="2" colspan="2">
-                      <widget class="QGroupBox" name="groupBox_3">
+                      <widget class="QGroupBox" name="gp_filtro_compra">
                        <property name="title">
                         <string>FIltro</string>
                        </property>
@@ -1965,7 +1955,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item row="0" column="1">
-                           <widget class="QLineEdit" name="lineEdit_24"/>
+                           <widget class="QLineEdit" name="txt_numPisos_compra"/>
                           </item>
                           <item row="1" column="0">
                            <widget class="QLabel" name="label_44">
@@ -1975,7 +1965,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item row="1" column="1">
-                           <widget class="QLineEdit" name="lineEdit_23"/>
+                           <widget class="QLineEdit" name="txt_anioC_compra"/>
                           </item>
                           <item row="2" column="0">
                            <widget class="QLabel" name="label_45">
@@ -1985,7 +1975,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item row="2" column="1">
-                           <widget class="QLineEdit" name="lineEdit_22"/>
+                           <widget class="QLineEdit" name="txt_metroTerre_compra"/>
                           </item>
                           <item row="3" column="0">
                            <widget class="QLabel" name="label_46">
@@ -1995,7 +1985,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item row="3" column="1">
-                           <widget class="QComboBox" name="comboBox_8"/>
+                           <widget class="QComboBox" name="cbx_parroquia_compra"/>
                           </item>
                           <item row="4" column="0">
                            <widget class="QLabel" name="label_49">
@@ -2005,7 +1995,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item row="4" column="1">
-                           <widget class="QLineEdit" name="lineEdit_20"/>
+                           <widget class="QLineEdit" name="txt_precioMin_compra"/>
                           </item>
                           <item row="5" column="0">
                            <widget class="QLabel" name="label_51">
@@ -2015,7 +2005,11 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item row="5" column="1">
-                           <widget class="QLineEdit" name="lineEdit_18"/>
+                           <widget class="QLineEdit" name="txt_precioMax_compra">
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
                           </item>
                           <item row="6" column="0">
                            <widget class="QLabel" name="label_52">
@@ -2077,10 +2071,10 @@ color:rgb(35, 35, 35);
                                 </widget>
                                </item>
                                <item row="0" column="0">
-                                <widget class="QListWidget" name="listWidget_3"/>
+                                <widget class="QListWidget" name="list_elemento_compra"/>
                                </item>
                                <item row="0" column="1">
-                                <widget class="QListWidget" name="listWidget_4"/>
+                                <widget class="QListWidget" name="list_material_compra"/>
                                </item>
                                <item row="1" column="0">
                                 <widget class="QPushButton" name="pushButton_17">
@@ -2095,7 +2089,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item row="7" column="1">
-                           <widget class="QPushButton" name="pushButton_19">
+                           <widget class="QPushButton" name="btn_filtrar_compra">
                             <property name="minimumSize">
                              <size>
                               <width>90</width>
@@ -2138,7 +2132,7 @@ color:rgb(35, 35, 35);
                         </widget>
                        </item>
                        <item>
-                        <widget class="QComboBox" name="comboBox_7"/>
+                        <widget class="QComboBox" name="cbx_comprador_compra"/>
                        </item>
                        <item>
                         <widget class="QLabel" name="label_48">
@@ -2148,7 +2142,7 @@ color:rgb(35, 35, 35);
                         </widget>
                        </item>
                        <item>
-                        <widget class="QComboBox" name="comboBox_6"/>
+                        <widget class="QComboBox" name="cbx_inmueble_compra"/>
                        </item>
                        <item>
                         <widget class="QLabel" name="label">
@@ -2158,7 +2152,7 @@ color:rgb(35, 35, 35);
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLineEdit" name="lineEdit_10"/>
+                        <widget class="QLineEdit" name="txt_precioVenta_compra"/>
                        </item>
                        <item>
                         <widget class="QLabel" name="label_12">
@@ -2168,7 +2162,7 @@ color:rgb(35, 35, 35);
                         </widget>
                        </item>
                        <item>
-                        <widget class="QComboBox" name="comboBox_5"/>
+                        <widget class="QComboBox" name="cbx_estado_compra"/>
                        </item>
                        <item>
                         <widget class="QLabel" name="label_30">
@@ -2178,7 +2172,7 @@ color:rgb(35, 35, 35);
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLineEdit" name="lineEdit_12"/>
+                        <widget class="QLineEdit" name="txt_comentario_compra"/>
                        </item>
                        <item>
                         <widget class="QLabel" name="label_43">
@@ -2193,35 +2187,35 @@ color:rgb(35, 35, 35);
                           <number>20</number>
                          </property>
                          <item>
-                          <widget class="QRadioButton" name="radioButton_3">
+                          <widget class="QRadioButton" name="rb_muybien">
                            <property name="text">
                             <string>Muy Bien</string>
                            </property>
                           </widget>
                          </item>
                          <item>
-                          <widget class="QRadioButton" name="radioButton_2">
+                          <widget class="QRadioButton" name="rb_bien">
                            <property name="text">
                             <string>Bien</string>
                            </property>
                           </widget>
                          </item>
                          <item>
-                          <widget class="QRadioButton" name="radioButton">
+                          <widget class="QRadioButton" name="rb_regular">
                            <property name="text">
                             <string>Regular</string>
                            </property>
                           </widget>
                          </item>
                          <item>
-                          <widget class="QRadioButton" name="radioButton_5">
+                          <widget class="QRadioButton" name="rb_mal">
                            <property name="text">
                             <string>Mal</string>
                            </property>
                           </widget>
                          </item>
                          <item>
-                          <widget class="QRadioButton" name="radioButton_4">
+                          <widget class="QRadioButton" name="rb_muyMal">
                            <property name="text">
                             <string>Muy Mal</string>
                            </property>
@@ -2248,7 +2242,7 @@ color:rgb(35, 35, 35);
                         </widget>
                        </item>
                        <item>
-                        <widget class="QPushButton" name="pushButton_18">
+                        <widget class="QPushButton" name="btn_finalizarTran_compra">
                          <property name="minimumSize">
                           <size>
                            <width>270</width>
@@ -2311,7 +2305,7 @@ color:rgb(35, 35, 35);
                          </property>
                          <layout class="QGridLayout" name="gridLayout_3">
                           <item row="3" column="1">
-                           <widget class="QLineEdit" name="txt_cedula_usuarios">
+                           <widget class="QLineEdit" name="txt_cedula_usuario">
                             <property name="font">
                              <font>
                               <family>Arial Rounded MT Bold</family>
@@ -2347,7 +2341,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item row="6" column="1">
-                           <widget class="QComboBox" name="comboBox">
+                           <widget class="QComboBox" name="cbx_categoria_usuario">
                             <property name="minimumSize">
                              <size>
                               <width>0</width>
@@ -2357,7 +2351,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item row="10" column="1">
-                           <widget class="QTableWidget" name="tbl_usuarios">
+                           <widget class="QTableWidget" name="tbl_usuario">
                             <property name="styleSheet">
                              <string notr="true">background-color: rgb(255, 255, 255);</string>
                             </property>
@@ -2389,7 +2383,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item row="5" column="1">
-                           <widget class="QLineEdit" name="txt_clave_usuarios">
+                           <widget class="QLineEdit" name="txt_correo_usuario">
                             <property name="font">
                              <font>
                               <family>Arial Rounded MT Bold</family>
@@ -2401,7 +2395,7 @@ color:rgb(35, 35, 35);
                           <item row="8" column="1">
                            <layout class="QHBoxLayout" name="horizontalLayout_21">
                             <item>
-                             <widget class="QPushButton" name="pushButton">
+                             <widget class="QPushButton" name="btn_crear_usuario">
                               <property name="minimumSize">
                                <size>
                                 <width>0</width>
@@ -2430,7 +2424,7 @@ color:rgb(35, 35, 35);
                              </widget>
                             </item>
                             <item>
-                             <widget class="QPushButton" name="btn_editar_usuarios">
+                             <widget class="QPushButton" name="btn_editar_usuario">
                               <property name="minimumSize">
                                <size>
                                 <width>40</width>
@@ -2477,7 +2471,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item row="2" column="1">
-                           <widget class="QLineEdit" name="txt_apellido_usuarios">
+                           <widget class="QLineEdit" name="txt_apellido_usuario">
                             <property name="font">
                              <font>
                               <family>Arial Rounded MT Bold</family>
@@ -2487,7 +2481,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item row="0" column="1">
-                           <widget class="QLineEdit" name="txt_nombre_usuarios">
+                           <widget class="QLineEdit" name="txt_nombre_usuario">
                             <property name="font">
                              <font>
                               <family>Arial Rounded MT Bold</family>
@@ -2523,7 +2517,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item row="4" column="1">
-                           <widget class="QLineEdit" name="txt_email_usuarios">
+                           <widget class="QLineEdit" name="txt_cedula_usuarios">
                             <property name="font">
                              <font>
                               <family>Arial Rounded MT Bold</family>
@@ -2642,20 +2636,20 @@ color:rgb(35, 35, 35);
                               <number>6</number>
                              </property>
                              <item row="1" column="1">
-                              <widget class="QPushButton" name="pushButton_4">
+                              <widget class="QPushButton" name="btn_inmueble_addMaterial">
                                <property name="text">
                                 <string>+ material</string>
                                </property>
                               </widget>
                              </item>
                              <item row="0" column="0">
-                              <widget class="QListWidget" name="listWidget"/>
+                              <widget class="QListWidget" name="list_inmueble_elementos"/>
                              </item>
                              <item row="0" column="1">
-                              <widget class="QListWidget" name="listWidget_2"/>
+                              <widget class="QListWidget" name="list_inmueble_materiales"/>
                              </item>
                              <item row="1" column="0">
-                              <widget class="QPushButton" name="pushButton_3">
+                              <widget class="QPushButton" name="btn_inmueble_addElemento">
                                <property name="text">
                                 <string>+ elemento</string>
                                </property>
@@ -2667,7 +2661,7 @@ color:rgb(35, 35, 35);
                          </widget>
                         </item>
                         <item row="9" column="2">
-                         <widget class="QComboBox" name="comboBox_10"/>
+                         <widget class="QComboBox" name="parroquia"/>
                         </item>
                         <item row="8" column="1">
                          <widget class="QLabel" name="label_24">
@@ -2677,7 +2671,7 @@ color:rgb(35, 35, 35);
                          </widget>
                         </item>
                         <item row="8" column="2">
-                         <widget class="QComboBox" name="comboBox_9"/>
+                         <widget class="QComboBox" name="txt_inmueble_ciudad"/>
                         </item>
                         <item row="9" column="1">
                          <widget class="QLabel" name="label_25">
@@ -2714,7 +2708,7 @@ color:rgb(35, 35, 35);
                          </widget>
                         </item>
                         <item row="6" column="2">
-                         <widget class="QLineEdit" name="lineEdit_2">
+                         <widget class="QLineEdit" name="txt_inmueble_m2Habitables">
                           <property name="minimumSize">
                            <size>
                             <width>0</width>
@@ -2741,7 +2735,7 @@ color:rgb(35, 35, 35);
                          </widget>
                         </item>
                         <item row="7" column="2">
-                         <widget class="QLineEdit" name="lineEdit_3">
+                         <widget class="QLineEdit" name="txt_inmueble_m2Terreno">
                           <property name="minimumSize">
                            <size>
                             <width>0</width>
@@ -2751,7 +2745,7 @@ color:rgb(35, 35, 35);
                          </widget>
                         </item>
                         <item row="1" column="2">
-                         <widget class="QLineEdit" name="txt_nombre_lab_laboratorios">
+                         <widget class="QLineEdit" name="txt_inmueble_ccatastral">
                           <property name="font">
                            <font>
                             <family>Arial Rounded MT Bold</family>
@@ -2761,7 +2755,7 @@ color:rgb(35, 35, 35);
                          </widget>
                         </item>
                         <item row="3" column="2">
-                         <widget class="QLineEdit" name="txt_aforo_laboratorios">
+                         <widget class="QLineEdit" name="txt_inmueble_numPisos">
                           <property name="font">
                            <font>
                             <family>Arial Rounded MT Bold</family>
@@ -2771,7 +2765,7 @@ color:rgb(35, 35, 35);
                          </widget>
                         </item>
                         <item row="5" column="2">
-                         <widget class="QLineEdit" name="txt_software_laboratorio">
+                         <widget class="QLineEdit" name="txt_inmueble_precio">
                           <property name="font">
                            <font>
                             <family>Arial Rounded MT Bold</family>
@@ -2788,7 +2782,7 @@ color:rgb(35, 35, 35);
                          </widget>
                         </item>
                         <item row="10" column="2">
-                         <widget class="QLineEdit" name="lineEdit_7">
+                         <widget class="QLineEdit" name="txt_inmueble_anioCostru">
                           <property name="minimumSize">
                            <size>
                             <width>0</width>
@@ -2807,7 +2801,7 @@ color:rgb(35, 35, 35);
                         <item row="13" column="2">
                          <layout class="QHBoxLayout" name="horizontalLayout_19">
                           <item>
-                           <widget class="QPushButton" name="pushButton_2">
+                           <widget class="QPushButton" name="btn_inmueble_ingresar">
                             <property name="minimumSize">
                              <size>
                               <width>0</width>
@@ -2820,7 +2814,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item>
-                           <widget class="QPushButton" name="btn_editar_lab">
+                           <widget class="QPushButton" name="btn_inmueble_editar">
                             <property name="minimumSize">
                              <size>
                               <width>40</width>
@@ -2836,7 +2830,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item>
-                           <widget class="QPushButton" name="btn_buscar_lab">
+                           <widget class="QPushButton" name="btn_inmueble_buscar">
                             <property name="minimumSize">
                              <size>
                               <width>30</width>
@@ -2852,7 +2846,7 @@ color:rgb(35, 35, 35);
                            </widget>
                           </item>
                           <item>
-                           <widget class="QPushButton" name="btn_eliminar_lab">
+                           <widget class="QPushButton" name="btn_eliminar_eliminar">
                             <property name="minimumSize">
                              <size>
                               <width>30</width>
@@ -2880,7 +2874,7 @@ color:rgb(35, 35, 35);
                       </widget>
                      </item>
                      <item>
-                      <widget class="QTableWidget" name="tableWidget"/>
+                      <widget class="QTableWidget" name="tbl_inmueble"/>
                      </item>
                     </layout>
                    </widget>
@@ -2996,7 +2990,7 @@ color:rgb(35, 35, 35);
                           </widget>
                          </item>
                          <item>
-                          <widget class="QComboBox" name="comboBox_2"/>
+                          <widget class="QComboBox" name="cbx_transaccion_vendedor"/>
                          </item>
                          <item>
                           <spacer name="verticalSpacer_11">
@@ -3027,7 +3021,7 @@ color:rgb(35, 35, 35);
                           </widget>
                          </item>
                          <item>
-                          <widget class="QComboBox" name="comboBox_3"/>
+                          <widget class="QComboBox" name="cbx_transaccion_agente"/>
                          </item>
                          <item>
                           <spacer name="verticalSpacer_10">
@@ -3058,7 +3052,7 @@ color:rgb(35, 35, 35);
                           </widget>
                          </item>
                          <item>
-                          <widget class="QComboBox" name="comboBox_4"/>
+                          <widget class="QComboBox" name="cbx_transaccion_inmueble"/>
                          </item>
                          <item>
                           <spacer name="verticalSpacer_9">
@@ -3089,7 +3083,7 @@ color:rgb(35, 35, 35);
                           </widget>
                          </item>
                          <item>
-                          <widget class="QLineEdit" name="lineEdit"/>
+                          <widget class="QLineEdit" name="txt_transaccion_comision"/>
                          </item>
                          <item>
                           <spacer name="verticalSpacer_8">
@@ -3120,7 +3114,7 @@ color:rgb(35, 35, 35);
                           </widget>
                          </item>
                          <item>
-                          <widget class="QLineEdit" name="lineEdit_8"/>
+                          <widget class="QLineEdit" name="txt_transaccion_presioVenta"/>
                          </item>
                          <item>
                           <spacer name="verticalSpacer_7">
@@ -3151,7 +3145,7 @@ color:rgb(35, 35, 35);
                           </widget>
                          </item>
                          <item>
-                          <widget class="QLineEdit" name="lineEdit_9"/>
+                          <widget class="QLineEdit" name="txt_transaccion_comentario"/>
                          </item>
                          <item>
                           <spacer name="verticalSpacer_2">
@@ -3173,7 +3167,7 @@ color:rgb(35, 35, 35);
                      <item row="4" column="1">
                       <layout class="QHBoxLayout" name="horizontalLayout_8">
                        <item>
-                        <widget class="QPushButton" name="pushButton_7">
+                        <widget class="QPushButton" name="btn_transaccion_limpiar">
                          <property name="font">
                           <font>
                            <pointsize>-1</pointsize>
@@ -3191,7 +3185,7 @@ color:rgb(35, 35, 35);
                         </widget>
                        </item>
                        <item>
-                        <widget class="QPushButton" name="pushButton_8">
+                        <widget class="QPushButton" name="btn_transaccion_crear">
                          <property name="font">
                           <font>
                            <pointsize>-1</pointsize>
