@@ -57,6 +57,21 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.tbl_ventas.itemClicked.connect(partial(self.seleccionar_fila_completa_tabla, self.tbl_ventas))
         self.tbl_historial.itemClicked.connect(partial(self.seleccionar_fila_completa_tabla, self.tbl_historial))
         
+        #!Para Pagina Usuario
+        
+        #!Para Pagina Inmueble
+        
+        #!Para Pagina Transaccion
+        
+        #!Para Pagina Pendiente
+        
+        #!Para Pagina Historial
+        
+        #!Para Pagina Compra
+        
+        #!Para Pagina Reportes
+        
+        
         
   
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
