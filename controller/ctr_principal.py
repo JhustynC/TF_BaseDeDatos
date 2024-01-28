@@ -9,7 +9,7 @@ from PyQt6.QtWidgets import QHeaderView, QTableWidgetItem, QTableWidgetSelection
 class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     def __init__(self, parent=None):
         super(UI, self).__init__(parent)
-        #uic.loadUi('../TF_BaseDeDatos/view/menu_principal.ui' , self)
+        #?uic.loadUi('../TF_BaseDeDatos/view/menu_principal.ui' , self)
         self.setupUi(self)
         
         #*Boton para mostrar u ocultar el menu
@@ -35,7 +35,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #*Para que el menueste escondido
         self.fr_botones_menu.setFixedWidth(0)
         
-        #Para salir del sistema
+        #!Para salir del sistema
         self.btn_salir.clicked.connect(self.close)
         
         #*Para reescalar columnas de las tablas y centrarlas 
@@ -58,18 +58,25 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.tbl_historial.itemClicked.connect(partial(self.seleccionar_fila_completa_tabla, self.tbl_historial))
         
         #!Para Pagina Usuario
+        #TODO: Agregar funcionalidades para ventana
         
         #!Para Pagina Inmueble
+        #TODO: Agregar funcionalidades
         
         #!Para Pagina Transaccion
+        #TODO: Agregar funcionalidades
         
         #!Para Pagina Pendiente
+        #TODO: Agregar funcionalidades
         
         #!Para Pagina Historial
+        #TODO: Agregar funcionalidades
         
         #!Para Pagina Compra
+        #TODO: Agregar funcionalidades
         
         #!Para Pagina Reportes
+        #TODO: Agregar funcionalidades
         
         
         

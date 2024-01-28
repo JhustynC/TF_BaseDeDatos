@@ -45,3 +45,11 @@ pasar de .ui a .py
 > Navegar hasta el directorio donde esta el .ui y ejecutar:
 
     pyuic6 -x menu_principal.ui -o menu_principal.py
+
+## Para mejores comentarios
+
+Para comentarios con mejor lejibilidad en el codigo 
+descargar el modulo para visual studio code llamado:
+
+    Better Comments
+
