@@ -58,6 +58,10 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.tbl_historial.itemClicked.connect(partial(self.seleccionar_fila_completa_tabla, self.tbl_historial))
         
         #!Para Pagina Usuario
+        self.cbx_categoria_usuario.addItem('vendedor')
+        self.cbx_categoria_usuario.addItem('agente')
+        self.cbx_categoria_usuario.addItem('comprador')
+        
         #TODO: Agregar funcionalidades para ventana
         
         #!Para Pagina Inmueble
