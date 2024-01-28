@@ -5,3 +5,6 @@ app = QtWidgets.QApplication([])
 window = UI()
 window.show()
 app.exec()
+
+    
+    
