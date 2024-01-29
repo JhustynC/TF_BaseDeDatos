@@ -247,14 +247,17 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     #clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, fecha_registro, m2_habitables, m2_terreno, ce_vendedor0    
     def ingresar_inmueble(self):
         inmuebleDB = InmuebleDB()
-        inmuebleDB.conectar.conectar_()    
+        inmuebleDB.conectar.conectar_()
+        print(self.txt_inmueble_ccatastral.text())
+        parroquia = f"SELECT id FROM parrroquia WHERE nombre = {self.cbx_parroquia_inmueble.currentText()}"    
         inmuebleDB.ingresar(self.txt_inmueble_ccatastral.text(), 
                             int(self.txt_inmueble_numPisos.text()), 
                             self.txt_inmueble_anioCostru.text(),
                             "FALSE",
                             self.txt_precioMin_compra.text(),
                             self.txt_inmueble_m2Habitables.text(),
-                            self.txt_inmueble_m2Terreno.text())()
+                            self.txt_inmueble_m2Terreno.text(),
+                            parroquia)()
         print(inmuebleDB.consulta)
         inmuebleDB.enviar_consultar()
         

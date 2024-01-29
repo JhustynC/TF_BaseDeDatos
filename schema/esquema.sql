@@ -15,8 +15,7 @@ DROP TABLE IF EXISTS parroquia CASCADE;
 
 CREATE TABLE ciudad(
     id VARCHAR(2) PRIMARY KEY,
-    nombre TEXT NOT NULL,
-    id_provincia VARCHAR(2) NOT NULL,
+    nombre TEXT NOT NULL
 );
 
 CREATE TABLE parroquia(
