@@ -134,13 +134,15 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
 
         #!Para Pagina Inmueble
         self.btn_inmueble_ingresar.clicked.connect(self.ingresar_inmueble)
+        self.btn_inmueble_buscar.clicked.connect(self.buscar_inmueble)
         #TODO: Agregar funcionalidades
         self.llenar_tipoInb()
         self.consultar_ciudades()
         self.llenar_lista_elementos()
         self.llenar_lista_materiales()
         self.cbx_inmueble_ciudad.currentIndexChanged.connect(partial(self.ajustar_cbx_parroquias,self.cbx_inmueble_ciudad,self.cbx_parroquia_inmueble ))
-        
+        self.tbl_inmueble.setColumnCount(4)
+        self.tbl_inmueble.setHorizontalHeaderLabels(["Codigo catastral","Ciudad","Parroquia","Precio"])
         
         #!Para Pagina Transaccion
         #TODO: Agregar funcionalidades
@@ -253,18 +255,99 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         inmuebleDB = InmuebleDB()
         inmuebleDB.conectar.conectar_()
         print(self.txt_inmueble_ccatastral.text())
-        parroquia = f"SELECT id FROM parrroquia WHERE nombre = {self.cbx_parroquia_inmueble.currentText()}"    
+
+        conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(f"SELECT id FROM parroquia WHERE nombre = '{self.cbx_parroquia_inmueble.currentText()}'" )
+        parroquia = self.convertir_a_string(conectar.resultado)
+        
+        conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(f"SELECT id FROM tipo_inmueble WHERE nombre = '{self.cbx_inmueble_tipoInmueble.currentText()}'")
+        tipo_inmueble = self.convertir_a_string(conectar.resultado)
+        print(conectar.resultado)
+        
+
+        print(self.txt_inmueble_ccatastral.text(), 
+                            int(self.txt_inmueble_numPisos.text()), 
+                            self.txt_inmueble_anioCostru.text(),
+                            "FALSE",
+                            self.txt_inmueble_precio.text(),
+                            self.txt_inmueble_m2Habitables.text(),
+                            self.txt_inmueble_m2Terreno.text(),
+                            parroquia)
+        
         inmuebleDB.ingresar(self.txt_inmueble_ccatastral.text(), 
                             int(self.txt_inmueble_numPisos.text()), 
                             self.txt_inmueble_anioCostru.text(),
                             "FALSE",
-                            self.txt_precioMin_compra.text(),
+                            self.txt_inmueble_precio.text(),
                             self.txt_inmueble_m2Habitables.text(),
                             self.txt_inmueble_m2Terreno.text(),
-                            parroquia)()
+                            parroquia,
+                            self.cbx_inmueble_vendedor.currentText(),
+                            tipo_inmueble) 
+        
         print(inmuebleDB.consulta)
         inmuebleDB.enviar_consultar()
+    
+    def buscar_inmueble(self):
+        inmuebleDB = InmuebleDB()
+        inmuebleDB.conectar.conectar_()
+
+        #*Obtener el id de la parroquia
+        conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(f"SELECT id FROM parroquia WHERE nombre = '{self.cbx_parroquia_inmueble.currentText()}'" )
+        parroquia = self.convertir_a_string(conectar.resultado)
         
+        #*Obtener el id del tipo de inmueble
+        conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(f"SELECT id FROM tipo_inmueble WHERE nombre = '{self.cbx_inmueble_tipoInmueble.currentText()}'")
+        tipo_inmueble = self.convertir_a_string(conectar.resultado)
+
+        #*Obtener el id de la ciudad
+        conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(f"SELECT id FROM ciudad WHERE nombre = '{self.cbx_inmueble_tipoInmueble.currentText()}'")
+        ciudad = self.convertir_a_string(conectar.resultado)
+
+        #*Obtener lista de elementos
+        """conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(f"SELECT id FROM elemento")
+        elementos = self.convertir_a_string(conectar.resultado)"""
+
+        #*Obtener lista de materiales
+        """conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(f"SELECT id FROM ciudad WHERE nombre = '{self.cbx_inmueble_tipoInmueble.currentText()}'")
+        materiales = self.convertir_a_string(conectar.resultado)"""
+
+
+        inmuebleDB.listar(self.txt_inmueble_precio.text(), 
+                          self.txt_inmueble_precio.text(), 
+                          ciudad,
+                          parroquia,
+                          self.txt_inmueble_numPisos.text(),
+                          self.txt_inmueble_anioCostru.text(),
+                          "",# array con elementos
+                          "")# array con materiales
+        
+        print("Mi consulta:", inmuebleDB.consulta)
+        inmuebleDB.enviar_consultar()
+        #inmuebleDB.listar(self.txt_pre)
+        #nombres_columnas = ["Columna 1", "Columna 2", "Columna 3"]
+        #tabla.setHorizontalHeaderLabels(nombres_columnas)
+        #
+        for fila in inmuebleDB.conectar.resultado:
+            print(fila)
+
+        
+
+        self.llenar_tabla(self.tbl_inmueble, inmuebleDB.conectar.resultado)
+
     def consultar_ciudades(self):
         conectar = Conectar()
         conectar.conectar_()
@@ -452,7 +535,27 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         conexion.resultado
         
         
-    #?-----------------------Funcionalidades Extra----------------------------- 
+    #?-------------Funcionalidades Extra----------------------------- 
+    def convertir_a_string(self, lista_tuplas): # transforma tuplas a string, formato para sentencias SQL
+        tuplas_convertidas = []
+        for tupla in lista_tuplas:
+            if len(tupla) == 1:
+                # Si la tupla tiene solo un elemento, extraemos y limpiamos el elemento
+                elemento_convertido = str(tupla[0]).strip("('')")
+                tupla_convertida = elemento_convertido
+            else:
+                # Si la tupla tiene más de un elemento, creamos una tupla de elementos
+                elementos_convertidos = []
+                for elemento in tupla:
+                    # Convertir cada elemento de la tupla a un string y quitar las comillas adicionales
+                    elemento_convertido = str(elemento).strip("('')")
+                    elementos_convertidos.append(elemento_convertido)
+                # Crear una cadena con los elementos de la tupla entre paréntesis y separados por comas
+                tupla_convertida = '(' + ', '.join(elementos_convertidos) + ')'
+            tuplas_convertidas.append(tupla_convertida)
+        # Unir todas las tuplas convertidas en una cadena
+        cadena_resultante = ', '.join(tuplas_convertidas)
+        return cadena_resultante    
     
     def llenar_combobox(self, cbx, data):
         for d in data:
