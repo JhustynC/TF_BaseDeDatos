@@ -1,3 +1,4 @@
+from model.Compra import CompraDB
 from model.Conectar import Conectar
 from view.menu_principal import Ui_MenuPrincipal
 from model.Persona import PersonaDB
@@ -94,7 +95,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     
         
         #*Para que el menueste escondido
-        self.fr_botones_menu.setFixedWidth(0)
+        #self.fr_botones_menu.setFixedWidth(0)
         
         #!Para salir del sistema
         self.btn_salir.clicked.connect(self.close)
@@ -153,16 +154,19 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #!Para Pagina Pendiente
         #TODO: Agregar funcionalidades
         self.tbl_pendientes.setColumnCount(4)
-        self.tbl_pendientes.setHorizontalHeaderLabels(['id', "id_inmueble", "fecha_inicio", 'estado'])
+        self.tbl_pendientes.setHorizontalHeaderLabels(['ID', "Clave Catastral", "FECHA INICiO", 'ESTADO'])
+        self.btn_filtrar_pendientes.clicked.connect(self.filtrar_campos_pendientes)
         
         #!Para Pagina Historial
         #TODO: Agregar funcionalidades
         self.tbl_historial.setColumnCount(4)
-        self.tbl_historial.setHorizontalHeaderLabels(['id', "id_inmueble", "fecha_inicio", 'estado'])
+        self.tbl_historial.setHorizontalHeaderLabels(['ID', "Clave Catastral", "FECHA INICiO", 'ESTADO'])
+        self.btn_filtrar_pendientes.clicked.connect(self.filtrar_campos_historial)
         
         #!Para Pagina Compra
         #TODO: Agregar funcionalidades
         self.cbx_ciudad_compra.currentIndexChanged.connect(partial(self.ajustar_cbx_parroquias,self.cbx_ciudad_compra,self.cbx_parroquia_compra ))
+        self.btn_filtrar_compra.clicked.connect(self.cambiar_parametros_filtro_compra)
         #self.cbx_parroquia_compra.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
         
         #!Para Pagina Reportes
@@ -272,26 +276,33 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         tipo_inmueble = self.convertir_a_string(conectar.resultado)
         print(conectar.resultado)
         
-
-        print(self.txt_inmueble_ccatastral.text(), 
-                            int(self.txt_inmueble_numPisos.text()), 
-                            self.txt_inmueble_anioCostru.text(),
-                            "FALSE",
-                            self.txt_inmueble_precio.text(),
-                            self.txt_inmueble_m2Habitables.text(),
-                            self.txt_inmueble_m2Terreno.text(),
-                            parroquia)
+        try:
+            print(self.txt_inmueble_ccatastral.text(), 
+                                int(self.txt_inmueble_numPisos.text()), 
+                                self.txt_inmueble_anioCostru.text(),
+                                'FALSE',
+                                self.txt_inmueble_precio.text(),
+                                self.txt_inmueble_m2Habitables.text(),
+                                self.txt_inmueble_m2Terreno.text(),
+                                parroquia,
+                                self.cbx_inmueble_vendedor.currentText(),
+                                tipo_inmueble)
         
-        inmuebleDB.ingresar(self.txt_inmueble_ccatastral.text(), 
+        
+            inmuebleDB.ingresar(self.txt_inmueble_ccatastral.text(), 
                             int(self.txt_inmueble_numPisos.text()), 
                             self.txt_inmueble_anioCostru.text(),
-                            "FALSE",
+                            'FALSE',
                             self.txt_inmueble_precio.text(),
                             self.txt_inmueble_m2Habitables.text(),
                             self.txt_inmueble_m2Terreno.text(),
                             parroquia,
                             self.cbx_inmueble_vendedor.currentText(),
                             tipo_inmueble) 
+        
+        except Exception as e:
+            print(e)
+        
         
         print(inmuebleDB.consulta)
         inmuebleDB.enviar_consultar()
@@ -349,8 +360,6 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #
         for fila in inmuebleDB.conectar.resultado:
             print(fila)
-
-        
 
         self.llenar_tabla(self.tbl_inmueble, inmuebleDB.conectar.resultado)
 
@@ -508,41 +517,40 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         comision = self.txt_transaccion_comision.text()
         precio_venta = self.txt_transaccion_presioVenta.text()
         comentario = self.txt_transaccion_comentario.text()
-        
-        conexion = Conectar()
-        conexion.conectar_()
-        
-        agente_consulta = f''' 
-        INSERT INTO transaccion (
-            precio_deseado_vendedor, 
-            fecha_inicio, 
-            estado, 
-            comision, 
-            ce_agente, 
-            id_inmueble
-        ) VALUES (
-            {float(precio_venta)}, 
-            CURRENT_DATE, 
-            false, 
-            {float(comision)},
-            '{agente}',
-            '{inmueblle}'
-        );
-        '''
-        
-        conexion.ingresar_sentencia(agente_consulta)
-        conexion.resultado
-        
+        try:
+            conexion = Conectar()
+            conexion.conectar_()
+            
+            agente_consulta = f''' 
+            INSERT INTO transaccion (
+                precio_deseado_vendedor, 
+                fecha_inicio, 
+                estado, 
+                comision, 
+                ce_agente, 
+                id_inmueble
+            ) VALUES (
+                {float(precio_venta)}, 
+                CURRENT_DATE, 
+                false, 
+                {float(comision)},
+                '{agente}',
+                '{inmueblle}'
+            );
+            '''
+            
+            conexion.ingresar_sentencia(agente_consulta)
+            conexion.resultado
+        except Exception as e: print(e)
+            
     #!Funcionalidades de Pendientes
-    
-    
-    
+
     def llenar_tabla_pendientes(self):
         
         consulta_pendietes = ''' 
         Select id, id_inmueble, fecha_inicio, estado
         From transaccion 
-        Where estado = FALSE
+        Where estado = 'FALSE'
         '''
         conexion = Conectar()
         conexion.conectar_()
@@ -551,15 +559,37 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         r = conexion.resultado
         self.llenar_tabla(self.tbl_pendientes, r)
         
+    def filtrar_campos_pendientes(self):
+        
+        agregar = ''
+        ccatatral = self.txt_ccatastral_pendientes.text()
+        if(len(ccatatral)!=0):
+            agregar = f"AND id_inmueble = '{ccatatral}'"
+        
+        fecha_seleccionada = self.cld_fecha_pendientes.selectedDate().toString("yyyy-MM-dd")
+        print('Fecha Seleccionada: ', fecha_seleccionada)
+        
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        consulta_pendietes = f''' 
+        SELECT id, id_inmueble, fecha_inicio, estado
+        FROM transaccion 
+        WHERE estado = 'FALSE' AND fecha_inicio <= '{fecha_seleccionada}'
+        ''' + agregar
+        conexion.ingresar_sentencia(consulta_pendietes)
+        
+        print('Coincidencias: ', conexion.resultado)
+        self.llenar_tabla(self.tbl_pendientes, conexion.resultado)
     
     #!Funcionalidades de Historial 
     
     def llenar_tabla_historial(self):
     
         consulta_historial = ''' 
-        Select id, id_inmueble, fecha_inicio, estado
-        From transaccion 
-        Where estado = TRUE
+        SELECT id, id_inmueble, fecha_inicio, estado
+        FROM transaccion 
+        WHERE estado = 'TRUE'
         '''
         conexion = Conectar()
         conexion.conectar_()
@@ -567,9 +597,62 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         conexion.ingresar_sentencia(consulta_historial)
         r = conexion.resultado
         self.llenar_tabla(self.tbl_historial, r)
+    
+    def filtrar_campos_historial(self):
         
+        agregar = ''
+        ccatatral = self.txt_ccatastral_pendientes.text()
+        if(len(ccatatral)!=0):
+            agregar = f" AND id_inmueble = '{ccatatral}'"
         
+        fecha_seleccionada = self.cld_fecha_pendientes.selectedDate().toString("yyyy-MM-dd")
+        print(fecha_seleccionada)
         
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        consulta_historial = f''' 
+        SELECT id, id_inmueble, fecha_inicio, estado
+        FROM transaccion 
+        WHERE estado = 'TRUE' AND fecha_inicio >= '{fecha_seleccionada}'
+        '''+agregar
+        conexion.ingresar_sentencia(consulta_historial)
+        
+        print(conexion.resultado)
+        
+    #!======================Funcionalidades de Compra=========================
+    c = CompraDB()
+     
+    def llenar_combo_ccatastral(self, num_pisos='', tiempo_construccion='', metros_terreno='', ciudad='', parroquia='', precio_min='',precio_max='', tipo_imb=''):
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        comprador_consulta = self.c.filtro_compra(num_pisos,tiempo_construccion,metros_terreno,ciudad,parroquia,precio_min,precio_max,tipo_imb)
+        
+        conexion.ingresar_sentencia(comprador_consulta)
+        try:
+            r = map(lambda x: x[0], conexion.resultado)
+            self.llenar_combobox(self.cbx_inmueble_compra, r)
+        except Exception as e: print(e)
+    
+    def llenar_combo_compradores(self):
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        consulta_pendietes = f''' 
+        SELECT cedula
+        FROM comprador
+        '''
+        
+        r = conexion.ingresar_sentencia(consulta_pendietes)
+        try:
+            r = map(lambda x: x[0], conexion.resultado)
+            self.llenar_combobox(self.cbx_comprador_compra, r)   
+        except Exception as e: print(e)
+        
+    def cambiar_parametros_filtro_compra():
+        
+        pass
         
     #?-------------Funcionalidades Extra----------------------------- 
     def convertir_a_string(self, lista_tuplas): # transforma tuplas a string, formato para sentencias SQL
@@ -626,6 +709,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
                 self.llenar_tabla_historial()
             case 'btn_compra':
                 self.paginas__principales.setCurrentWidget(self.pg_Compra)
+                self.llenar_combo_compradores()
+                self.llenar_combo_ccatastral()
             case 'btn_pendientes':
                 self.paginas__principales.setCurrentWidget(self.pg_Pendientes)
                 self.llenar_tabla_pendientes()
