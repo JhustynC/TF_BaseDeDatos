@@ -72,10 +72,10 @@ CREATE TABLE inmueble (
     fecha_venta DATE, 
     m2_habitables FLOAT NOT NULL, 
     m2_terreno FLOAT NOT NULL, 
-    ce_vendedor VARCHAR(10) NOT NULL,
+    ce_vendedor VARCHAR(10) NOT NULL ,
     id_tipo VARCHAR(2) NOT NULL,
     id_parroquia VARCHAR(3) NOT NULL, 
-    FOREIGN KEY (ce_vendedor) REFERENCES vendedor(cedula), 
+    FOREIGN KEY (ce_vendedor) REFERENCES vendedor(cedula) ON DELETE CASCADE, 
     FOREIGN KEY (id_parroquia) REFERENCES parroquia(id),
     FOREIGN KEY (id_tipo) REFERENCES tipo_inmueble(id)
 );
