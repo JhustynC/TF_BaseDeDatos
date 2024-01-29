@@ -116,5 +116,5 @@ CREATE TABLE transaccion (
     FOREIGN KEY (ce_agente) REFERENCES agente(cedula),
     FOREIGN KEY (ce_comprador) REFERENCES comprador(cedula),
     FOREIGN KEY (id_calificacion) REFERENCES calificacion(id), 
-    FOREIGN KEY (id_inmueble) REFERENCES inmueble(clave_castral)
+    FOREIGN KEY (id_inmueble) REFERENCES inmueble(clave_castral) ON DELETE CASCADE
 );

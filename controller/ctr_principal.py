@@ -169,6 +169,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.btn_filtrar_compra.clicked.connect(self.cambiar_parametros_filtro_compra)
         self.pushButton_17.hide()
         self.pushButton_16.hide()
+        self.cbx_calificacion_compra.addItems([str(n+1) for n in range(5)])
         #self.cbx_parroquia_compra.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
         
         #!Para Pagina Reportes
