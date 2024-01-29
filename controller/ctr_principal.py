@@ -713,6 +713,11 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         except Exception as e: print(e)
     
     #!======================Funcionalidades de Reportes=========================
+    #todo: para el primer reporte
+    
+    #todo: para el segundo reporte
+    
+    #todo: para el tercer reporte
     
     
     

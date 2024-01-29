@@ -1149,7 +1149,7 @@ color:rgb(35, 35, 35);
 }</string>
                    </property>
                    <property name="currentIndex">
-                    <number>3</number>
+                    <number>4</number>
                    </property>
                    <widget class="QWidget" name="pg_Pendientes">
                     <property name="styleSheet">
@@ -1555,7 +1555,7 @@ color:rgb(35, 35, 35);
                      <item>
                       <widget class="QTabWidget" name="tabs_reportes">
                        <property name="currentIndex">
-                        <number>0</number>
+                        <number>2</number>
                        </property>
                        <widget class="QWidget" name="tab_desempenio">
                         <property name="styleSheet">
@@ -1819,7 +1819,17 @@ color:rgb(35, 35, 35);
                            </column>
                            <column>
                             <property name="text">
+                             <string>TOTAL PRECIO DE VENTA</string>
+                            </property>
+                           </column>
+                           <column>
+                            <property name="text">
                              <string>TOTAL VENTAS</string>
+                            </property>
+                           </column>
+                           <column>
+                            <property name="text">
+                             <string>TOTAL COMISIONES</string>
                             </property>
                            </column>
                           </widget>
@@ -2895,7 +2905,7 @@ color:rgb(35, 35, 35);
                         <item row="9" column="0">
                          <widget class="QLabel" name="label_27">
                           <property name="text">
-                           <string>Tiempo de Construcción:</string>
+                           <string>Año de Construcción:</string>
                           </property>
                          </widget>
                         </item>
