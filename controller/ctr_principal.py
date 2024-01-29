@@ -349,7 +349,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         from inmueble
         '''
         conexion.ingresar_sentencia(inmueble_consulta)
-        r = conexion.resultado
+        r = map(lambda x: x[0], conexion.resultado)
         self.llenar_combobox(self.cbx_transaccion_inmueble, r)
         
     def llenar_agente_transaccion(self):
