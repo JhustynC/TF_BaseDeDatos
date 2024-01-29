@@ -711,7 +711,12 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             r = conexion.ingresar_sentencia(consulta)
             print(r)
         except Exception as e: print(e)
-        
+    
+    #!======================Funcionalidades de Reportes=========================
+    
+    
+    
+    
     #?-------------Funcionalidades Extra----------------------------- 
     def convertir_a_string(self, lista_tuplas): # transforma tuplas a string, formato para sentencias SQL
         tuplas_convertidas = []
