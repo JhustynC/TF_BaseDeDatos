@@ -6,7 +6,7 @@ from functools import partial
 from PyQt6 import QtWidgets, QtCore
 from PyQt6 import uic
 from PyQt6.QtCore import QPropertyAnimation, Qt
-from PyQt6.QtWidgets import QHeaderView, QTableWidgetItem, QTableWidgetSelectionRange, QDialog
+from PyQt6.QtWidgets import QHeaderView, QTableWidgetItem, QTableWidgetSelectionRange, QListWidgetItem
 
  
 class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
@@ -137,6 +137,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #TODO: Agregar funcionalidades
         self.llenar_tipoInb()
         self.consultar_ciudades()
+        self.llenar_lista_elementos()
+        self.llenar_lista_materiales()
         self.cbx_inmueble_ciudad.currentIndexChanged.connect(partial(self.ajustar_cbx_parroquias,self.cbx_inmueble_ciudad,self.cbx_parroquia_inmueble ))
         
         
@@ -323,6 +325,42 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         conexion.ingresar_sentencia(tipoInm_consulta)
         r = map(lambda x: x[0], conexion.resultado)
         self.llenar_combobox(self.cbx_inmueble_tipoInmueble, r)
+        
+    def llenar_lista_elementos(self):
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        tipoInm_consulta = ''' 
+        select nombre
+        from elemento 
+        '''
+        
+        conexion.ingresar_sentencia(tipoInm_consulta)
+        r = map(lambda x: x[0], conexion.resultado)
+        
+        for item_text in r:
+            item = QListWidgetItem(item_text)
+            item.setCheckState(Qt.CheckState.Unchecked)  # Hacer el elemento chequeable
+            self.list_inmueble_elementos.addItem(item)
+        
+        
+    def llenar_lista_materiales(self):
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        tipoInm_consulta = ''' 
+        select nombre
+        from material 
+        '''
+        
+        conexion.ingresar_sentencia(tipoInm_consulta)
+        r = map(lambda x: x[0], conexion.resultado)
+        
+        for item_text in r:
+            item = QListWidgetItem(item_text)
+            item.setCheckState(Qt.CheckState.Unchecked)  # Hacer el elemento chequeable
+            self.list_inmueble_materiales.addItem(item)
+        
    
    #!Funcionalidad Transaccion
    
@@ -365,7 +403,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.llenar_combobox(self.cbx_transaccion_agente, r)
         
         
-    #?-------------Funcionalidades Extra----------------------------- 
+    #?-----------------------Funcionalidades Extra----------------------------- 
     
     def llenar_combobox(self, cbx, data):
         for d in data:
