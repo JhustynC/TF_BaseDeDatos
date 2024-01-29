@@ -14,10 +14,12 @@ class InmuebleDB:
         self.consulta = self.consulta + f"VALUES('{clave_castral}', {numero_pisos}, '{agno_construccion}-01-01', '{estado}', '{precio_deseado_vendedor}', '{m2_habitables}', '{m2_terreno}', CURRENT_DATE,'{id_parroquia}', '{ce_vendedor}', '{id_tipo_inmueble}')"
 
     def eliminar(self, c_catastral):
-        self.consulta = self.consulta + f"DELETE FROM inmueble WHERE nombre = '{c_catastral}'" 
+        self.consulta = self.consulta + f"DELETE FROM inmueble WHERE clava_castral = '{c_catastral}'" 
 
-    def editar(self, c_catastral, precio, parroquia, numero_pisos, agno_construccion):
-        self.consulta = self.consulta + f"UPDATE inmueble SET  precio_deseado_vendedor ='{precio}', parroquia = '{parroquia}', numero_pisos = '{numero_pisos}', agno_construccion = '{agno_construccion}' WHERE clave_catrastal = '{c_catastral}'"
+    def editar(self, c_catastral, numero_pisos, agno_construccion, precio_deseado_vendedor, m2_habitables, m2_terreno, id_parroquia, id_tipo_inmueble):
+        self.consulta = self.consulta + f"UPDATE inmueble SET  precio_deseado_vendedor ='{precio_deseado_vendedor}', id_parroquia = '{id_parroquia}', numero_pisos = {numero_pisos}, agno_construccion = '{agno_construccion}-01-01'"
+        self.consulta = self.consulta + f" , m2_habitables = {m2_habitables}, m2_terreno = {m2_terreno}, id_tipo = '{id_tipo_inmueble}'"
+        self.consulta = self.consulta +  f" WHERE clave_castral = '{c_catastral}'"
 
     def listar(self, clave_catrastal, precio_maximo, precio_minimo, ciudad, parroquia, numero_pisos, agnos_construccion, elementos:str, materiales:str):
 
@@ -27,7 +29,7 @@ class InmuebleDB:
 
         self.consulta = self.consulta + unir_parroquia_ciudad
 
-        unir_elemento_material_inmueble = f" \nJOIN elemento_inmueble_material AS eim ON eim.id_inmueble = i.clave_catastral"
+        unir_elemento_material_inmueble = f" \nJOIN elemento_inmueble_material AS eim ON eim.id_inmueble = i.clave_castral"
         unir_elemento = f" \nJOIN elemento AS e ON eim.id_elemento = e.id"
         unir_material = f" \nJOIN material AS m ON eim.id_material = m.id"
         

@@ -125,7 +125,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.cbx_categoria_usuario.addItem('AGENTE')
         self.cbx_categoria_usuario.addItem('COMPRADOR')
         
-        #*: Agregar funcionalidades para ventana
+        #TODO: Agregar funcionalidades para ventana
         self.btn_crear_usuario.clicked.connect(self.ingresar_usuario)
         self.btn_buscar_usuario.clicked.connect(self.buscar_usuario)
         self.btn_eliminar_usuario.clicked.connect(self.eliminar_usuario)
@@ -136,6 +136,9 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #!Para Pagina Inmueble
         self.btn_inmueble_ingresar.clicked.connect(self.ingresar_inmueble)
         self.btn_inmueble_buscar.clicked.connect(self.buscar_inmueble)
+        self.btn_inmueble_editar.clicked.connect(self.editar_inmueble)
+        self.btn_eliminar_inmueble.clicked.connect(self.eliminar_inmueble)
+
         #TODO: Agregar funcionalidades
         self.llenar_tipoInb()
         self.consultar_ciudades()
@@ -144,6 +147,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.cbx_inmueble_ciudad.currentIndexChanged.connect(partial(self.ajustar_cbx_parroquias,self.cbx_inmueble_ciudad,self.cbx_parroquia_inmueble ))
         self.tbl_inmueble.setColumnCount(4)
         self.tbl_inmueble.setHorizontalHeaderLabels(["Codigo catastral","Ciudad","Parroquia","Precio"])
+        self.ckb_editar_inmueble.clicked.connect(self.activar_campos_inmueble)
         
         #!Para Pagina Transaccion
         #TODO: Agregar funcionalidades
@@ -177,8 +181,12 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #!Para Pagina Reportes
         #TODO: Agregar funcionalidades
         self.btn_desempenio_listar_reporte.clicked.connect(self.llenar_desempenoi_agente)
-        
-        
+
+        #!Dar click en los check box
+        self.ckb_editar_inmueble.click()
+        self.ckb_editar_inmueble.click()
+        self.ckb_editar_usuario.click()
+        self.ckb_editar_usuario.click()
         
     #! Funcionalidades usuario
     #TODO: Ingresar un usuario 
@@ -255,6 +263,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             self.txt_nombre_usuario.setEnabled(booleano)
             self.cbx_categoria_usuario.setEnabled(not booleano)
             self.btn_editar_usuario.setEnabled(booleano)
+            self.btn_editar_usuario.setEnabled(booleano)
         else:
             self.txt_cedula_usuario.setEnabled(booleano)
             self.txt_apellido_usuario.setEnabled(booleano)
@@ -262,11 +271,35 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             self.txt_telefono_usuarios.setEnabled(booleano)
             self.txt_nombre_usuario.setEnabled(booleano)
             self.cbx_categoria_usuario.setEnabled(booleano)
-            self.btn_editar_usuario.setEnabled(booleano)
+            self.btn_editar_usuario.setEnabled(not booleano)
+            self.btn_editar_usuario.setEnabled(not booleano)
 
-        
+    def activar_campos_inmueble(self):
+        booleano = True
+        if self.ckb_editar_inmueble.isChecked():
+            self.txt_inmueble_ccatastral.setEnabled(not booleano)
+            self.txt_inmueble_anioCostru.setEnabled(booleano)
+            self.txt_inmueble_m2Habitables.setEnabled(booleano)
+            self.txt_inmueble_m2Terreno.setEnabled(booleano)
+            self.txt_inmueble_numPisos.setEnabled(booleano)
+            self.txt_inmueble_precio.setEnabled(booleano)
+            self.btn_inmueble_buscar.setEnabled(booleano)
+            self.btn_eliminar_inmueble.setEnabled(booleano)
+            self.btn_inmueble_editar.setEnabled(booleano)
+        else:
+            self.txt_inmueble_ccatastral.setEnabled(booleano)
+            self.txt_inmueble_anioCostru.setEnabled(booleano)
+            self.txt_inmueble_m2Habitables.setEnabled(booleano)
+            self.txt_inmueble_m2Terreno.setEnabled(booleano)
+            self.txt_inmueble_numPisos.setEnabled(booleano)
+            self.txt_inmueble_precio.setEnabled(booleano)
+            self.btn_inmueble_editar.setEnabled(booleano)
+            self.btn_eliminar_inmueble.setEnabled(booleano)
+            self.btn_eliminar_inmueble.setEnabled(not booleano)
+            self.btn_inmueble_editar.setEnabled(not booleano)
+
     #!Funcionalidades Inmueble
-    #TODO: ingresar inmueble, 
+    #TODO: ingresar inmueble 
     #clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, fecha_registro, m2_habitables, m2_terreno, ce_vendedor0    
     def ingresar_inmueble(self):
         inmuebleDB = InmuebleDB()
@@ -314,6 +347,52 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         print(inmuebleDB.consulta)
         inmuebleDB.enviar_consultar()
+
+    #TODO: editar inmueble
+    def editar_inmueble(self):
+        parroquia = f"SELECT id FROM parroquia WHERE nombre = '{self.cbx_parroquia_inmueble.currentText()}'"
+        tipo_inmueble = f"SELECT id FROM tipo_inmueble WHERE nombre = '{self.cbx_inmueble_tipoInmueble.currentText()}'"
+
+        conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(parroquia)
+        p = conectar.resultado[0][0]
+
+        conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(tipo_inmueble)
+        ti = conectar.resultado[0][0]
+
+        inmuebleDB = InmuebleDB()
+        inmuebleDB.conectar.conectar_()
+
+        print(conectar.resultado[0])
+        #, parroquia, numero_pisos, agno_construccion
+        inmuebleDB.editar(c_catastral=self.txt_inmueble_ccatastral.text(),
+                          precio_deseado_vendedor=self.txt_inmueble_precio.text(),
+                          numero_pisos=self.txt_inmueble_numPisos.text(),
+                          agno_construccion=self.txt_inmueble_anioCostru.text(),
+                          id_tipo_inmueble=ti,
+                          m2_terreno=self.txt_inmueble_m2Terreno.text(),
+                          id_parroquia=p,
+                          m2_habitables=self.txt_inmueble_m2Habitables.text())
+        
+        print(inmuebleDB.consulta)
+        inmuebleDB.enviar_consultar()
+        
+     #TODO: eliminar inmueble
+    def eliminar_inmueble(self):
+        inmuebleDB = InmuebleDB()
+        inmuebleDB.conectar.conectar_()
+
+        #, parroquia, numero_pisos, agno_construccion
+        inmuebleDB.eliminar(self.txt_inmueble_ccatastral.text())
+
+        print(inmuebleDB.consulta)
+        inmuebleDB.enviar_consultar()
+        
+
+
 
     #TODO: listar inmueble
     def buscar_inmueble(self):
@@ -879,15 +958,33 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             case self.tbl_inmueble:
                 #TODO: Llenar campos de pagina inmueble para editar y eliminar
                 print(self.primera_colum)
-                self.txt_inmueble_ccatastral.setText(self.tbl_inmueble.item(self.primera_colum, 0).text())
-                self.txt_inmueble_numPisos.setText(self.tbl_inmueble.item(self.primera_colum, 1).text())
-                self.txt_inmueble_precio.setText(self.tbl_inmueble.item(self.primera_colum, 2).text())
-                self.txt_inmueble_m2Habitables.setText(self.tbl_inmueble.item(self.primera_colum, 3).text())
-                self.txt_inmueble_m2Terreno.setText(self.tbl_inmueble.item(self.primera_colum, 4).text())
-                self.txt_inmueble_ciudad.setCurrentText(self.tbl_inmueble.item(self.primera_colum, 5).text())
-                self.parroquia.setCurrentText(self.tbl_inmueble.item(self.primera_colum, 6).text())
-                #self.txt_inmueble_m2Terreno.setText(self.tbl_inmueble.item(self.primera_colum, 4).text())
-                ...
+                conectar = Conectar()
+                conectar.sentencia = "SELECT v.cedula, i.clave_castral, ti.nombre, i.numero_pisos, i.precio_deseado_vendedor, i.m2_habitables, i.m2_terreno, c.nombre, p.nombre,  EXTRACT(YEAR FROM agno_construccion) FROM inmueble AS i "
+                conectar.sentencia = conectar.sentencia + "JOIN parroquia AS p ON p.id=i.id_parroquia JOIN ciudad AS c ON c.id = p.id_ciudad "
+                conectar.sentencia = conectar.sentencia + "JOIN vendedor AS v ON v.cedula=i.ce_vendedor "
+                conectar.sentencia = conectar.sentencia + "JOIN tipo_inmueble AS ti ON ti.id = i.id_tipo "
+                conectar.sentencia = conectar.sentencia + f" WHERE i.clave_castral = '{self.tbl_inmueble.item(self.primera_colum, 0).text()}'"
+                conectar.conectar_()
+                print(conectar.sentencia)
+                conectar.ingresar_sentencia(conectar.sentencia)
+                print(conectar.resultado)
+                
+                if conectar.resultado!=None:
+                    inmueble = conectar.resultado[0]
+                    #i.clave_castral, c.nombre, p.nombre, i.precio_deseado_vendedor, 
+
+                    self.cbx_inmueble_vendedor.setCurrentText(inmueble[0])
+                    self.txt_inmueble_ccatastral.setText(inmueble[1])
+                    
+                    self.cbx_inmueble_tipoInmueble.setCurrentText(inmueble[2])
+                    self.txt_inmueble_numPisos.setText(str(inmueble[3]))
+                    self.txt_inmueble_precio.setText(str(inmueble[4]))
+                    self.txt_inmueble_m2Habitables.setText(str(inmueble[5]))
+                    self.txt_inmueble_m2Terreno.setText(str(inmueble[6]))
+                    self.cbx_inmueble_ciudad.setCurrentText(inmueble[7])
+                    self.cbx_parroquia_inmueble.setCurrentText(inmueble[8])
+                    self.txt_inmueble_anioCostru.setText(str(inmueble[9]))
+                    ...
             case self.tbl_pendientes:
                 print(self.primera_colum)
 
