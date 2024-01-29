@@ -120,9 +120,9 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
 
         
         #!Para Pagina Usuario
-        self.cbx_categoria_usuario.addItem('vendedor')
-        self.cbx_categoria_usuario.addItem('agente')
-        self.cbx_categoria_usuario.addItem('comprador')
+        self.cbx_categoria_usuario.addItem('VENDENDOR')
+        self.cbx_categoria_usuario.addItem('AGENTE')
+        self.cbx_categoria_usuario.addItem('COMPRADOR')
         
         #*: Agregar funcionalidades para ventana
         self.btn_crear_usuario.clicked.connect(self.ingresar_usuario)
@@ -257,11 +257,13 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     def consultar_ciudades(self):
         conectar = Conectar()
         conectar.conectar_()
+        
         consulta = ''' 
         SELECT nombre 
         FROM ciudad
         ''' 
         conectar.ingresar_sentencia(consulta)
+        
         print(conectar.resultado)
         for c in conectar.resultado:
             self.cbx_inmueble_ciudad.addItem(c[0])
@@ -271,8 +273,10 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     def ajustar_cbx_parroquias(self, cbx_c, cbx_p):
         ciudad = cbx_c.currentText()
         print('Ciudad:', ciudad)
+        
         conectar = Conectar()
-        conectar.conectar_()
+        conectar.conectar_() 
+        
         consulta = f''' 
         SELECT p.nombre 
         FROM parroquia AS p
@@ -280,6 +284,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         WHERE c.nombre = '{ciudad}' 
         '''
         conectar.ingresar_sentencia(consulta)
+        
         cbx_p.clear()
         for c in conectar.resultado:
             cbx_p.addItem(c[0])
