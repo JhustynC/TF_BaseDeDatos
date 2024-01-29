@@ -135,6 +135,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #!Para Pagina Inmueble
         self.btn_inmueble_ingresar.clicked.connect(self.ingresar_inmueble)
         #TODO: Agregar funcionalidades
+        self.llenar_tipoInb()
         self.consultar_ciudades()
         self.cbx_inmueble_ciudad.currentIndexChanged.connect(partial(self.ajustar_cbx_parroquias,self.cbx_inmueble_ciudad,self.cbx_parroquia_inmueble ))
         
@@ -326,6 +327,20 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         conexion.ingresar_sentencia(vendedores_consulta)
         r = map(lambda x: x[0], conexion.resultado)
         self.llenar_combobox(self.cbx_inmueble_vendedor, r)
+    
+    
+    def llenar_tipoInb(self):
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        tipoInm_consulta = ''' 
+        select nombre
+        from tipo_inmueble 
+        '''
+        
+        conexion.ingresar_sentencia(tipoInm_consulta)
+        r = map(lambda x: x[0], conexion.resultado)
+        self.llenar_combobox(self.cbx_inmueble_tipoInmueble, r)
    
    #!Funcionalidad Transaccion
    
