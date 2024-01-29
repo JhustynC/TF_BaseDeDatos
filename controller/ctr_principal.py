@@ -169,7 +169,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.btn_filtrar_compra.clicked.connect(self.cambiar_parametros_filtro_compra)
         self.pushButton_17.hide()
         self.pushButton_16.hide()
-        self.cbx_calificacion_compra.addItems([str(n+1) for n in range(5)])
+        self.cbx_calificacion_compra.addItems(['Excelente','Muy Bueno','Bueno','Regular','Deficiente'])
         self.cbx_estado_compra.addItems(['TRUE','FALSE'])
         self.btn_finalizarTran_compra.clicked.connect(self.finalizar_transaccion)
         #self.cbx_parroquia_compra.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
@@ -546,14 +546,16 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
                 estado, 
                 comision, 
                 ce_agente, 
-                id_inmueble
+                id_inmueble,
+                comentario_duegno_inmueble 
             ) VALUES (
                 {float(precio_venta)}, 
                 CURRENT_DATE, 
                 false, 
                 {float(comision)},
                 '{agente}',
-                '{inmueblle}'
+                '{inmueblle}',
+                '{comentario}'
             );
             '''
             
@@ -700,11 +702,11 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             precio_venta  = {self.txt_precioVenta_compra.text()},
             estado = {self.cbx_estado_compra.currentText()},
             comentario_comprador = '{self.txt_comentario_compra.text()}',
-            id_calificacion = {self.cbx_calificacion_compra.currentText()},
+            id_calificacion = {self.cbx_calificacion_compra.currentIndex()+1},
             fecha_final = CURRENT_DATE
         WHERE id_inmueble = '{self.cbx_inmueble_compra.currentText()}'
         '''
-        
+        print('Id calificacion:',self.cbx_calificacion_compra.currentIndex()+1)
         try:
             r = conexion.ingresar_sentencia(consulta)
             print(r)
