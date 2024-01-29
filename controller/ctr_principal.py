@@ -147,13 +147,18 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #!Para Pagina Transaccion
         #TODO: Agregar funcionalidades
         self.btn_transaccion_crear.clicked.connect(self.crear_transaccion)
+        self.btn_transaccion_limpiar.clicked.connect(self.limpiar_capos_transaccion)
         
         
         #!Para Pagina Pendiente
         #TODO: Agregar funcionalidades
+        self.tbl_pendientes.setColumnCount(4)
+        self.tbl_pendientes.setHorizontalHeaderLabels(['id', "id_inmueble", "fecha_inicio", 'estado'])
         
         #!Para Pagina Historial
         #TODO: Agregar funcionalidades
+        self.tbl_historial.setColumnCount(4)
+        self.tbl_historial.setHorizontalHeaderLabels(['id', "id_inmueble", "fecha_inicio", 'estado'])
         
         #!Para Pagina Compra
         #TODO: Agregar funcionalidades
@@ -487,8 +492,13 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         r = map(lambda x: x[0], conexion.resultado)
         self.llenar_combobox(self.cbx_transaccion_agente, r)
         
-    def limpiar_campos():
-        ...
+    def limpiar_capos_transaccion(self):
+        self.txt_transaccion_comision.clear()
+        self.txt_transaccion_comentario.clear()
+        self.txt_transaccion_presioVenta.clear()
+        self.cbx_transaccion_vendedor.setCurrentIndex(0)
+        self.cbx_transaccion_agente.setCurrentIndex(0)
+        self.cbx_transaccion_inmueble.setCurrentIndex(0)
     
     
     def crear_transaccion(self):
@@ -522,6 +532,43 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         conexion.ingresar_sentencia(agente_consulta)
         conexion.resultado
+        
+    #!Funcionalidades de Pendientes
+    
+    
+    
+    def llenar_tabla_pendientes(self):
+        
+        consulta_pendietes = ''' 
+        Select id, id_inmueble, fecha_inicio, estado
+        From transaccion 
+        Where estado = FALSE
+        '''
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        conexion.ingresar_sentencia(consulta_pendietes)
+        r = conexion.resultado
+        self.llenar_tabla(self.tbl_pendientes, r)
+        
+    
+    #!Funcionalidades de Historial 
+    
+    def llenar_tabla_historial(self):
+    
+        consulta_historial = ''' 
+        Select id, id_inmueble, fecha_inicio, estado
+        From transaccion 
+        Where estado = TRUE
+        '''
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        conexion.ingresar_sentencia(consulta_historial)
+        r = conexion.resultado
+        self.llenar_tabla(self.tbl_historial, r)
+        
+        
         
         
     #?-------------Funcionalidades Extra----------------------------- 
@@ -576,10 +623,12 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
                 self.llenar_vendedores_inmueble()
             case 'btn_historial':
                 self.paginas__principales.setCurrentWidget(self.pg_HIstorial)
+                self.llenar_tabla_historial()
             case 'btn_compra':
                 self.paginas__principales.setCurrentWidget(self.pg_Compra)
             case 'btn_pendientes':
                 self.paginas__principales.setCurrentWidget(self.pg_Pendientes)
+                self.llenar_tabla_pendientes()
             case 'btn_transaccion':
                 self.paginas__principales.setCurrentWidget(self.pg_Transaccion)
                 self.cbx_transaccion_agente.clear()
