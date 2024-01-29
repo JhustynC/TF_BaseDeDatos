@@ -180,6 +180,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.tbl_porcentaje.setColumnCount(3)
         self.tbl_porcentaje.setHorizontalHeaderLabels(['PARROQUIA', "VENTAS TOTALES", "PORCENTAJE"])
         self.btn_porcetaje_listar_reportes.clicked.connect(self.llenar_porcentaje_parroquia)
+        self.btn_listar_ventas_reportes.clicked.connect(self.llenar_ventas_mensuales)
         
     #! Funcionalidades usuario
     #TODO: Ingresar un usuario 
@@ -792,8 +793,35 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     
     
     #todo: para el tercer reporte
-    def llenar_ventas_mensuales():
-        pass
+    def llenar_ventas_mensuales(self):
+        anio = self.sp_anio_reportes.text()
+        #print('Fecha Seleccionada: ', fecha_seleccionada)
+        
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        consulta = f'''
+        SELECT
+        TO_CHAR(t.fecha_final, 'YYYY-MM') AS mes,
+        COUNT(t.id) AS cantidad_ventas,
+        SUM(t.precio_venta) AS total_ventas,
+        SUM(t.precio_venta * t.comision) AS total_comisiones
+        FROM
+            transaccion t
+        WHERE
+            t.estado = true
+            AND EXTRACT(YEAR FROM t.fecha_final) = {anio}  
+        GROUP BY
+            TO_CHAR(t.fecha_final, 'YYYY-MM')
+        ORDER BY
+            mes;
+        '''
+        try:
+            conexion.ingresar_sentencia(consulta)
+            r = conexion.resultado
+            print(r)
+            self.llenar_tabla(self.tbl_ventas, r)
+        except Exception as e:print(e)
     
     
     
