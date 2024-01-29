@@ -170,6 +170,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.pushButton_17.hide()
         self.pushButton_16.hide()
         self.cbx_calificacion_compra.addItems([str(n+1) for n in range(5)])
+        self.cbx_estado_compra.addItems(['TRUE','FALSE'])
+        self.btn_finalizarTran_compra.clicked.connect(self.finalizar_transaccion)
         #self.cbx_parroquia_compra.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
         
         #!Para Pagina Reportes
@@ -686,6 +688,27 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         print(elementos_chequeados)
         
         print(num_pisos, tiempo_const,precio_max, precio_min, metros_terreno, ciudad, parroquia,tipo_inm)
+        
+    def finalizar_transaccion(self):
+        conexion = Conectar()
+        conexion.conectar_()
+    
+        consulta = f'''
+        UPDATE transaccion
+        SET 
+            ce_comprador = '{self.cbx_comprador_compra.currentText()}',
+            precio_venta  = {self.txt_precioVenta_compra.text()},
+            estado = {self.cbx_estado_compra.currentText()},
+            comentario_comprador = '{self.txt_comentario_compra.text()}',
+            id_calificacion = {self.cbx_calificacion_compra.currentText()},
+            fecha_final = CURRENT_DATE
+        WHERE id_inmueble = '{self.cbx_inmueble_compra.currentText()}'
+        '''
+        
+        try:
+            r = conexion.ingresar_sentencia(consulta)
+            print(r)
+        except Exception as e: print(e)
         
     #?-------------Funcionalidades Extra----------------------------- 
     def convertir_a_string(self, lista_tuplas): # transforma tuplas a string, formato para sentencias SQL
