@@ -8,10 +8,10 @@ class InmuebleDB:
         self.conectar.ingresar_sentencia(self.consulta)
         self.consulta =""
 
-    def ingresar(self, clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno, id_parroquia, ce_vendedor):
-        self.consulta = self.consulta + "INSERT INTO inmueble(clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno, fecha_registro, id_parroquia,ce_vendedor) "
+    def ingresar(self, clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno, id_parroquia, ce_vendedor, id_tipo_inmueble):
+        self.consulta = self.consulta + "INSERT INTO inmueble(clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno, fecha_registro, id_parroquia, ce_vendedor, id_tipo_inmueble) "
 
-        self.consulta = self.consulta + f"VALUES('{clave_castral}', {numero_pisos}, '{agno_construccion}-01-01', '{estado}', '{precio_deseado_vendedor}', '{m2_habitables}', '{m2_terreno}', CURRENT_DATE,'{id_parroquia}', {ce_vendedor})"
+        self.consulta = self.consulta + f"VALUES('{clave_castral}', {numero_pisos}, '{agno_construccion}-01-01', '{estado}', '{precio_deseado_vendedor}', '{m2_habitables}', '{m2_terreno}', CURRENT_DATE,'{id_parroquia}', {ce_vendedor}, '{id_tipo_inmueble}')"
 
     def eliminar(self, c_catastral):
         self.consulta = self.consulta + f"DELETE FROM inmueble WHERE nombre = '{c_catastral}'" 

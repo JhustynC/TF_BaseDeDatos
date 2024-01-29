@@ -273,7 +273,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
                             self.txt_inmueble_m2Habitables.text(),
                             self.txt_inmueble_m2Terreno.text(),
                             parroquia,
-                            12) 
+                            12,
+                            13) 
         
         print(inmuebleDB.consulta)
         inmuebleDB.enviar_consultar()
