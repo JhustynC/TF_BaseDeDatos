@@ -167,6 +167,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #TODO: Agregar funcionalidades
         self.cbx_ciudad_compra.currentIndexChanged.connect(partial(self.ajustar_cbx_parroquias,self.cbx_ciudad_compra,self.cbx_parroquia_compra ))
         self.btn_filtrar_compra.clicked.connect(self.cambiar_parametros_filtro_compra)
+        self.pushButton_17.hide()
+        self.pushButton_16.hide()
         #self.cbx_parroquia_compra.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
         
         #!Para Pagina Reportes
@@ -424,6 +426,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         conexion.ingresar_sentencia(tipoInm_consulta)
         r = map(lambda x: x[0], conexion.resultado)
         self.llenar_combobox(self.cbx_inmueble_tipoInmueble, r)
+        r = map(lambda x: x[0], conexion.resultado)
+        self.llenar_combobox(self.cbx_tipoInm_compra, r)
         
     def llenar_lista_elementos(self):
         conexion = Conectar()
@@ -441,6 +445,11 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             item = QListWidgetItem(item_text)
             item.setCheckState(Qt.CheckState.Unchecked)  # Hacer el elemento chequeable
             self.list_inmueble_elementos.addItem(item)
+        r = map(lambda x: x[0], conexion.resultado)
+        for item_text in r:
+            item = QListWidgetItem(item_text)
+            item.setCheckState(Qt.CheckState.Unchecked)  # Hacer el elemento chequeable
+            self.list_elemento_compra.addItem(item)
         
         
     def llenar_lista_materiales(self):
@@ -459,6 +468,12 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             item = QListWidgetItem(item_text)
             item.setCheckState(Qt.CheckState.Unchecked)  # Hacer el elemento chequeable
             self.list_inmueble_materiales.addItem(item)
+        
+        r = map(lambda x: x[0], conexion.resultado)
+        for item_text in r:
+            item = QListWidgetItem(item_text)
+            item.setCheckState(Qt.CheckState.Unchecked)  # Hacer el elemento chequeable
+            self.list_material_compra.addItem(item)
         
    
    #!Funcionalidad Transaccion
@@ -650,9 +665,26 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             self.llenar_combobox(self.cbx_comprador_compra, r)   
         except Exception as e: print(e)
         
-    def cambiar_parametros_filtro_compra():
+    def cambiar_parametros_filtro_compra(self):
+        num_pisos = self.txt_numPisos_compra.text()
+        tiempo_const = self.txt_anioC_compra.text()
+        precio_max = self.txt_precioMax_compra.text()
+        precio_min = self.txt_precioMin_compra.text()
+        metros_terreno = self.txt_metroTerre_compra.text()
+        ciudad = self.cbx_ciudad_compra.currentText()
+        parroquia = self.cbx_parroquia_compra.currentText()
+        tipo_inm = self.cbx_tipoInm_compra.currentText()
         
-        pass
+        self.llenar_combo_ccatastral(num_pisos,tiempo_const,metros_terreno,ciudad,parroquia,precio_min,precio_max,tipo_inm)
+        elementos_chequeados = []
+        for i in range(self.list_elemento_compra.count()):
+            item = self.list_elemento_compra.item(i)
+            if item.checkState():
+                elementos_chequeados.append(item.text())
+        elementos_chequeados
+        print(elementos_chequeados)
+        
+        print(num_pisos, tiempo_const,precio_max, precio_min, metros_terreno, ciudad, parroquia,tipo_inm)
         
     #?-------------Funcionalidades Extra----------------------------- 
     def convertir_a_string(self, lista_tuplas): # transforma tuplas a string, formato para sentencias SQL
@@ -677,6 +709,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         return cadena_resultante    
     
     def llenar_combobox(self, cbx, data):
+        cbx.clear()
         for d in data:
             cbx.addItem(str(d))
        
