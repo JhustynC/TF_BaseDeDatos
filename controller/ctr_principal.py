@@ -146,6 +146,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         #!Para Pagina Transaccion
         #TODO: Agregar funcionalidades
+        self.btn_transaccion_crear.clicked.connect(self.crear_transaccion)
         
         
         #!Para Pagina Pendiente
@@ -485,6 +486,42 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         conexion.ingresar_sentencia(agente_consulta)
         r = map(lambda x: x[0], conexion.resultado)
         self.llenar_combobox(self.cbx_transaccion_agente, r)
+        
+    def limpiar_campos():
+        ...
+    
+    
+    def crear_transaccion(self):
+        #vendedor =  self.cbx_transaccion_vendedor.text()
+        agente = self.cbx_transaccion_agente.currentText()
+        inmueblle = self.cbx_transaccion_inmueble.currentText()
+        comision = self.txt_transaccion_comision.text()
+        precio_venta = self.txt_transaccion_presioVenta.text()
+        comentario = self.txt_transaccion_comentario.text()
+        
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        agente_consulta = f''' 
+        INSERT INTO transaccion (
+            precio_deseado_vendedor, 
+            fecha_inicio, 
+            estado, 
+            comision, 
+            ce_agente, 
+            id_inmueble
+        ) VALUES (
+            {float(precio_venta)}, 
+            CURRENT_DATE, 
+            false, 
+            {float(comision)},
+            '{agente}',
+            '{inmueblle}'
+        );
+        '''
+        
+        conexion.ingresar_sentencia(agente_consulta)
+        conexion.resultado
         
         
     #?-------------Funcionalidades Extra----------------------------- 
