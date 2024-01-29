@@ -303,7 +303,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         '''
         
         conexion.ingresar_sentencia(vendedores_consulta)
-        r = map(lambda x: x[0]+' - '+x[1] , conexion.resultado)
+        r = map(lambda x: x[0], conexion.resultado)
         self.llenar_combobox(self.cbx_inmueble_vendedor, r)
    
    #!Funcionalidad Transaccion
@@ -318,7 +318,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         '''
         
         conexion.ingresar_sentencia(vendedores_consulta)
-        r = map(lambda x: x[0]+' - '+x[1] , conexion.resultado)
+        r = map(lambda x: x[0], conexion.resultado)
         self.llenar_combobox(self.cbx_transaccion_vendedor, r)
         
     
@@ -343,7 +343,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         from agente
         '''
         conexion.ingresar_sentencia(agente_consulta)
-        r = map(lambda x: x[0]+' - '+x[1] , conexion.resultado)
+        r = map(lambda x: x[0], conexion.resultado)
         self.llenar_combobox(self.cbx_transaccion_agente, r)
         
         
