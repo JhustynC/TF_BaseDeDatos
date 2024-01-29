@@ -325,10 +325,11 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         materiales = self.convertir_a_string(conectar.resultado)"""
 
 
-        inmuebleDB.listar(self.txt_inmueble_precio.text(), 
+        inmuebleDB.listar(self.txt_inmueble_ccatastral.text(),
                           self.txt_inmueble_precio.text(), 
-                          ciudad,
-                          parroquia,
+                          self.txt_inmueble_precio.text(), 
+                          self.cbx_inmueble_ciudad.currentText(),
+                          self.cbx_parroquia_inmueble.currentText(),
                           self.txt_inmueble_numPisos.text(),
                           self.txt_inmueble_anioCostru.text(),
                           "",# array con elementos

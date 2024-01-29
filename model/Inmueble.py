@@ -19,7 +19,7 @@ class InmuebleDB:
     def editar(self, c_catastral, precio, parroquia, numero_pisos, agno_construccion):
         self.consulta = self.consulta + f"UPDATE inmueble SET  precio_deseado_vendedor ='{precio}', parroquia = '{parroquia}', numero_pisos = '{numero_pisos}', agno_construccion = '{agno_construccion}' WHERE clave_catrastal = '{c_catastral}'"
 
-    def listar(self, precio_maximo, precio_minimo, ciudad, parroquia, numero_pisos, agnos_construccion, elementos:str, materiales:str):
+    def listar(self, clave_catrastal, precio_maximo, precio_minimo, ciudad, parroquia, numero_pisos, agnos_construccion, elementos:str, materiales:str):
 
         primer_filtro = False #* si ya se ocupa un primer filtro se pone en True, sirve para asignar los AND para cada filtro a partir del primero
         self.consulta = self.consulta + f"SELECT i.clave_castral, c.nombre, p.nombre, i.precio_deseado_vendedor FROM inmueble AS i"
@@ -33,13 +33,14 @@ class InmuebleDB:
         
         filtro = " WHERE"
         
+        filtro_clave_catastral = f" i.clave_castral LIKE '%{clave_catrastal}%'"
         filtro_precio_minimo = f" precio_deseado_vendedor >= {precio_minimo}"
         filtro_precio_maximo = f" precio_deseado_vendedor <= {precio_maximo}"
         filtro_elementos = f" e.nombre IN {elementos}"
         filtro_materiales = f" m.nombre IN {materiales}"
-        filtro_ciudad = f" c.nombre LIKE '{ciudad}'"
-        filtro_parroquias = f" p.nombre LIKE '{parroquia}'"
-        filtro_numero_pisos = f" i.numero_pisos = '{numero_pisos}'"
+        filtro_ciudad = f" c.nombre LIKE '%{ciudad}%'"
+        filtro_parroquias = f" p.nombre LIKE '%{parroquia}%'"
+        filtro_numero_pisos = f" i.numero_pisos = {numero_pisos}"
         filtro_agnos_contrucion = f" i.agno_construccion <= '{agnos_construccion}'"
         
         #TODO: unen las sentencias según por el campo que se desee filtrar, ten encuenta que todos lo parámetros son cadenas de caracteres
@@ -68,38 +69,38 @@ class InmuebleDB:
             if(not primer_filtro):
                 primer_filtro = True
             else:
-                self.consulta = self.consulta + "AND"
+                self.consulta = self.consulta + " AND "
             
-            self.consulta + filtro_precio_minimo
+            self.consulta = self.consulta + filtro_precio_minimo
         
         if(len(ciudad)!=0):
             if(not primer_filtro):
                 primer_filtro = True
             else:
-                self.consulta = self.consulta + "AND"
+                self.consulta = self.consulta + " AND "
 
-            self.consulta + filtro_ciudad
+            self.consulta = self.consulta + filtro_ciudad
 
         if(len(parroquia)!=0):
             if(not primer_filtro):
                 primer_filtro = True
             else:
-                self.consulta = self.consulta + "AND" 
+                self.consulta = self.consulta + " AND " 
 
-            self.consulta + filtro_parroquias
+            self.consulta = self.consulta + filtro_parroquias
 
         if(len(numero_pisos)!=0):
             if(not primer_filtro):
                 primer_filtro = True
             else:
-                self.consulta = self.consulta + "AND"
+                self.consulta = self.consulta + " AND "
             self.consulta = self.consulta + filtro_numero_pisos
             
         if(len(agnos_construccion)!=0):
             if(not primer_filtro):
                 primer_filtro = True
             else:
-                self.consulta = self.consulta + "AND" 
+                self.consulta = self.consulta + " AND " 
 
             self.consulta = self.consulta + filtro_agnos_contrucion
 
@@ -107,7 +108,7 @@ class InmuebleDB:
             if(not primer_filtro):
                 primer_filtro = True
             else:
-                self.consulta = self.consulta + "AND" 
+                self.consulta = self.consulta + " AND " 
 
             self.consulta = self.consulta + filtro_elementos
 
@@ -115,9 +116,11 @@ class InmuebleDB:
             if(not primer_filtro):
                 primer_filtro = True
             else:
-                self.consulta = self.consulta + "AND" 
+                self.consulta = self.consulta + " AND " 
 
             self.consulta = self.consulta + filtro_materiales
+
+        self.consulta = self.consulta + 'AND' + filtro_clave_catastral
 
         print(self.consulta)
     
