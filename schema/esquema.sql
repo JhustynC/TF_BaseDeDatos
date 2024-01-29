@@ -107,14 +107,14 @@ CREATE TABLE transaccion (
     fecha_final DATE, 
     estado BOOLEAN NOT NULL, 
     comision FLOAT,
-    ce_vendedor VARCHAR(10) NOT NULL,
-    ce_comprador VARCHAR(10) NOT NULL,
+    ce_agente VARCHAR(10) NOT NULL,
+    ce_comprador VARCHAR(10) ,
     id_calificacion INTEGER,
-    comentario_comprador TEXT NOT NULL,
+    comentario_comprador TEXT,
     id_inmueble VARCHAR(10) NOT NULL,
     comentario_duegno_inmueble TEXT,
+    FOREIGN KEY (ce_agente) REFERENCES agente(cedula),
     FOREIGN KEY (ce_comprador) REFERENCES comprador(cedula),
-    FOREIGN KEY (ce_vendedor) REFERENCES vendedor(cedula),
     FOREIGN KEY (id_calificacion) REFERENCES calificacion(id), 
     FOREIGN KEY (id_inmueble) REFERENCES inmueble(clave_castral)
 );

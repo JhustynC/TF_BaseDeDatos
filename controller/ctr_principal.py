@@ -492,8 +492,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     
     def crear_transaccion(self):
         #vendedor =  self.cbx_transaccion_vendedor.text()
-        agente = self.cbx_transaccion_agente.text()
-        inmueblle = self.cbx_transaccion_inmueble.text()
+        agente = self.cbx_transaccion_agente.currentText()
+        inmueblle = self.cbx_transaccion_inmueble.currentText()
         comision = self.txt_transaccion_comision.text()
         precio_venta = self.txt_transaccion_presioVenta.text()
         comentario = self.txt_transaccion_comentario.text()
@@ -504,30 +504,18 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         agente_consulta = f''' 
         INSERT INTO transaccion (
             precio_deseado_vendedor, 
-            precio_venta, 
             fecha_inicio, 
-            fecha_final, 
             estado, 
-            comision,
-            ce_vendedor,
-            ce_comprador,
-            id_calificacion,
-            comentario_comprador,
-            id_inmueble,
-            comentario_duegno_inmueble
+            comision, 
+            ce_agente, 
+            id_inmueble
         ) VALUES (
             {float(precio_venta)}, 
-            '', 
-            CURRENT_DATE, 
             CURRENT_DATE, 
             false, 
             {float(comision)},
             '{agente}',
-            '',
-            '',
-            'Sin comentarios',
-            '{inmueblle}',
-            '{comentario}'
+            '{inmueblle}'
         );
         '''
         
