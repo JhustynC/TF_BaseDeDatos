@@ -176,6 +176,9 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         #!Para Pagina Reportes
         #TODO: Agregar funcionalidades
+        self.btn_desempenio_listar_reporte.clicked.connect(self.llenar_desempenoi_agente)
+        
+        
         
     #! Funcionalidades usuario
     #TODO: Ingresar un usuario 
@@ -715,10 +718,35 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     #!======================Funcionalidades de Reportes=========================
     #todo: para el primer reporte
     
+    def llenar_desempenoi_agente(self):
+        fecha_Inicio = self.cld_feIni_desempenio_reportes.selectedDate().toString("yyyy-MM-dd")
+        fecha_Final = self.cld_feFini_desempenio_reportes.selectedDate().toString("yyyy-MM-dd")
+        #print('Fecha Seleccionada: ', fecha_seleccionada)
+        
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        consulta = f'''
+        SELECT a.cedula, a.nombre, a.apellido, sum(t.comision*t.precio_venta)
+        FROM agente a
+        JOIN transaccion t ON a.cedula = t.ce_agente
+        WHERE t.estado = true AND t.fecha_final >= '{fecha_Inicio}' AND t.fecha_final <= '{fecha_Final}'
+        GROUP BY a.cedula
+        '''
+        try:
+            conexion.ingresar_sentencia(consulta)
+            r = conexion.resultado
+            print(r)
+        except Exception as e:print(e)
+    
     #todo: para el segundo reporte
+    def llenar_porcentaje_parroquia():
+        pass
+    
     
     #todo: para el tercer reporte
-    
+    def llenar_ventas_mensuales():
+        pass
     
     
     
