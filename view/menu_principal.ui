@@ -1149,7 +1149,7 @@ color:rgb(35, 35, 35);
 }</string>
                    </property>
                    <property name="currentIndex">
-                    <number>3</number>
+                    <number>4</number>
                    </property>
                    <widget class="QWidget" name="pg_Pendientes">
                     <property name="styleSheet">
@@ -1555,7 +1555,7 @@ color:rgb(35, 35, 35);
                      <item>
                       <widget class="QTabWidget" name="tabs_reportes">
                        <property name="currentIndex">
-                        <number>0</number>
+                        <number>2</number>
                        </property>
                        <widget class="QWidget" name="tab_desempenio">
                         <property name="styleSheet">
@@ -1819,7 +1819,17 @@ color:rgb(35, 35, 35);
                            </column>
                            <column>
                             <property name="text">
+                             <string>TOTAL PRECIO DE VENTA</string>
+                            </property>
+                           </column>
+                           <column>
+                            <property name="text">
                              <string>TOTAL VENTAS</string>
+                            </property>
+                           </column>
+                           <column>
+                            <property name="text">
+                             <string>TOTAL COMISIONES</string>
                             </property>
                            </column>
                           </widget>
@@ -2286,45 +2296,13 @@ color:rgb(35, 35, 35);
                         </widget>
                        </item>
                        <item>
+                        <widget class="QComboBox" name="cbx_calificacion_compra"/>
+                       </item>
+                       <item>
                         <layout class="QHBoxLayout" name="horizontalLayout_22">
                          <property name="spacing">
                           <number>20</number>
                          </property>
-                         <item>
-                          <widget class="QRadioButton" name="rb_muybien">
-                           <property name="text">
-                            <string>Muy Bien</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QRadioButton" name="rb_bien">
-                           <property name="text">
-                            <string>Bien</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QRadioButton" name="rb_regular">
-                           <property name="text">
-                            <string>Regular</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QRadioButton" name="rb_mal">
-                           <property name="text">
-                            <string>Mal</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QRadioButton" name="rb_muyMal">
-                           <property name="text">
-                            <string>Muy Mal</string>
-                           </property>
-                          </widget>
-                         </item>
                         </layout>
                        </item>
                       </layout>
@@ -2927,7 +2905,7 @@ color:rgb(35, 35, 35);
                         <item row="9" column="0">
                          <widget class="QLabel" name="label_27">
                           <property name="text">
-                           <string>Tiempo de Construcción:</string>
+                           <string>Año de Construcción:</string>
                           </property>
                          </widget>
                         </item>
@@ -3621,11 +3599,6 @@ color:rgb(35, 35, 35);
   <tabstop>txt_precioVenta_compra</tabstop>
   <tabstop>cbx_estado_compra</tabstop>
   <tabstop>txt_comentario_compra</tabstop>
-  <tabstop>rb_muybien</tabstop>
-  <tabstop>rb_bien</tabstop>
-  <tabstop>rb_regular</tabstop>
-  <tabstop>rb_mal</tabstop>
-  <tabstop>rb_muyMal</tabstop>
   <tabstop>btn_finalizarTran_compra</tabstop>
   <tabstop>gp_filtro_compra</tabstop>
   <tabstop>txt_numPisos_compra</tabstop>

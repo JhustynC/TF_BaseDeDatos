@@ -25,7 +25,7 @@ class PersonaDB:
     
     def eliminar(self, indice, cedula):
         self.consulta = self.consulta + "DELETE FROM " # SQL BORRAR 
-        self.atributos = f"WHERE cedula = '{cedula}'"
+        self.atributos = f" WHERE cedula = '{cedula}'"
         def vendedor():
             self.consulta += "vendedor "
             self.consulta = self.consulta + self.atributos   
