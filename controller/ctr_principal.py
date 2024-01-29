@@ -134,7 +134,6 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
 
         #!Para Pagina Inmueble
         self.btn_inmueble_ingresar.clicked.connect(self.ingresar_inmueble)
-
         #TODO: Agregar funcionalidades
         self.consultar_ciudades()
         self.cbx_inmueble_ciudad.currentIndexChanged.connect(partial(self.ajustar_cbx_parroquias,self.cbx_inmueble_ciudad,self.cbx_parroquia_inmueble ))
@@ -142,6 +141,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         #!Para Pagina Transaccion
         #TODO: Agregar funcionalidades
+        
         
         #!Para Pagina Pendiente
         #TODO: Agregar funcionalidades
@@ -292,11 +292,64 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         cbx_p.clear()
         for c in conectar.resultado:
             cbx_p.addItem(c[0])
+    
+    def llenar_vendedores_inmueble(self):
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        vendedores_consulta = ''' 
+        select cedula, nombre
+        from vendedor 
+        '''
+        
+        conexion.ingresar_sentencia(vendedores_consulta)
+        r = map(lambda x: x[0]+' - '+x[1] , conexion.resultado)
+        self.llenar_combobox(self.cbx_inmueble_vendedor, r)
    
+   #!Funcionalidad Transaccion
+   
+    def llenar_vendedores_transaccion(self):
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        vendedores_consulta = ''' 
+        select cedula, nombre
+        from vendedor 
+        '''
+        
+        conexion.ingresar_sentencia(vendedores_consulta)
+        r = map(lambda x: x[0]+' - '+x[1] , conexion.resultado)
+        self.llenar_combobox(self.cbx_transaccion_vendedor, r)
+        
+    
+    def llenar_inmueble_transaccion(self):
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        inmueble_consulta = ''' 
+        select clave_castral
+        from inmueble
+        '''
+        conexion.ingresar_sentencia(inmueble_consulta)
+        r = conexion.resultado
+        self.llenar_combobox(self.cbx_transaccion_inmueble, r)
+        
+    def llenar_agente_transaccion(self):
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        agente_consulta = ''' 
+        select cedula, nombre
+        from agente
+        '''
+        conexion.ingresar_sentencia(agente_consulta)
+        r = map(lambda x: x[0]+' - '+x[1] , conexion.resultado)
+        self.llenar_combobox(self.cbx_transaccion_agente, r)
+        
         
     #?-------------Funcionalidades Extra----------------------------- 
     
-    def llenar_combo(self, cbx, data):
+    def llenar_combobox(self, cbx, data):
         for d in data:
             cbx.addItem(str(d))
        
@@ -322,6 +375,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
                 self.paginas__principales.setCurrentWidget(self.pg_Reportes)
             case 'btn_Inmueble':
                 self.paginas__principales.setCurrentWidget(self.pg_Inmueble)
+                self.cbx_inmueble_vendedor.clear()
+                self.llenar_vendedores_inmueble()
             case 'btn_historial':
                 self.paginas__principales.setCurrentWidget(self.pg_HIstorial)
             case 'btn_compra':
@@ -330,6 +385,12 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
                 self.paginas__principales.setCurrentWidget(self.pg_Pendientes)
             case 'btn_transaccion':
                 self.paginas__principales.setCurrentWidget(self.pg_Transaccion)
+                self.cbx_transaccion_agente.clear()
+                self.cbx_transaccion_inmueble.clear()
+                self.cbx_transaccion_vendedor.clear()
+                self.llenar_vendedores_transaccion()
+                self.llenar_agente_transaccion()
+                self.llenar_inmueble_transaccion()
     
     
     def ocultar_menu_lateral(self):

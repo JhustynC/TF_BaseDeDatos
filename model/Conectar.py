@@ -43,7 +43,7 @@ class Conectar:
         finally:
             if self.cursor:
                 self.cursor.close()
-
+                
             if self.connection:
                 self.connection.close()
             
