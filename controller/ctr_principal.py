@@ -141,7 +141,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.llenar_lista_elementos()
         self.llenar_lista_materiales()
         self.cbx_inmueble_ciudad.currentIndexChanged.connect(partial(self.ajustar_cbx_parroquias,self.cbx_inmueble_ciudad,self.cbx_parroquia_inmueble ))
-        
+        self.tbl_inmueble.setColumnCount(4)
+        self.tbl_inmueble.setHorizontalHeaderLabels(["Codigo catastral","Ciudad","Parroquia","Precio"])
         
         #!Para Pagina Transaccion
         #TODO: Agregar funcionalidades
@@ -333,9 +334,18 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
                           "",# array con elementos
                           "")# array con materiales
         
-        print(inmuebleDB.consulta)
+        print("Mi consulta:", inmuebleDB.consulta)
         inmuebleDB.enviar_consultar()
         #inmuebleDB.listar(self.txt_pre)
+        #nombres_columnas = ["Columna 1", "Columna 2", "Columna 3"]
+        #tabla.setHorizontalHeaderLabels(nombres_columnas)
+        #
+        for fila in inmuebleDB.conectar.resultado:
+            print(fila)
+
+        
+
+        self.llenar_tabla(self.tbl_inmueble, inmuebleDB.conectar.resultado)
 
     def consultar_ciudades(self):
         conectar = Conectar()
