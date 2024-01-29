@@ -316,7 +316,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         print(inmuebleDB.consulta)
         inmuebleDB.enviar_consultar()
-    
+
+    #TODO: listar inmueble
     def buscar_inmueble(self):
         inmuebleDB = InmuebleDB()
         inmuebleDB.conectar.conectar_()
