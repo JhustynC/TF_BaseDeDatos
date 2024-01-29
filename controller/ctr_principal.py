@@ -249,15 +249,32 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         inmuebleDB = InmuebleDB()
         inmuebleDB.conectar.conectar_()
         print(self.txt_inmueble_ccatastral.text())
-        parroquia = f"SELECT id FROM parrroquia WHERE nombre = {self.cbx_parroquia_inmueble.currentText()}"    
+
+        conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(f"SELECT id FROM parroquia WHERE nombre = '{self.cbx_parroquia_inmueble.currentText()}'" )
+        print(conectar.resultado)
+        parroquia = self.convertir_a_string(conectar.resultado)
+
+        print(self.txt_inmueble_ccatastral.text(), 
+                            int(self.txt_inmueble_numPisos.text()), 
+                            self.txt_inmueble_anioCostru.text(),
+                            "FALSE",
+                            self.txt_inmueble_precio.text(),
+                            self.txt_inmueble_m2Habitables.text(),
+                            self.txt_inmueble_m2Terreno.text(),
+                            parroquia)
+        
         inmuebleDB.ingresar(self.txt_inmueble_ccatastral.text(), 
                             int(self.txt_inmueble_numPisos.text()), 
                             self.txt_inmueble_anioCostru.text(),
                             "FALSE",
-                            self.txt_precioMin_compra.text(),
+                            self.txt_inmueble_precio.text(),
                             self.txt_inmueble_m2Habitables.text(),
                             self.txt_inmueble_m2Terreno.text(),
-                            parroquia)()
+                            parroquia,
+                            12) 
+        
         print(inmuebleDB.consulta)
         inmuebleDB.enviar_consultar()
         
@@ -298,6 +315,26 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
    
         
     #?-------------Funcionalidades Extra----------------------------- 
+    def convertir_a_string(self, lista_tuplas): # transforma tuplas a string, formato para sentencias SQL
+        tuplas_convertidas = []
+        for tupla in lista_tuplas:
+            if len(tupla) == 1:
+                # Si la tupla tiene solo un elemento, extraemos y limpiamos el elemento
+                elemento_convertido = str(tupla[0]).strip("('')")
+                tupla_convertida = elemento_convertido
+            else:
+                # Si la tupla tiene más de un elemento, creamos una tupla de elementos
+                elementos_convertidos = []
+                for elemento in tupla:
+                    # Convertir cada elemento de la tupla a un string y quitar las comillas adicionales
+                    elemento_convertido = str(elemento).strip("('')")
+                    elementos_convertidos.append(elemento_convertido)
+                # Crear una cadena con los elementos de la tupla entre paréntesis y separados por comas
+                tupla_convertida = '(' + ', '.join(elementos_convertidos) + ')'
+            tuplas_convertidas.append(tupla_convertida)
+        # Unir todas las tuplas convertidas en una cadena
+        cadena_resultante = ', '.join(tuplas_convertidas)
+        return cadena_resultante
     
     def llenar_combo(self, cbx, data):
         for d in data:

@@ -8,10 +8,10 @@ class InmuebleDB:
         self.conectar.ingresar_sentencia(self.consulta)
         self.consulta =""
 
-    def ingresar(self, clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno, id_parroquia):
-        self.consulta = self.consulta + "INSERT INTO inmueble(clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno, fecha_registro, id_parroquia) "
+    def ingresar(self, clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno, id_parroquia, ce_vendedor):
+        self.consulta = self.consulta + "INSERT INTO inmueble(clave_castral, numero_pisos, agno_construccion, estado, precio_deseado_vendedor, m2_habitables, m2_terreno, fecha_registro, id_parroquia,ce_vendedor) "
 
-        self.consulta = self.consulta + f"VALUES('{clave_castral}', '{numero_pisos}', '{agno_construccion}', '{estado}', '{precio_deseado_vendedor}', '{m2_habitables}', '{m2_terreno}', DATE_CURRENT,'{id_parroquia}')"
+        self.consulta = self.consulta + f"VALUES('{clave_castral}', {numero_pisos}, '{agno_construccion}-01-01', '{estado}', '{precio_deseado_vendedor}', '{m2_habitables}', '{m2_terreno}', CURRENT_DATE,'{id_parroquia}', {ce_vendedor})"
 
     def eliminar(self, c_catastral):
         self.consulta = self.consulta + f"DELETE FROM inmueble WHERE nombre = '{c_catastral}'" 
@@ -28,14 +28,14 @@ class InmuebleDB:
         unir_elemento = f" JOIN elemento AS e ON eim.id_elemento = e.id"
         unir_material = f" JOIN material AS m ON eim.id_material = m.id"
         filtro = " WHERE"
-        filtro_precio_minimo = f" precio_deseado_vendedor >= '{precio_minimo}'"
-        filtro_precio_maximo = f" precio_deseado_vendedor <= '{precio_maximo}'"
+        filtro_precio_minimo = f" precio_deseado_vendedor >= {precio_minimo}"
+        filtro_precio_maximo = f" precio_deseado_vendedor <= {precio_maximo}"
         filtro_elementos = f" e.nombre IN {elementos}"
         filtro_materiales = f" m.nombre IN {materiales}"
-        filtro_ciudad = f" c.nombre = {ciudad}"
-        filtro_parroquias = f" p.nombre = {parroquia}"
-        filtro_numero_pisos = f" i.numero_pisos = {numero_pisos}"
-        filtro_agnos_contrucion = f" i.agno_construccion = {agnos_construccion}"
+        filtro_ciudad = f" c.nombre = '{ciudad}'"
+        filtro_parroquias = f" p.nombre = '{parroquia}'"
+        filtro_numero_pisos = f" i.numero_pisos = '{numero_pisos}'"
+        filtro_agnos_contrucion = f" i.agno_construccion <= '{agnos_construccion}'"
         
         #TODO: unen las sentencias según por el campo que se desee filtrar, ten encuenta que todos lo parámetros son cadenas de caracteres
         if(len(elementos)!=0 or len(materiales)!=0):
