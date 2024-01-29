@@ -120,9 +120,9 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
 
         
         #!Para Pagina Usuario
-        self.cbx_categoria_usuario.addItem('vendedor')
-        self.cbx_categoria_usuario.addItem('agente')
-        self.cbx_categoria_usuario.addItem('comprador')
+        self.cbx_categoria_usuario.addItem('VENDENDOR')
+        self.cbx_categoria_usuario.addItem('AGENTE')
+        self.cbx_categoria_usuario.addItem('COMPRADOR')
         
         #*: Agregar funcionalidades para ventana
         self.btn_crear_usuario.clicked.connect(self.ingresar_usuario)
@@ -137,7 +137,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
 
         #TODO: Agregar funcionalidades
         self.consultar_ciudades()
-        self.cbx_inmueble_ciudad.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
+        self.cbx_inmueble_ciudad.currentIndexChanged.connect(partial(self.ajustar_cbx_parroquias,self.cbx_inmueble_ciudad,self.cbx_parroquia_inmueble ))
+        
         
         #!Para Pagina Transaccion
         #TODO: Agregar funcionalidades
@@ -150,6 +151,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         #!Para Pagina Compra
         #TODO: Agregar funcionalidades
+        self.cbx_ciudad_compra.currentIndexChanged.connect(partial(self.ajustar_cbx_parroquias,self.cbx_ciudad_compra,self.cbx_parroquia_compra ))
+        #self.cbx_parroquia_compra.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
         
         #!Para Pagina Reportes
         #TODO: Agregar funcionalidades
@@ -237,10 +240,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             self.txt_nombre_usuario.setEnabled(booleano)
             self.cbx_categoria_usuario.setEnabled(booleano)
             self.btn_editar_usuario.setEnabled(booleano)
-            ##ss
-            #aasd
-            #asda
-            #SDA
+
         
     #!Funcionalidades Inmueble
     #TODO: ingresar inmueble, 
@@ -261,19 +261,45 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     def consultar_ciudades(self):
         conectar = Conectar()
         conectar.conectar_()
+        
         consulta = ''' 
         SELECT nombre 
         FROM ciudad
         ''' 
         conectar.ingresar_sentencia(consulta)
+        
         print(conectar.resultado)
         for c in conectar.resultado:
             self.cbx_inmueble_ciudad.addItem(c[0])
-            
-    def ajustar_cbx_parroquias(self, i):
-        #*Cambio con el PUSH
-        ...
+            self.cbx_ciudad_compra.addItem(c[0])
         
+            
+    def ajustar_cbx_parroquias(self, cbx_c, cbx_p):
+        ciudad = cbx_c.currentText()
+        print('Ciudad:', ciudad)
+        
+        conectar = Conectar()
+        conectar.conectar_() 
+        
+        consulta = f''' 
+        SELECT p.nombre 
+        FROM parroquia AS p
+        JOIN ciudad AS c ON p.id_ciudad = c.id
+        WHERE c.nombre = '{ciudad}' 
+        '''
+        conectar.ingresar_sentencia(consulta)
+        
+        cbx_p.clear()
+        for c in conectar.resultado:
+            cbx_p.addItem(c[0])
+   
+        
+    #?-------------Funcionalidades Extra----------------------------- 
+    
+    def llenar_combo(self, cbx, data):
+        for d in data:
+            cbx.addItem(str(d))
+       
     def presionar_boton_menu(self, name):  # Para mantener el estilo onHover en los botones del menu
 
         # Obtenemos le boton del menu que fue presionado

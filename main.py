@@ -6,5 +6,5 @@ window = UI()
 window.show()
 app.exec()
 
-    
-    
+
+
