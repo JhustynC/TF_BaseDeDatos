@@ -53,3 +53,6 @@ descargar el modulo para visual studio code llamado:
 
     Better Comments
 
+# Crear requerimientos
+
+    pip freeze > requirements.txt
