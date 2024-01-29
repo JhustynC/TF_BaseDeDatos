@@ -134,6 +134,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
 
         #!Para Pagina Inmueble
         self.btn_inmueble_ingresar.clicked.connect(self.ingresar_inmueble)
+        self.btn_inmueble_buscar.clicked.connect(self.buscar_inmueble)
         #TODO: Agregar funcionalidades
         self.llenar_tipoInb()
         self.consultar_ciudades()
@@ -285,7 +286,55 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         print(inmuebleDB.consulta)
         inmuebleDB.enviar_consultar()
+    
+    def buscar_inmueble(self):
+        inmuebleDB = InmuebleDB()
+        inmuebleDB.conectar.conectar_()
+
+        #*Obtener el id de la parroquia
+        conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(f"SELECT id FROM parroquia WHERE nombre = '{self.cbx_parroquia_inmueble.currentText()}'" )
+        parroquia = self.convertir_a_string(conectar.resultado)
         
+        #*Obtener el id del tipo de inmueble
+        conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(f"SELECT id FROM tipo_inmueble WHERE nombre = '{self.cbx_inmueble_tipoInmueble.currentText()}'")
+        tipo_inmueble = self.convertir_a_string(conectar.resultado)
+
+        #*Obtener el id de la ciudad
+        conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(f"SELECT id FROM ciudad WHERE nombre = '{self.cbx_inmueble_tipoInmueble.currentText()}'")
+        ciudad = self.convertir_a_string(conectar.resultado)
+
+        #*Obtener lista de elementos
+        """conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(f"SELECT id FROM elemento")
+        elementos = self.convertir_a_string(conectar.resultado)"""
+
+        #*Obtener lista de materiales
+        """conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(f"SELECT id FROM ciudad WHERE nombre = '{self.cbx_inmueble_tipoInmueble.currentText()}'")
+        materiales = self.convertir_a_string(conectar.resultado)"""
+
+
+        inmuebleDB.listar(self.txt_inmueble_precio.text(), 
+                          self.txt_inmueble_precio.text(), 
+                          ciudad,
+                          parroquia,
+                          self.txt_inmueble_numPisos.text(),
+                          self.txt_inmueble_anioCostru.text(),
+                          "",# array con elementos
+                          "")# array con materiales
+        
+        print(inmuebleDB.consulta)
+        inmuebleDB.enviar_consultar()
+        #inmuebleDB.listar(self.txt_pre)
+
     def consultar_ciudades(self):
         conectar = Conectar()
         conectar.conectar_()

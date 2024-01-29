@@ -23,11 +23,14 @@ class InmuebleDB:
 
         primer_filtro = False #* si ya se ocupa un primer filtro se pone en True, sirve para asignar los AND para cada filtro a partir del primero
         self.cosulta = self.consulta + f"SELECT * FROM inmueble AS i"
+        
         unir_parroquia_ciudad = f" JOIN ciudad AS c ON c.id = i.id_ciudad JOIN parroquia AS p ON p.id"
         unir_elemento_material_inmueble = f" JOIN elemento_inmueble_material AS eim ON eim.id_inmueble = i.clave_catastral"
         unir_elemento = f" JOIN elemento AS e ON eim.id_elemento = e.id"
         unir_material = f" JOIN material AS m ON eim.id_material = m.id"
+        
         filtro = " WHERE"
+        
         filtro_precio_minimo = f" precio_deseado_vendedor >= {precio_minimo}"
         filtro_precio_maximo = f" precio_deseado_vendedor <= {precio_maximo}"
         filtro_elementos = f" e.nombre IN {elementos}"
@@ -113,4 +116,8 @@ class InmuebleDB:
                 self.consulta = self.consulta + "AND" 
 
             self.consulta = self.consulta + filtro_materiales
-        
+    
+
+inmueble = InmuebleDB()
+inmueble.ingresar("","","","","","","","","","")
+print(inmueble.consulta)
