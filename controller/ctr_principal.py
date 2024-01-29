@@ -133,6 +133,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         self.btn_limpiar_usuario.clicked.connect(self.limpiar_campos)
 
         #!Para Pagina Inmueble
+        self.btn_inmueble_ingresar.clicked.connect(self.ingresar_inmueble)
+
         #TODO: Agregar funcionalidades
         self.consultar_ciudades()
         self.cbx_inmueble_ciudad.currentIndexChanged.connect(self.ajustar_cbx_parroquias)
@@ -253,7 +255,9 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
                             self.txt_precioMin_compra.text(),
                             self.txt_inmueble_m2Habitables.text(),
                             self.txt_inmueble_m2Terreno.text())()
-
+        print(inmuebleDB.consulta)
+        inmuebleDB.enviar_consultar()
+        
     def consultar_ciudades(self):
         conectar = Conectar()
         conectar.conectar_()
