@@ -177,8 +177,9 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #!Para Pagina Reportes
         #TODO: Agregar funcionalidades
         self.btn_desempenio_listar_reporte.clicked.connect(self.llenar_desempenoi_agente)
-        
-        
+        self.tbl_porcentaje.setColumnCount(3)
+        self.tbl_porcentaje.setHorizontalHeaderLabels(['PARROQUIA', "VENTAS TOTALES", "PORCENTAJE"])
+        self.btn_porcetaje_listar_reportes.clicked.connect(self.llenar_porcentaje_parroquia)
         
     #! Funcionalidades usuario
     #TODO: Ingresar un usuario 
@@ -754,8 +755,40 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         except Exception as e:print(e)
     
     #todo: para el segundo reporte
-    def llenar_porcentaje_parroquia():
-        pass
+    def llenar_porcentaje_parroquia(self):
+        fecha_Inicio = self.cld_feIni_porcetaje_reportes.selectedDate().toString("yyyy-MM-dd")
+        fecha_Final = self.cld_feFin_porcetaje_reportes.selectedDate().toString("yyyy-MM-dd")
+        #print('Fecha Seleccionada: ', fecha_seleccionada)
+        
+        conexion = Conectar()
+        conexion.conectar_()
+        
+        consulta = f'''
+        SELECT
+        p.nombre AS parroquia,
+        COUNT(t.id) AS cantidad_ventas,
+        (COUNT(t.id) * 100.0 / (SELECT COUNT(id) FROM transaccion)) AS porcentaje_venta
+        FROM
+            parroquia p
+        JOIN
+            inmueble i ON p.id = i.id_parroquia
+        JOIN
+            transaccion t ON i.clave_castral = t.id_inmueble
+        WHERE
+            t.estado = true
+            AND t.fecha_final BETWEEN '{fecha_Inicio}' AND '{fecha_Final}'
+        GROUP BY
+            p.id, p.nombre
+        ORDER BY
+        porcentaje_venta DESC;
+
+        '''
+        try:
+            conexion.ingresar_sentencia(consulta)
+            r = conexion.resultado
+            print(r)
+            self.llenar_tabla(self.tbl_porcentaje, r)
+        except Exception as e:print(e)
     
     
     #todo: para el tercer reporte
