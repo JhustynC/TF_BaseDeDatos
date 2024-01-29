@@ -1,10 +1,23 @@
 --Para Desempeño de Agente
 
-SELECT a.cedula, a.nombre, a.apellido, sum(t.comision*t.precio_venta)
-FROM agente a
-JOIN transaccion t ON a.cedula = t.ce_agente
-WHERE t.estado = true AND t.fecha_final <= '2024-01-01' AND t.fecha_final >= '2024-01-01'
-GROUP BY a.cedula
+SELECT
+    a.cedula,
+    a.nombre,
+    a.apellido,
+    sum(t.comision * t.precio_venta) as total_comisiones,
+    avg(c.id) as promedio_calificaciones
+FROM
+    agente a
+JOIN
+    transaccion t ON a.cedula = t.ce_agente
+LEFT JOIN
+    calificacion c ON t.id_calificacion = c.id
+WHERE
+    t.estado = TRUE
+    AND t.fecha_final >= '2024-01-29' 
+    AND t.fecha_final <= '2024-01-30'
+GROUP BY
+    a.cedula, a.nombre, a.apellido;
 
 --Porcentaje de Venta por parroquia
 

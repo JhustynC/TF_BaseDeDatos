@@ -727,16 +727,30 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         conexion.conectar_()
         
         consulta = f'''
-        SELECT a.cedula, a.nombre, a.apellido, sum(t.comision*t.precio_venta)
-        FROM agente a
-        JOIN transaccion t ON a.cedula = t.ce_agente
-        WHERE t.estado = true AND t.fecha_final >= '{fecha_Inicio}' AND t.fecha_final <= '{fecha_Final}'
-        GROUP BY a.cedula
+        SELECT
+        a.cedula,
+        a.nombre,
+        a.apellido,
+        sum(t.comision * t.precio_venta) as total_comisiones,
+        avg(c.id) as promedio_calificaciones
+        FROM
+            agente a
+        JOIN
+            transaccion t ON a.cedula = t.ce_agente
+        LEFT JOIN
+            calificacion c ON t.id_calificacion = c.id
+        WHERE
+            t.estado = TRUE
+            AND t.fecha_final >= '{fecha_Inicio}' 
+            AND t.fecha_final <= '{fecha_Final}'
+        GROUP BY
+            a.cedula, a.nombre, a.apellido;
         '''
         try:
             conexion.ingresar_sentencia(consulta)
             r = conexion.resultado
             print(r)
+            self.llenar_tabla(self.tbl_desempenio, r)
         except Exception as e:print(e)
     
     #todo: para el segundo reporte
