@@ -254,8 +254,14 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         conectar = Conectar()
         conectar.conectar_()
         conectar.ingresar_sentencia(f"SELECT id FROM parroquia WHERE nombre = '{self.cbx_parroquia_inmueble.currentText()}'" )
-        print(conectar.resultado)
         parroquia = self.convertir_a_string(conectar.resultado)
+        
+        conectar = Conectar()
+        conectar.conectar_()
+        conectar.ingresar_sentencia(f"SELECT id FROM tipo_inmueble WHERE nombre = '{self.cbx_inmueble_tipoInmueble.currentText()}'")
+        tipo_inmueble = self.convertir_a_string(conectar.resultado)
+        print(conectar.resultado)
+        
 
         print(self.txt_inmueble_ccatastral.text(), 
                             int(self.txt_inmueble_numPisos.text()), 
@@ -274,8 +280,8 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
                             self.txt_inmueble_m2Habitables.text(),
                             self.txt_inmueble_m2Terreno.text(),
                             parroquia,
-                            12,
-                            13) 
+                            self.cbx_inmueble_vendedor.currentText(),
+                            tipo_inmueble) 
         
         print(inmuebleDB.consulta)
         inmuebleDB.enviar_consultar()
