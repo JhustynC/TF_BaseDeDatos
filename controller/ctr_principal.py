@@ -161,7 +161,10 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         #TODO: Agregar funcionalidades
         self.tbl_historial.setColumnCount(4)
         self.tbl_historial.setHorizontalHeaderLabels(['ID', "Clave Catastral", "FECHA INICiO", 'ESTADO'])
-        self.btn_filtrar_pendientes.clicked.connect(self.filtrar_campos_historial)
+        self.btn_filtrar_historial.clicked.connect(self.filtrar_campos_historial)
+        self.tbl_historial.setColumnCount(4)
+        self.tbl_historial.setHorizontalHeaderLabels(['CLAVE CATASTRAL', "VENDEDOR", "PRECIO", "PARROQUIA"])
+        
         
         #!Para Pagina Compra
         #TODO: Agregar funcionalidades
@@ -485,7 +488,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             self.list_material_compra.addItem(item)
         
    
-   #!Funcionalidad Transaccion
+   #!=========================Funcionalidad Transaccion=====================
    
     def llenar_vendedores_transaccion(self):
         conexion = Conectar()
@@ -507,11 +510,16 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         
         inmueble_consulta = ''' 
         select clave_castral
-        from inmueble
+        from inmueble i
+        join transaccion t on i.clave_castral = t.id_inmueble
+        where t.estado = false
         '''
-        conexion.ingresar_sentencia(inmueble_consulta)
-        r = map(lambda x: x[0], conexion.resultado)
-        self.llenar_combobox(self.cbx_transaccion_inmueble, r)
+        
+        try:
+            conexion.ingresar_sentencia(inmueble_consulta)
+            r = map(lambda x: x[0], conexion.resultado)
+            self.llenar_combobox(self.cbx_transaccion_inmueble, r)
+        except Exception as e: print(e)
         
     def llenar_agente_transaccion(self):
         conexion = Conectar()
@@ -569,7 +577,7 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
             conexion.resultado
         except Exception as e: print(e)
             
-    #!Funcionalidades de Pendientes
+    #!=========================Funcionalidades de Pendientes====================
 
     def llenar_tabla_pendientes(self):
         
@@ -608,14 +616,17 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
         print('Coincidencias: ', conexion.resultado)
         self.llenar_tabla(self.tbl_pendientes, conexion.resultado)
     
-    #!Funcionalidades de Historial 
+    #!==================Funcionalidades de Historial============================= 
     
     def llenar_tabla_historial(self):
     
         consulta_historial = ''' 
-        SELECT id, id_inmueble, fecha_inicio, estado
-        FROM transaccion 
-        WHERE estado = 'TRUE'
+        SELECT t.id_inmueble, a.nombre, t.precio_venta, p.nombre
+        FROM agente a  
+        join transaccion t on a.cedula = t.ce_agente 
+        join inmueble i on t.id_inmueble = i.clave_castral
+        join parroquia p on i.id_parroquia = p.id
+        WHERE t.estado = 'TRUE'
         '''
         conexion = Conectar()
         conexion.conectar_()
@@ -627,25 +638,45 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
     def filtrar_campos_historial(self):
         
         agregar = ''
-        ccatatral = self.txt_ccatastral_pendientes.text()
+        ccatatral = self.txt_ccatastral_historial.text()
         if(len(ccatatral)!=0):
-            agregar = f" AND id_inmueble = '{ccatatral}'"
+            agregar = f" AND t.id_inmueble = '{ccatatral}'"
         
-        fecha_seleccionada = self.cld_fecha_pendientes.selectedDate().toString("yyyy-MM-dd")
+        fecha_seleccionada = self.cld_fecha_historial.selectedDate().toString("yyyy-MM-dd")
         print(fecha_seleccionada)
         
         conexion = Conectar()
         conexion.conectar_()
         
         consulta_historial = f''' 
-        SELECT id, id_inmueble, fecha_inicio, estado
-        FROM transaccion 
-        WHERE estado = 'TRUE' AND fecha_inicio >= '{fecha_seleccionada}'
+        SELECT t.id_inmueble, a.nombre, t.precio_venta, p.nombre
+        FROM agente a  
+        join transaccion t on a.cedula = t.ce_agente 
+        join inmueble i on t.id_inmueble = i.clave_castral
+        join parroquia p on i.id_parroquia = p.id
+        WHERE t.estado = 'TRUE' AND t.fecha_final >= '{fecha_seleccionada}'
         '''+agregar
-        conexion.ingresar_sentencia(consulta_historial)
+        try:
+            print(consulta_historial)
+            conexion.ingresar_sentencia(consulta_historial)
+            self.llenar_tabla(self.tbl_historial, conexion.resultado)
+            self.sumar_columna()
+        except Exception as e: print(e)
         
-        print(conexion.resultado)
-        
+    def sumar_columna(self):
+        # Sumar los valores de la segunda columna
+        columna = 2  # La segunda columna tiene el índice 1 (la indexación comienza desde 0)
+        suma = 0
+
+        for row in range(self.tbl_historial.rowCount()):
+            item = self.tbl_historial.item(row, columna)
+            if item is not None and item.text():
+                suma += float(item.text())
+
+        print(f"La suma de la columna {columna + 1} es: {suma}")
+        self.lbl_total_historial.setText(f'Total Ventas: ')
+        self.lbl_total_historial.setText(f'Total Ventas: {suma}')
+    
     #!======================Funcionalidades de Compra=========================
     c = CompraDB()
      
@@ -975,12 +1006,3 @@ class UI(QtWidgets.QMainWindow, Ui_MenuPrincipal):
                 ...
             case self.tbl_porcentaje:
                 ...
-                
-        
-        
-        
-        
-        
-
-
-

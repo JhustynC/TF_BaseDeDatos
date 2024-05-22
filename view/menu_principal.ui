@@ -1149,7 +1149,7 @@ color:rgb(35, 35, 35);
 }</string>
                    </property>
                    <property name="currentIndex">
-                    <number>4</number>
+                    <number>1</number>
                    </property>
                    <widget class="QWidget" name="pg_Pendientes">
                     <property name="styleSheet">
@@ -1439,6 +1439,13 @@ color:rgb(35, 35, 35);
                             </item>
                             <item>
                              <widget class="QLineEdit" name="txt_ccatastral_historial"/>
+                            </item>
+                            <item>
+                             <widget class="QLabel" name="lbl_total_historial">
+                              <property name="text">
+                               <string>Total:</string>
+                              </property>
+                             </widget>
                             </item>
                             <item>
                              <spacer name="verticalSpacer_19">
