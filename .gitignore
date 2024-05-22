@@ -9,3 +9,11 @@ env.bak/
 venv.bak/
 configuracion.py
 
+
+#Cache 
+__pycache__/
+
+
+# mypy
+.mypy_cache/
+
